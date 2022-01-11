@@ -87,6 +87,7 @@ namespace csharp_example
             this.BtnCheck.TabIndex = 2;
             this.BtnCheck.Text = "Check";
             this.BtnCheck.UseVisualStyleBackColor = true;
+            this.BtnCheck.Click += new System.EventHandler(this.BtnCheck_Click);
             // 
             // BtnOK
             // 

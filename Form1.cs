@@ -26,5 +26,21 @@ namespace csharp_example
             TxtMoney.Enabled = false;
             BtnOK.Enabled = false;
         }
+
+        private void BtnCheck_Click(object sender, EventArgs e)
+        {
+            if(TxtPW.Text == "123456")
+            {
+                BtnOK.Enabled = true;
+                TxtMoney.Enabled = true;
+                TxtMoney.Focus();
+                LblShow.Text = "輸入提領金額，按OK";
+            }
+            else
+            {
+                LblShow.Text = "密碼錯誤! 重新輸入";
+                TxtPW.Clear();
+            }
+        }
     }
 }

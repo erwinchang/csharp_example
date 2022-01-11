@@ -16,5 +16,15 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LblShow.TextAlign = ContentAlignment.MiddleCenter;
+            LblShow.Text = "輸入密碼後，按Check";
+            TxtPW.MaxLength = 8;
+            TxtPW.PasswordChar = '*';
+            TxtMoney.Enabled = false;
+            BtnOK.Enabled = false;
+        }
     }
 }

@@ -42,5 +42,15 @@ namespace csharp_example
                 TxtPW.Clear();
             }
         }
+
+        private void BtnOK_Click(object sender, EventArgs e)
+        {
+            LblShow.Text = $"提領金額是 {TxtMoney.Text} 元";
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Form1_Load(sender, e);
+        }
     }
 }

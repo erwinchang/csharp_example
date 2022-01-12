@@ -62,6 +62,7 @@ namespace csharp_example
             this.RdbUSD.TabStop = true;
             this.RdbUSD.Text = "兌換為美金";
             this.RdbUSD.UseVisualStyleBackColor = true;
+            this.RdbUSD.CheckedChanged += new System.EventHandler(this.RdbUSD_CheckedChanged);
             // 
             // RdbJPY
             // 
@@ -73,6 +74,7 @@ namespace csharp_example
             this.RdbJPY.TabStop = true;
             this.RdbJPY.Text = "兌換為日幣";
             this.RdbJPY.UseVisualStyleBackColor = true;
+            this.RdbJPY.CheckedChanged += new System.EventHandler(this.RdbJPY_CheckedChanged);
             // 
             // LblOutput
             // 
@@ -86,7 +88,7 @@ namespace csharp_example
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(319, 156);
+            this.ClientSize = new System.Drawing.Size(572, 312);
             this.Controls.Add(this.LblOutput);
             this.Controls.Add(this.RdbJPY);
             this.Controls.Add(this.RdbUSD);

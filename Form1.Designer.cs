@@ -89,6 +89,7 @@ namespace csharp_example
             this.BtnLCM.TabIndex = 4;
             this.BtnLCM.Text = "LCM";
             this.BtnLCM.UseVisualStyleBackColor = true;
+            this.BtnLCM.Click += new System.EventHandler(this.BtnLCM_Click);
             // 
             // BtnReset
             // 
@@ -98,6 +99,7 @@ namespace csharp_example
             this.BtnReset.TabIndex = 5;
             this.BtnReset.Text = "重來";
             this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // BtnExit
             // 
@@ -107,6 +109,7 @@ namespace csharp_example
             this.BtnExit.TabIndex = 6;
             this.BtnExit.Text = "離開";
             this.BtnExit.UseVisualStyleBackColor = true;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // Form1
             // 
@@ -123,6 +126,7 @@ namespace csharp_example
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "最大公因數";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

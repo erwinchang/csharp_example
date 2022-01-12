@@ -1,8 +1,8 @@
 # csharp_example
 
-##　ch06 / tablcontrol
+## ch06/tablcontrol
 
-###　如何增加/設定分頁
+### 如何增加/設定分頁
 
 - 點選右下角 TabPage集合編輯器
 

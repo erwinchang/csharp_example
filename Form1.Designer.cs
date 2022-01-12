@@ -41,9 +41,9 @@ namespace csharp_example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(74, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(126, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "輸入台幣金額:";
             // 
             // TxtInput
             // 
@@ -57,10 +57,10 @@ namespace csharp_example
             this.RdbUSD.AutoSize = true;
             this.RdbUSD.Location = new System.Drawing.Point(77, 94);
             this.RdbUSD.Name = "RdbUSD";
-            this.RdbUSD.Size = new System.Drawing.Size(102, 19);
+            this.RdbUSD.Size = new System.Drawing.Size(103, 19);
             this.RdbUSD.TabIndex = 2;
             this.RdbUSD.TabStop = true;
-            this.RdbUSD.Text = "radioButton1";
+            this.RdbUSD.Text = "兌換為美金";
             this.RdbUSD.UseVisualStyleBackColor = true;
             // 
             // RdbJPY
@@ -68,33 +68,32 @@ namespace csharp_example
             this.RdbJPY.AutoSize = true;
             this.RdbJPY.Location = new System.Drawing.Point(200, 94);
             this.RdbJPY.Name = "RdbJPY";
-            this.RdbJPY.Size = new System.Drawing.Size(102, 19);
+            this.RdbJPY.Size = new System.Drawing.Size(103, 19);
             this.RdbJPY.TabIndex = 3;
             this.RdbJPY.TabStop = true;
-            this.RdbJPY.Text = "radioButton2";
+            this.RdbJPY.Text = "兌換為日幣";
             this.RdbJPY.UseVisualStyleBackColor = true;
             // 
             // LblOutput
             // 
-            this.LblOutput.AutoSize = true;
+            this.LblOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.LblOutput.Location = new System.Drawing.Point(74, 138);
             this.LblOutput.Name = "LblOutput";
-            this.LblOutput.Size = new System.Drawing.Size(41, 15);
+            this.LblOutput.Size = new System.Drawing.Size(267, 45);
             this.LblOutput.TabIndex = 4;
-            this.LblOutput.Text = "label2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 195);
+            this.ClientSize = new System.Drawing.Size(319, 156);
             this.Controls.Add(this.LblOutput);
             this.Controls.Add(this.RdbJPY);
             this.Controls.Add(this.RdbUSD);
             this.Controls.Add(this.TxtInput);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "外幣換算";
             this.ResumeLayout(false);
             this.PerformLayout();
 

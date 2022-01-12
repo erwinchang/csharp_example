@@ -34,7 +34,7 @@ namespace csharp_example
             this.label1 = new System.Windows.Forms.Label();
             this.TxtSec = new System.Windows.Forms.TextBox();
             this.BtnStart = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblMsg = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@ namespace csharp_example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(36, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 19);
+            this.label1.Size = new System.Drawing.Size(101, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "輸入倒數秒數:";
             // 
@@ -70,22 +70,22 @@ namespace csharp_example
             this.BtnStart.Text = "開始";
             this.BtnStart.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // LblMsg
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "輸入秒數後按<開始>鈕";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.LblMsg.AutoSize = true;
+            this.LblMsg.Location = new System.Drawing.Point(36, 119);
+            this.LblMsg.Name = "LblMsg";
+            this.LblMsg.Size = new System.Drawing.Size(158, 15);
+            this.LblMsg.TabIndex = 4;
+            this.LblMsg.Text = "輸入秒數後按<開始>鈕";
+            this.LblMsg.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 205);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LblMsg);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.TxtSec);
             this.Controls.Add(this.label1);
@@ -103,7 +103,7 @@ namespace csharp_example
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtSec;
         private System.Windows.Forms.Button BtnStart;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblMsg;
         private System.Windows.Forms.Timer timer1;
     }
 }

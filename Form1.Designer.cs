@@ -29,6 +29,7 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LblLCM = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@ namespace csharp_example
             this.BtnLCM = new System.Windows.Forms.Button();
             this.BtnReset = new System.Windows.Forms.Button();
             this.BtnExit = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -44,7 +46,7 @@ namespace csharp_example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(51, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(238, 19);
+            this.label1.Size = new System.Drawing.Size(190, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "輸入第一個介於1-100的整數";
             // 
@@ -53,7 +55,7 @@ namespace csharp_example
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(51, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(238, 19);
+            this.label2.Size = new System.Drawing.Size(190, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "輸入第二個介於1-100的整數";
             // 
@@ -136,6 +138,7 @@ namespace csharp_example
         private System.Windows.Forms.Button BtnLCM;
         private System.Windows.Forms.Button BtnReset;
         private System.Windows.Forms.Button BtnExit;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

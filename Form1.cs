@@ -26,5 +26,32 @@ namespace csharp_example
         {
 
         }
+
+        private void LblMsg_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TbcOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TxtID.Text == "Jerry" && TxtPW.Text == "168")
+            {
+                LblMsg.Text = "歡迎使用本系統";
+                if(TbcOrder.SelectedIndex == 3 )
+                {
+
+                }
+            }
+            else
+            {
+                TbcOrder.SelectedTab = tabPage1;
+                LblMsg.Text ="請先輸入正確的使用者和密碼 !";
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LblMsg.Text = "活力早餐店 點餐系統";
+        }
     }
 }

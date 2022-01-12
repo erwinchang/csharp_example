@@ -68,6 +68,7 @@ namespace csharp_example
             this.TbcOrder.SelectedIndex = 0;
             this.TbcOrder.Size = new System.Drawing.Size(381, 240);
             this.TbcOrder.TabIndex = 0;
+            this.TbcOrder.SelectedIndexChanged += new System.EventHandler(this.TbcOrder_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -259,6 +260,7 @@ namespace csharp_example
             this.LblMsg.Size = new System.Drawing.Size(376, 52);
             this.LblMsg.TabIndex = 1;
             this.LblMsg.Text = "label5";
+            this.LblMsg.Click += new System.EventHandler(this.LblMsg_Click);
             // 
             // Form1
             // 
@@ -269,6 +271,7 @@ namespace csharp_example
             this.Controls.Add(this.TbcOrder);
             this.Name = "Form1";
             this.Text = "活力早餐店";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.TbcOrder.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

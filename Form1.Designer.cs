@@ -30,10 +30,10 @@ namespace csharp_example
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.TxtInput = new System.Windows.Forms.TextBox();
+            this.RdbUSD = new System.Windows.Forms.RadioButton();
+            this.RdbJPY = new System.Windows.Forms.RadioButton();
+            this.LblOutput = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -45,53 +45,53 @@ namespace csharp_example
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // textBox1
+            // TxtInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(187, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 25);
-            this.textBox1.TabIndex = 1;
+            this.TxtInput.Location = new System.Drawing.Point(187, 50);
+            this.TxtInput.Name = "TxtInput";
+            this.TxtInput.Size = new System.Drawing.Size(100, 25);
+            this.TxtInput.TabIndex = 1;
             // 
-            // radioButton1
+            // RdbUSD
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(77, 94);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(102, 19);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.RdbUSD.AutoSize = true;
+            this.RdbUSD.Location = new System.Drawing.Point(77, 94);
+            this.RdbUSD.Name = "RdbUSD";
+            this.RdbUSD.Size = new System.Drawing.Size(102, 19);
+            this.RdbUSD.TabIndex = 2;
+            this.RdbUSD.TabStop = true;
+            this.RdbUSD.Text = "radioButton1";
+            this.RdbUSD.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // RdbJPY
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(200, 94);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(102, 19);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.RdbJPY.AutoSize = true;
+            this.RdbJPY.Location = new System.Drawing.Point(200, 94);
+            this.RdbJPY.Name = "RdbJPY";
+            this.RdbJPY.Size = new System.Drawing.Size(102, 19);
+            this.RdbJPY.TabIndex = 3;
+            this.RdbJPY.TabStop = true;
+            this.RdbJPY.Text = "radioButton2";
+            this.RdbJPY.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // LblOutput
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 138);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            this.LblOutput.AutoSize = true;
+            this.LblOutput.Location = new System.Drawing.Point(74, 138);
+            this.LblOutput.Name = "LblOutput";
+            this.LblOutput.Size = new System.Drawing.Size(41, 15);
+            this.LblOutput.TabIndex = 4;
+            this.LblOutput.Text = "label2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 195);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.LblOutput);
+            this.Controls.Add(this.RdbJPY);
+            this.Controls.Add(this.RdbUSD);
+            this.Controls.Add(this.TxtInput);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -103,10 +103,10 @@ namespace csharp_example
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox TxtInput;
+        private System.Windows.Forms.RadioButton RdbUSD;
+        private System.Windows.Forms.RadioButton RdbJPY;
+        private System.Windows.Forms.Label LblOutput;
     }
 }
 

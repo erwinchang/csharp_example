@@ -16,5 +16,11 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("心美，看什麼都漂亮!", "開朗",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+        }
     }
 }

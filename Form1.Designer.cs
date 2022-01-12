@@ -31,12 +31,12 @@ namespace csharp_example
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.LblLCM = new System.Windows.Forms.Label();
+            this.TxtN1 = new System.Windows.Forms.TextBox();
+            this.TxtN2 = new System.Windows.Forms.TextBox();
+            this.BtnLCM = new System.Windows.Forms.Button();
+            this.BtnReset = new System.Windows.Forms.Button();
+            this.BtnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -57,71 +57,70 @@ namespace csharp_example
             this.label2.TabIndex = 1;
             this.label2.Text = "輸入第二個介於1-100的整數";
             // 
-            // label3
+            // LblLCM
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.LblLCM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblLCM.Location = new System.Drawing.Point(51, 105);
+            this.LblLCM.Name = "LblLCM";
+            this.LblLCM.Size = new System.Drawing.Size(282, 39);
+            this.LblLCM.TabIndex = 2;
             // 
-            // textBox1
+            // TxtN1
             // 
-            this.textBox1.Location = new System.Drawing.Point(260, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(73, 25);
-            this.textBox1.TabIndex = 3;
+            this.TxtN1.Location = new System.Drawing.Point(260, 32);
+            this.TxtN1.Name = "TxtN1";
+            this.TxtN1.Size = new System.Drawing.Size(73, 25);
+            this.TxtN1.TabIndex = 3;
             // 
-            // textBox2
+            // TxtN2
             // 
-            this.textBox2.Location = new System.Drawing.Point(260, 70);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(73, 25);
-            this.textBox2.TabIndex = 3;
+            this.TxtN2.Location = new System.Drawing.Point(260, 70);
+            this.TxtN2.Name = "TxtN2";
+            this.TxtN2.Size = new System.Drawing.Size(73, 25);
+            this.TxtN2.TabIndex = 3;
             // 
-            // button1
+            // BtnLCM
             // 
-            this.button1.Location = new System.Drawing.Point(54, 155);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnLCM.Location = new System.Drawing.Point(54, 155);
+            this.BtnLCM.Name = "BtnLCM";
+            this.BtnLCM.Size = new System.Drawing.Size(75, 33);
+            this.BtnLCM.TabIndex = 4;
+            this.BtnLCM.Text = "LCM";
+            this.BtnLCM.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // BtnReset
             // 
-            this.button2.Location = new System.Drawing.Point(157, 155);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 33);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnReset.Location = new System.Drawing.Point(157, 155);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(75, 33);
+            this.BtnReset.TabIndex = 5;
+            this.BtnReset.Text = "重來";
+            this.BtnReset.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // BtnExit
             // 
-            this.button3.Location = new System.Drawing.Point(258, 155);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 33);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BtnExit.Location = new System.Drawing.Point(258, 155);
+            this.BtnExit.Name = "BtnExit";
+            this.BtnExit.Size = new System.Drawing.Size(75, 33);
+            this.BtnExit.TabIndex = 6;
+            this.BtnExit.Text = "離開";
+            this.BtnExit.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 236);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.BtnExit);
+            this.Controls.Add(this.BtnReset);
+            this.Controls.Add(this.BtnLCM);
+            this.Controls.Add(this.TxtN2);
+            this.Controls.Add(this.TxtN1);
+            this.Controls.Add(this.LblLCM);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "最大公因數";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,12 +130,12 @@ namespace csharp_example
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label LblLCM;
+        private System.Windows.Forms.TextBox TxtN1;
+        private System.Windows.Forms.TextBox TxtN2;
+        private System.Windows.Forms.Button BtnLCM;
+        private System.Windows.Forms.Button BtnReset;
+        private System.Windows.Forms.Button BtnExit;
     }
 }
 

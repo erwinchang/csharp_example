@@ -16,5 +16,13 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            radioButton1.Text = "男性";
+            radioButton1.Appearance = Appearance.Normal;
+            radioButton1.CheckAlign = ContentAlignment.TopRight;
+            radioButton1.Checked = true;
+        }
     }
 }

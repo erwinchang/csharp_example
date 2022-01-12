@@ -19,8 +19,13 @@ namespace csharp_example
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("心美，看什麼都漂亮!", "開朗",
+            DialogResult result;
+            result = MessageBox.Show("心美，看什麼都漂亮!", "開朗",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            if(result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

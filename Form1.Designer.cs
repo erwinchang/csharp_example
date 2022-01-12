@@ -39,14 +39,14 @@ namespace csharp_example
             this.label3 = new System.Windows.Forms.Label();
             this.TxtM2 = new System.Windows.Forms.TextBox();
             this.TxtM1 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.ChkM1 = new System.Windows.Forms.CheckBox();
+            this.ChkM2 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.TxtR2 = new System.Windows.Forms.TextBox();
             this.TxtR1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.ChkR2 = new System.Windows.Forms.CheckBox();
+            this.ChkR1 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.LblTotal = new System.Windows.Forms.Label();
             this.LblMsg = new System.Windows.Forms.Label();
@@ -121,8 +121,8 @@ namespace csharp_example
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.TxtM2);
             this.tabPage2.Controls.Add(this.TxtM1);
-            this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Controls.Add(this.checkBox2);
+            this.tabPage2.Controls.Add(this.ChkM1);
+            this.tabPage2.Controls.Add(this.ChkM2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -155,33 +155,33 @@ namespace csharp_example
             this.TxtM1.Size = new System.Drawing.Size(66, 25);
             this.TxtM1.TabIndex = 4;
             // 
-            // checkBox1
+            // ChkM1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(34, 49);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 19);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "蛋餅(20元)";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ChkM1.AutoSize = true;
+            this.ChkM1.Location = new System.Drawing.Point(34, 49);
+            this.ChkM1.Name = "ChkM1";
+            this.ChkM1.Size = new System.Drawing.Size(98, 19);
+            this.ChkM1.TabIndex = 3;
+            this.ChkM1.Text = "蛋餅(20元)";
+            this.ChkM1.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // ChkM2
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(33, 86);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(113, 19);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "三明治(30元)";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ChkM2.AutoSize = true;
+            this.ChkM2.Location = new System.Drawing.Point(33, 86);
+            this.ChkM2.Name = "ChkM2";
+            this.ChkM2.Size = new System.Drawing.Size(113, 19);
+            this.ChkM2.TabIndex = 2;
+            this.ChkM2.Text = "三明治(30元)";
+            this.ChkM2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.TxtR2);
             this.tabPage3.Controls.Add(this.TxtR1);
             this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.checkBox4);
-            this.tabPage3.Controls.Add(this.checkBox3);
+            this.tabPage3.Controls.Add(this.ChkR2);
+            this.tabPage3.Controls.Add(this.ChkR1);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -214,25 +214,25 @@ namespace csharp_example
             this.label4.TabIndex = 2;
             this.label4.Text = "數量";
             // 
-            // checkBox4
+            // ChkR2
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(73, 96);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(98, 19);
-            this.checkBox4.TabIndex = 1;
-            this.checkBox4.Text = "奶茶(20元)";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.ChkR2.AutoSize = true;
+            this.ChkR2.Location = new System.Drawing.Point(73, 96);
+            this.ChkR2.Name = "ChkR2";
+            this.ChkR2.Size = new System.Drawing.Size(98, 19);
+            this.ChkR2.TabIndex = 1;
+            this.ChkR2.Text = "奶茶(20元)";
+            this.ChkR2.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // ChkR1
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(71, 61);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(98, 19);
-            this.checkBox3.TabIndex = 0;
-            this.checkBox3.Text = "豆漿(15元)";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.ChkR1.AutoSize = true;
+            this.ChkR1.Location = new System.Drawing.Point(71, 61);
+            this.ChkR1.Name = "ChkR1";
+            this.ChkR1.Size = new System.Drawing.Size(98, 19);
+            this.ChkR1.TabIndex = 0;
+            this.ChkR1.Text = "豆漿(15元)";
+            this.ChkR1.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -298,13 +298,13 @@ namespace csharp_example
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtM2;
         private System.Windows.Forms.TextBox TxtM1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox ChkM1;
+        private System.Windows.Forms.CheckBox ChkM2;
         private System.Windows.Forms.TextBox TxtR2;
         private System.Windows.Forms.TextBox TxtR1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox ChkR2;
+        private System.Windows.Forms.CheckBox ChkR1;
         private System.Windows.Forms.Label LblTotal;
         private System.Windows.Forms.Label LblMsg;
     }

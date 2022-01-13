@@ -71,6 +71,7 @@ namespace csharp_example
             this.BtnNew.TabIndex = 3;
             this.BtnNew.Text = "出題";
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // BtnCheck
             // 
@@ -80,6 +81,7 @@ namespace csharp_example
             this.BtnCheck.TabIndex = 4;
             this.BtnCheck.Text = "核對";
             this.BtnCheck.UseVisualStyleBackColor = true;
+            this.BtnCheck.Click += new System.EventHandler(this.BtnCheck_Click);
             // 
             // BtnClear
             // 
@@ -89,6 +91,7 @@ namespace csharp_example
             this.BtnClear.TabIndex = 5;
             this.BtnClear.Text = "重答";
             this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // Form1
             // 
@@ -103,6 +106,7 @@ namespace csharp_example
             this.Controls.Add(this.LblDiv);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

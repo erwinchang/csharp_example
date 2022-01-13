@@ -50,7 +50,7 @@ namespace csharp_example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(44, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 19);
+            this.label1.Size = new System.Drawing.Size(97, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "台灣百岳清單";
             // 
@@ -62,6 +62,7 @@ namespace csharp_example
             this.BtnAdd.TabIndex = 2;
             this.BtnAdd.Text = "Add";
             this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnRemove
             // 
@@ -71,6 +72,7 @@ namespace csharp_example
             this.BtnRemove.TabIndex = 3;
             this.BtnRemove.Text = "Remove";
             this.BtnRemove.UseVisualStyleBackColor = true;
+            this.BtnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // BtnClear
             // 
@@ -80,6 +82,7 @@ namespace csharp_example
             this.BtnClear.TabIndex = 4;
             this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // BtnSort
             // 
@@ -89,6 +92,7 @@ namespace csharp_example
             this.BtnSort.TabIndex = 5;
             this.BtnSort.Text = "Sort";
             this.BtnSort.UseVisualStyleBackColor = true;
+            this.BtnSort.Click += new System.EventHandler(this.BtnSort_Click);
             // 
             // Form1
             // 
@@ -103,6 +107,7 @@ namespace csharp_example
             this.Controls.Add(this.CboList);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

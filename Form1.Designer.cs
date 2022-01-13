@@ -43,6 +43,7 @@ namespace csharp_example
             this.LstPlace.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LstPlace.Size = new System.Drawing.Size(120, 79);
             this.LstPlace.TabIndex = 0;
+            this.LstPlace.SelectedIndexChanged += new System.EventHandler(this.LstPlace_SelectedIndexChanged);
             // 
             // TxtCity
             // 
@@ -72,6 +73,7 @@ namespace csharp_example
             this.Controls.Add(this.LstPlace);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

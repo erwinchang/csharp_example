@@ -29,26 +29,29 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.LstPlace = new System.Windows.Forms.ListBox();
+            this.TxtCity = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listBox1
+            // LstPlace
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(184, 22);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 79);
-            this.listBox1.TabIndex = 0;
+            this.LstPlace.FormattingEnabled = true;
+            this.LstPlace.ItemHeight = 15;
+            this.LstPlace.Location = new System.Drawing.Point(184, 22);
+            this.LstPlace.Name = "LstPlace";
+            this.LstPlace.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.LstPlace.Size = new System.Drawing.Size(120, 79);
+            this.LstPlace.TabIndex = 0;
             // 
-            // textBox1
+            // TxtCity
             // 
-            this.textBox1.Location = new System.Drawing.Point(44, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(260, 25);
-            this.textBox1.TabIndex = 1;
+            this.TxtCity.Location = new System.Drawing.Point(44, 124);
+            this.TxtCity.Multiline = true;
+            this.TxtCity.Name = "TxtCity";
+            this.TxtCity.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtCity.Size = new System.Drawing.Size(315, 81);
+            this.TxtCity.TabIndex = 1;
             // 
             // label1
             // 
@@ -65,8 +68,8 @@ namespace csharp_example
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 235);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.TxtCity);
+            this.Controls.Add(this.LstPlace);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -76,8 +79,8 @@ namespace csharp_example
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListBox LstPlace;
+        private System.Windows.Forms.TextBox TxtCity;
         private System.Windows.Forms.Label label1;
     }
 }

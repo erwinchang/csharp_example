@@ -14,12 +14,45 @@ namespace csharp_example
     {
         DataTable dt;
         int G_studentID = 0;
+        Random rd = new Random();
+
         public Form1()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+            BtnDataRow1.Enabled = false;
+            BtnNewRow.Enabled = false;
+        }
+
+        private void BtnNewRow_Click(object sender, EventArgs e)
+        {
+            DataRow row;
+            row = dt.NewRow();
+            
+            
+            row["StudentID"] = "S00" + (++G_studentID);
+            row["StudentName"] = G_studentID;
+            row["Math"] = Double.Parse((rd.NextDouble() * 100.0).ToString("0.00"));
+            row["Eng"] = Double.Parse((rd.NextDouble() * 100.0).ToString("0.00"));
+            dt.Rows.Add(row);
+        }
+
+        private void BtnDataRow1_Click(object sender, EventArgs e)
+        {
+            DataRow row;
+            row = dt.NewRow();
+            dt.Rows.Add(new Object[] 
+            { "S00" + (++G_studentID), 
+                G_studentID, 
+                Double.Parse((rd.NextDouble() * 100.0).ToString("0.00")), 
+                Double.Parse((rd.NextDouble() * 100.0).ToString("0.00")) 
+            });
+        }
+
+        private void BtnCreate_Click(object sender, EventArgs e)
         {
             dt = new DataTable("Student");
             dt.Columns.Add("StudentID", typeof(String));
@@ -34,19 +67,9 @@ namespace csharp_example
             dt.Columns["StudentName"].AllowDBNull = false;
 
             dataGridView1.DataSource = dt;
-        }
 
-        private void BtnNewRow_Click(object sender, EventArgs e)
-        {
-            DataRow row;
-            row = dt.NewRow();
-            Random rd = new Random();
-            
-            row["StudentID"] = "S00" + (++G_studentID);
-            row["StudentName"] = G_studentID;
-            row["Math"] = Double.Parse((rd.NextDouble() * 100.0).ToString("0.00"));
-            row["Eng"] = Double.Parse((rd.NextDouble() * 100.0).ToString("0.00"));
-            dt.Rows.Add(row);
+            BtnDataRow1.Enabled = true;
+            BtnNewRow.Enabled = true;
         }
     }
 }

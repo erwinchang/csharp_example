@@ -31,6 +31,8 @@ namespace csharp_example
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.BtnNewRow = new System.Windows.Forms.Button();
+            this.BtnDataRow1 = new System.Windows.Forms.Button();
+            this.BtnCreate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +48,7 @@ namespace csharp_example
             // 
             // BtnNewRow
             // 
-            this.BtnNewRow.Location = new System.Drawing.Point(98, 22);
+            this.BtnNewRow.Location = new System.Drawing.Point(216, 22);
             this.BtnNewRow.Name = "BtnNewRow";
             this.BtnNewRow.Size = new System.Drawing.Size(120, 41);
             this.BtnNewRow.TabIndex = 1;
@@ -54,11 +56,33 @@ namespace csharp_example
             this.BtnNewRow.UseVisualStyleBackColor = true;
             this.BtnNewRow.Click += new System.EventHandler(this.BtnNewRow_Click);
             // 
+            // BtnDataRow1
+            // 
+            this.BtnDataRow1.Location = new System.Drawing.Point(342, 22);
+            this.BtnDataRow1.Name = "BtnDataRow1";
+            this.BtnDataRow1.Size = new System.Drawing.Size(136, 41);
+            this.BtnDataRow1.TabIndex = 2;
+            this.BtnDataRow1.Text = "DataRow1";
+            this.BtnDataRow1.UseVisualStyleBackColor = true;
+            this.BtnDataRow1.Click += new System.EventHandler(this.BtnDataRow1_Click);
+            // 
+            // BtnCreate
+            // 
+            this.BtnCreate.Location = new System.Drawing.Point(98, 21);
+            this.BtnCreate.Name = "BtnCreate";
+            this.BtnCreate.Size = new System.Drawing.Size(114, 42);
+            this.BtnCreate.TabIndex = 3;
+            this.BtnCreate.Text = "Create Table";
+            this.BtnCreate.UseVisualStyleBackColor = true;
+            this.BtnCreate.Click += new System.EventHandler(this.BtnCreate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnCreate);
+            this.Controls.Add(this.BtnDataRow1);
             this.Controls.Add(this.BtnNewRow);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
@@ -73,6 +97,8 @@ namespace csharp_example
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button BtnNewRow;
+        private System.Windows.Forms.Button BtnDataRow1;
+        private System.Windows.Forms.Button BtnCreate;
     }
 }
 

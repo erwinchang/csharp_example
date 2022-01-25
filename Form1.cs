@@ -12,6 +12,8 @@ namespace csharp_example
 {
     public partial class Form1 : Form
     {
+        DataTable dt;
+        int G_studentID = 0;
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +21,7 @@ namespace csharp_example
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable("Student");
+            dt = new DataTable("Student");
             dt.Columns.Add("StudentID", typeof(String));
             dt.Columns.Add("StudentName", typeof(String));
             dt.Columns.Add("Math", typeof(Double));
@@ -32,6 +34,19 @@ namespace csharp_example
             dt.Columns["StudentName"].AllowDBNull = false;
 
             dataGridView1.DataSource = dt;
+        }
+
+        private void BtnNewRow_Click(object sender, EventArgs e)
+        {
+            DataRow row;
+            row = dt.NewRow();
+            Random rd = new Random();
+            
+            row["StudentID"] = "S00" + (++G_studentID);
+            row["StudentName"] = G_studentID;
+            row["Math"] = Double.Parse((rd.NextDouble() * 100.0).ToString("0.00"));
+            row["Eng"] = Double.Parse((rd.NextDouble() * 100.0).ToString("0.00"));
+            dt.Rows.Add(row);
         }
     }
 }

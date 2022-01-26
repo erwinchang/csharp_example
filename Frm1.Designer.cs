@@ -94,6 +94,7 @@ namespace csharp_example
             this.BtnNext.TabIndex = 6;
             this.BtnNext.Text = "下一步";
             this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // Frm1
             // 

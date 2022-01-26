@@ -41,6 +41,8 @@ namespace csharp_example
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.TsTxtMsg = new System.Windows.Forms.ToolStripTextBox();
             this.TmrMove = new System.Windows.Forms.Timer(this.components);
+            this.LblMsg = new System.Windows.Forms.Label();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -51,6 +53,7 @@ namespace csharp_example
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.LblMsg);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(801, 425);
             this.toolStripContainer1.Location = new System.Drawing.Point(1, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -127,6 +130,16 @@ namespace csharp_example
             this.TsTxtMsg.Name = "TsTxtMsg";
             this.TsTxtMsg.Size = new System.Drawing.Size(100, 27);
             // 
+            // LblMsg
+            // 
+            this.LblMsg.AutoSize = true;
+            this.LblMsg.Font = new System.Drawing.Font("標楷體", 28.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.LblMsg.Location = new System.Drawing.Point(38, 317);
+            this.LblMsg.Name = "LblMsg";
+            this.LblMsg.Size = new System.Drawing.Size(213, 60);
+            this.LblMsg.TabIndex = 0;
+            this.LblMsg.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -135,6 +148,8 @@ namespace csharp_example
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
@@ -157,6 +172,7 @@ namespace csharp_example
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox TsTxtMsg;
         private System.Windows.Forms.Timer TmrMove;
+        private System.Windows.Forms.Label LblMsg;
     }
 }
 

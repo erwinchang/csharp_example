@@ -42,10 +42,12 @@ namespace csharp_example
             this.TsTxtMsg = new System.Windows.Forms.ToolStripTextBox();
             this.TmrMove = new System.Windows.Forms.Timer(this.components);
             this.LblMsg = new System.Windows.Forms.Label();
+            this.PicPicture = new System.Windows.Forms.PictureBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -53,6 +55,7 @@ namespace csharp_example
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.PicPicture);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.LblMsg);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(801, 425);
             this.toolStripContainer1.Location = new System.Drawing.Point(1, 0);
@@ -114,7 +117,6 @@ namespace csharp_example
             // 
             // TsCboPic
             // 
-            this.TsCboPic.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.TsCboPic.Name = "TsCboPic";
             this.TsCboPic.Size = new System.Drawing.Size(121, 27);
             // 
@@ -126,7 +128,6 @@ namespace csharp_example
             // 
             // TsTxtMsg
             // 
-            this.TsTxtMsg.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.TsTxtMsg.Name = "TsTxtMsg";
             this.TsTxtMsg.Size = new System.Drawing.Size(100, 27);
             // 
@@ -139,6 +140,14 @@ namespace csharp_example
             this.LblMsg.Size = new System.Drawing.Size(213, 60);
             this.LblMsg.TabIndex = 0;
             this.LblMsg.Text = "label1";
+            // 
+            // PicPicture
+            // 
+            this.PicPicture.Location = new System.Drawing.Point(42, 22);
+            this.PicPicture.Name = "PicPicture";
+            this.PicPicture.Size = new System.Drawing.Size(562, 248);
+            this.PicPicture.TabIndex = 1;
+            this.PicPicture.TabStop = false;
             // 
             // Form1
             // 
@@ -156,6 +165,7 @@ namespace csharp_example
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicPicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -173,6 +183,7 @@ namespace csharp_example
         private System.Windows.Forms.ToolStripTextBox TsTxtMsg;
         private System.Windows.Forms.Timer TmrMove;
         private System.Windows.Forms.Label LblMsg;
+        private System.Windows.Forms.PictureBox PicPicture;
     }
 }
 

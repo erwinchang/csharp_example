@@ -34,6 +34,10 @@ namespace csharp_example
             this.MnuSize = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuStyle = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtW = new System.Windows.Forms.TextBox();
+            this.MnuSet1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSet2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSet3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,15 +75,47 @@ namespace csharp_example
             // 
             // MnuSet
             // 
+            this.MnuSet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuSet1,
+            this.MnuSet2,
+            this.MnuSet3});
             this.MnuSet.Name = "MnuSet";
             this.MnuSet.Size = new System.Drawing.Size(53, 23);
             this.MnuSet.Text = "設定";
+            // 
+            // TxtW
+            // 
+            this.TxtW.Location = new System.Drawing.Point(33, 79);
+            this.TxtW.Name = "TxtW";
+            this.TxtW.Size = new System.Drawing.Size(460, 25);
+            this.TxtW.TabIndex = 1;
+            // 
+            // MnuSet1
+            // 
+            this.MnuSet1.Name = "MnuSet1";
+            this.MnuSet1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.MnuSet1.Size = new System.Drawing.Size(224, 26);
+            this.MnuSet1.Text = "預設(&U)";
+            // 
+            // MnuSet2
+            // 
+            this.MnuSet2.Name = "MnuSet2";
+            this.MnuSet2.Size = new System.Drawing.Size(224, 26);
+            this.MnuSet2.Text = "較大字型";
+            // 
+            // MnuSet3
+            // 
+            this.MnuSet3.Name = "MnuSet3";
+            this.MnuSet3.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.MnuSet3.Size = new System.Drawing.Size(224, 26);
+            this.MnuSet3.Text = "結束(&X)";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TxtW);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -98,6 +134,10 @@ namespace csharp_example
         private System.Windows.Forms.ToolStripMenuItem MnuSize;
         private System.Windows.Forms.ToolStripMenuItem MnuStyle;
         private System.Windows.Forms.ToolStripMenuItem MnuSet;
+        private System.Windows.Forms.ToolStripMenuItem MnuSet1;
+        private System.Windows.Forms.ToolStripMenuItem MnuSet2;
+        private System.Windows.Forms.ToolStripMenuItem MnuSet3;
+        private System.Windows.Forms.TextBox TxtW;
     }
 }
 

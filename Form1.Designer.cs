@@ -29,6 +29,7 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MnuFont = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuFont1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,12 @@ namespace csharp_example
             this.MnuEdit2 = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuEdit3 = new System.Windows.Forms.ToolStripMenuItem();
             this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CMnuEdit1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CMnuEdit2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.CMnuEdit3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -232,6 +238,33 @@ namespace csharp_example
             this.設定ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.設定ToolStripMenuItem.Text = "設定";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CMnuEdit1,
+            this.CMnuEdit2,
+            this.CMnuEdit3});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(99, 70);
+            // 
+            // CMnuEdit1
+            // 
+            this.CMnuEdit1.Name = "CMnuEdit1";
+            this.CMnuEdit1.Size = new System.Drawing.Size(98, 22);
+            this.CMnuEdit1.Text = "複製";
+            // 
+            // CMnuEdit2
+            // 
+            this.CMnuEdit2.Name = "CMnuEdit2";
+            this.CMnuEdit2.Size = new System.Drawing.Size(98, 22);
+            this.CMnuEdit2.Text = "貼上";
+            // 
+            // CMnuEdit3
+            // 
+            this.CMnuEdit3.Name = "CMnuEdit3";
+            this.CMnuEdit3.Size = new System.Drawing.Size(98, 22);
+            this.CMnuEdit3.Text = "剪下";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -246,6 +279,7 @@ namespace csharp_example
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +309,10 @@ namespace csharp_example
         private System.Windows.Forms.ToolStripMenuItem MnuEdit2;
         private System.Windows.Forms.ToolStripMenuItem MnuEdit3;
         private System.Windows.Forms.ToolStripMenuItem 設定ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem CMnuEdit1;
+        private System.Windows.Forms.ToolStripMenuItem CMnuEdit2;
+        private System.Windows.Forms.ToolStripMenuItem CMnuEdit3;
     }
 }
 

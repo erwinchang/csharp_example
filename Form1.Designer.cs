@@ -29,13 +29,84 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.檔案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.檔案ToolStripMenuItem,
+            this.MnuExit});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 檔案ToolStripMenuItem
+            // 
+            this.檔案ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuOpen,
+            this.MnuSave});
+            this.檔案ToolStripMenuItem.Name = "檔案ToolStripMenuItem";
+            this.檔案ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+            this.檔案ToolStripMenuItem.Text = "檔案";
+            // 
+            // MnuOpen
+            // 
+            this.MnuOpen.Name = "MnuOpen";
+            this.MnuOpen.Size = new System.Drawing.Size(224, 26);
+            this.MnuOpen.Text = "開檔";
+            // 
+            // MnuSave
+            // 
+            this.MnuSave.Name = "MnuSave";
+            this.MnuSave.Size = new System.Drawing.Size(224, 26);
+            this.MnuSave.Text = "另存新檔";
+            // 
+            // MnuExit
+            // 
+            this.MnuExit.Name = "MnuExit";
+            this.MnuExit.Size = new System.Drawing.Size(53, 23);
+            this.MnuExit.Text = "結束";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 檔案ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnuOpen;
+        private System.Windows.Forms.ToolStripMenuItem MnuSave;
+        private System.Windows.Forms.ToolStripMenuItem MnuExit;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

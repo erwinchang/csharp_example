@@ -33,7 +33,7 @@ namespace csharp_example
             this.Rdb1 = new System.Windows.Forms.RadioButton();
             this.Rdb2 = new System.Windows.Forms.RadioButton();
             this.Rdb3 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.Rdb4 = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtInput = new System.Windows.Forms.TextBox();
             this.BtnOK = new System.Windows.Forms.Button();
@@ -81,16 +81,16 @@ namespace csharp_example
             this.Rdb3.Text = "專科";
             this.Rdb3.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // Rdb4
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(243, 54);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(58, 19);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "專科";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.Rdb4.AutoSize = true;
+            this.Rdb4.Location = new System.Drawing.Point(243, 54);
+            this.Rdb4.Name = "Rdb4";
+            this.Rdb4.Size = new System.Drawing.Size(58, 19);
+            this.Rdb4.TabIndex = 4;
+            this.Rdb4.TabStop = true;
+            this.Rdb4.Text = "大學";
+            this.Rdb4.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -116,6 +116,7 @@ namespace csharp_example
             this.BtnOK.TabIndex = 7;
             this.BtnOK.Text = "完成";
             this.BtnOK.UseVisualStyleBackColor = true;
+            this.BtnOK.Click += new System.EventHandler(this.BtnOK_Click);
             // 
             // Frm2
             // 
@@ -125,13 +126,14 @@ namespace csharp_example
             this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.TxtInput);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.Rdb4);
             this.Controls.Add(this.Rdb3);
             this.Controls.Add(this.Rdb2);
             this.Controls.Add(this.Rdb1);
             this.Controls.Add(this.label1);
             this.Name = "Frm2";
             this.Text = "個人專長";
+            this.Load += new System.EventHandler(this.Frm2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,7 +145,7 @@ namespace csharp_example
         private System.Windows.Forms.RadioButton Rdb1;
         private System.Windows.Forms.RadioButton Rdb2;
         private System.Windows.Forms.RadioButton Rdb3;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton Rdb4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtInput;
         private System.Windows.Forms.Button BtnOK;

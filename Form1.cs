@@ -22,6 +22,7 @@ namespace csharp_example
             McdDate.MinDate = DateTime.Today;
             McdDate.MaxSelectionCount = 7;
             McdDate.SelectionStart = DateTime.Today;
+            //McdDate.ShowToday = false;
         }
     }
 }

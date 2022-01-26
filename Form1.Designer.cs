@@ -34,10 +34,18 @@ namespace csharp_example
             this.MnuSize = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuStyle = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSet = new System.Windows.Forms.ToolStripMenuItem();
-            this.TxtW = new System.Windows.Forms.TextBox();
             this.MnuSet1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSet2 = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSet3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtW = new System.Windows.Forms.TextBox();
+            this.MnuStyle1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuStyle2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSize1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSize2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSize3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSize4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuFont1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuFont2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,27 +59,39 @@ namespace csharp_example
             this.MnuSet});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // MnuFont
             // 
+            this.MnuFont.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuFont1,
+            this.MnuFont2});
             this.MnuFont.Name = "MnuFont";
-            this.MnuFont.Size = new System.Drawing.Size(53, 23);
+            this.MnuFont.Size = new System.Drawing.Size(53, 24);
             this.MnuFont.Text = "字型";
             // 
             // MnuSize
             // 
+            this.MnuSize.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuSize1,
+            this.MnuSize2,
+            this.MnuSize3,
+            this.MnuSize4});
             this.MnuSize.Name = "MnuSize";
-            this.MnuSize.Size = new System.Drawing.Size(53, 23);
+            this.MnuSize.Size = new System.Drawing.Size(53, 24);
             this.MnuSize.Text = "大小";
             // 
             // MnuStyle
             // 
+            this.MnuStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuStyle1,
+            this.MnuStyle2});
             this.MnuStyle.Name = "MnuStyle";
-            this.MnuStyle.Size = new System.Drawing.Size(53, 23);
+            this.MnuStyle.Size = new System.Drawing.Size(53, 24);
             this.MnuStyle.Text = "樣式";
+            this.MnuStyle.Click += new System.EventHandler(this.MnuStyle_Click);
             // 
             // MnuSet
             // 
@@ -80,15 +100,8 @@ namespace csharp_example
             this.MnuSet2,
             this.MnuSet3});
             this.MnuSet.Name = "MnuSet";
-            this.MnuSet.Size = new System.Drawing.Size(53, 23);
+            this.MnuSet.Size = new System.Drawing.Size(53, 24);
             this.MnuSet.Text = "設定";
-            // 
-            // TxtW
-            // 
-            this.TxtW.Location = new System.Drawing.Point(33, 79);
-            this.TxtW.Name = "TxtW";
-            this.TxtW.Size = new System.Drawing.Size(460, 25);
-            this.TxtW.TabIndex = 1;
             // 
             // MnuSet1
             // 
@@ -110,6 +123,61 @@ namespace csharp_example
             this.MnuSet3.Size = new System.Drawing.Size(224, 26);
             this.MnuSet3.Text = "結束(&X)";
             // 
+            // TxtW
+            // 
+            this.TxtW.Location = new System.Drawing.Point(33, 79);
+            this.TxtW.Name = "TxtW";
+            this.TxtW.Size = new System.Drawing.Size(460, 25);
+            this.TxtW.TabIndex = 1;
+            // 
+            // MnuStyle1
+            // 
+            this.MnuStyle1.Name = "MnuStyle1";
+            this.MnuStyle1.Size = new System.Drawing.Size(224, 26);
+            this.MnuStyle1.Text = "粗體";
+            // 
+            // MnuStyle2
+            // 
+            this.MnuStyle2.Name = "MnuStyle2";
+            this.MnuStyle2.Size = new System.Drawing.Size(224, 26);
+            this.MnuStyle2.Text = "斜體";
+            // 
+            // MnuSize1
+            // 
+            this.MnuSize1.Name = "MnuSize1";
+            this.MnuSize1.Size = new System.Drawing.Size(224, 26);
+            this.MnuSize1.Text = "9";
+            // 
+            // MnuSize2
+            // 
+            this.MnuSize2.Name = "MnuSize2";
+            this.MnuSize2.Size = new System.Drawing.Size(224, 26);
+            this.MnuSize2.Text = "12";
+            // 
+            // MnuSize3
+            // 
+            this.MnuSize3.Name = "MnuSize3";
+            this.MnuSize3.Size = new System.Drawing.Size(224, 26);
+            this.MnuSize3.Text = "20";
+            // 
+            // MnuSize4
+            // 
+            this.MnuSize4.Name = "MnuSize4";
+            this.MnuSize4.Size = new System.Drawing.Size(224, 26);
+            this.MnuSize4.Text = "24";
+            // 
+            // MnuFont1
+            // 
+            this.MnuFont1.Name = "MnuFont1";
+            this.MnuFont1.Size = new System.Drawing.Size(152, 26);
+            this.MnuFont1.Text = "新細明體";
+            // 
+            // MnuFont2
+            // 
+            this.MnuFont2.Name = "MnuFont2";
+            this.MnuFont2.Size = new System.Drawing.Size(152, 26);
+            this.MnuFont2.Text = "標楷體";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -120,6 +188,7 @@ namespace csharp_example
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -138,6 +207,14 @@ namespace csharp_example
         private System.Windows.Forms.ToolStripMenuItem MnuSet2;
         private System.Windows.Forms.ToolStripMenuItem MnuSet3;
         private System.Windows.Forms.TextBox TxtW;
+        private System.Windows.Forms.ToolStripMenuItem MnuFont1;
+        private System.Windows.Forms.ToolStripMenuItem MnuFont2;
+        private System.Windows.Forms.ToolStripMenuItem MnuSize1;
+        private System.Windows.Forms.ToolStripMenuItem MnuSize2;
+        private System.Windows.Forms.ToolStripMenuItem MnuSize3;
+        private System.Windows.Forms.ToolStripMenuItem MnuSize4;
+        private System.Windows.Forms.ToolStripMenuItem MnuStyle1;
+        private System.Windows.Forms.ToolStripMenuItem MnuStyle2;
     }
 }
 

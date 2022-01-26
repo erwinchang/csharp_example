@@ -16,5 +16,18 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            TxtW.Multiline = true;
+            TxtW.Dock = DockStyle.Fill;
+            MnuStyle.CheckOnClick = true;
+
+        }
+
+        private void MnuStyle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

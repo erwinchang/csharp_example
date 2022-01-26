@@ -40,7 +40,7 @@ namespace csharp_example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(32, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 19);
+            this.label1.Size = new System.Drawing.Size(172, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "請按開始，填寫個人資料";
             // 
@@ -60,6 +60,7 @@ namespace csharp_example
             this.BtnGo.TabIndex = 2;
             this.BtnGo.Text = "開始";
             this.BtnGo.UseVisualStyleBackColor = true;
+            this.BtnGo.Click += new System.EventHandler(this.BtnGo_Click);
             // 
             // BtnExit
             // 
@@ -69,6 +70,7 @@ namespace csharp_example
             this.BtnExit.TabIndex = 3;
             this.BtnExit.Text = "結束";
             this.BtnExit.UseVisualStyleBackColor = true;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // Form1
             // 
@@ -81,6 +83,7 @@ namespace csharp_example
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "主選單";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

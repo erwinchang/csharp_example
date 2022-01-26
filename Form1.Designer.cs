@@ -30,10 +30,10 @@ namespace csharp_example
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.字型ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.大小ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.樣式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuFont = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSize = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuStyle = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuSet = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,39 +41,39 @@ namespace csharp_example
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.字型ToolStripMenuItem,
-            this.大小ToolStripMenuItem,
-            this.樣式ToolStripMenuItem,
-            this.設定ToolStripMenuItem});
+            this.MnuFont,
+            this.MnuSize,
+            this.MnuStyle,
+            this.MnuSet});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 字型ToolStripMenuItem
+            // MnuFont
             // 
-            this.字型ToolStripMenuItem.Name = "字型ToolStripMenuItem";
-            this.字型ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.字型ToolStripMenuItem.Text = "字型";
+            this.MnuFont.Name = "MnuFont";
+            this.MnuFont.Size = new System.Drawing.Size(53, 23);
+            this.MnuFont.Text = "字型";
             // 
-            // 大小ToolStripMenuItem
+            // MnuSize
             // 
-            this.大小ToolStripMenuItem.Name = "大小ToolStripMenuItem";
-            this.大小ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.大小ToolStripMenuItem.Text = "大小";
+            this.MnuSize.Name = "MnuSize";
+            this.MnuSize.Size = new System.Drawing.Size(53, 23);
+            this.MnuSize.Text = "大小";
             // 
-            // 樣式ToolStripMenuItem
+            // MnuStyle
             // 
-            this.樣式ToolStripMenuItem.Name = "樣式ToolStripMenuItem";
-            this.樣式ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.樣式ToolStripMenuItem.Text = "樣式";
+            this.MnuStyle.Name = "MnuStyle";
+            this.MnuStyle.Size = new System.Drawing.Size(53, 23);
+            this.MnuStyle.Text = "樣式";
             // 
-            // 設定ToolStripMenuItem
+            // MnuSet
             // 
-            this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.設定ToolStripMenuItem.Text = "設定";
+            this.MnuSet.Name = "MnuSet";
+            this.MnuSet.Size = new System.Drawing.Size(53, 23);
+            this.MnuSet.Text = "設定";
             // 
             // Form1
             // 
@@ -94,10 +94,10 @@ namespace csharp_example
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 字型ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 大小ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 樣式ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 設定ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnuFont;
+        private System.Windows.Forms.ToolStripMenuItem MnuSize;
+        private System.Windows.Forms.ToolStripMenuItem MnuStyle;
+        private System.Windows.Forms.ToolStripMenuItem MnuSet;
     }
 }
 

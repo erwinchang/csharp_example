@@ -29,13 +29,42 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.McdDate = new System.Windows.Forms.MonthCalendar();
+            this.LblMoney = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // McdDate
+            // 
+            this.McdDate.Location = new System.Drawing.Point(86, 83);
+            this.McdDate.Name = "McdDate";
+            this.McdDate.TabIndex = 0;
+            // 
+            // LblMoney
+            // 
+            this.LblMoney.Location = new System.Drawing.Point(89, 288);
+            this.LblMoney.Name = "LblMoney";
+            this.LblMoney.Size = new System.Drawing.Size(323, 46);
+            this.LblMoney.TabIndex = 1;
+            this.LblMoney.Text = "label1";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LblMoney);
+            this.Controls.Add(this.McdDate);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.MonthCalendar McdDate;
+        private System.Windows.Forms.Label LblMoney;
     }
 }
 

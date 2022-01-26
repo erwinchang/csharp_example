@@ -16,5 +16,12 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            McdDate.MinDate = DateTime.Today;
+            McdDate.MaxSelectionCount = 7;
+            McdDate.SelectionStart = DateTime.Today;
+        }
     }
 }

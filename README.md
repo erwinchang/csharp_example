@@ -14,3 +14,8 @@
 即可
 
 ![Imgur](https://i.imgur.com/P0g4Uun.png)
+
+
+### 範例如下
+
+![image](https://github.com/erwinchang/csharp_example/blob/ch09_01_MenuStrip/gif/menustrip.gif)

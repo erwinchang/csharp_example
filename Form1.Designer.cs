@@ -116,6 +116,7 @@ namespace csharp_example
             this.MnuSet2.Name = "MnuSet2";
             this.MnuSet2.Size = new System.Drawing.Size(224, 26);
             this.MnuSet2.Text = "較大字型";
+            this.MnuSet2.Click += new System.EventHandler(this.MnuSet2_Click);
             // 
             // MnuSet3
             // 
@@ -123,6 +124,7 @@ namespace csharp_example
             this.MnuSet3.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.MnuSet3.Size = new System.Drawing.Size(224, 26);
             this.MnuSet3.Text = "結束(&X)";
+            this.MnuSet3.Click += new System.EventHandler(this.MnuSet3_Click);
             // 
             // TxtW
             // 
@@ -136,48 +138,56 @@ namespace csharp_example
             this.MnuStyle1.Name = "MnuStyle1";
             this.MnuStyle1.Size = new System.Drawing.Size(224, 26);
             this.MnuStyle1.Text = "粗體";
+            this.MnuStyle1.Click += new System.EventHandler(this.MnuStyle1_Click);
             // 
             // MnuStyle2
             // 
             this.MnuStyle2.Name = "MnuStyle2";
             this.MnuStyle2.Size = new System.Drawing.Size(224, 26);
             this.MnuStyle2.Text = "斜體";
+            this.MnuStyle2.Click += new System.EventHandler(this.MnuStyle2_Click);
             // 
             // MnuSize1
             // 
             this.MnuSize1.Name = "MnuSize1";
             this.MnuSize1.Size = new System.Drawing.Size(224, 26);
             this.MnuSize1.Text = "9";
+            this.MnuSize1.Click += new System.EventHandler(this.MnuSize1_Click);
             // 
             // MnuSize2
             // 
             this.MnuSize2.Name = "MnuSize2";
             this.MnuSize2.Size = new System.Drawing.Size(224, 26);
             this.MnuSize2.Text = "12";
+            this.MnuSize2.Click += new System.EventHandler(this.MnuSize2_Click);
             // 
             // MnuSize3
             // 
             this.MnuSize3.Name = "MnuSize3";
             this.MnuSize3.Size = new System.Drawing.Size(224, 26);
             this.MnuSize3.Text = "20";
+            this.MnuSize3.Click += new System.EventHandler(this.MnuSize3_Click);
             // 
             // MnuSize4
             // 
             this.MnuSize4.Name = "MnuSize4";
             this.MnuSize4.Size = new System.Drawing.Size(224, 26);
             this.MnuSize4.Text = "24";
+            this.MnuSize4.Click += new System.EventHandler(this.MnuSize4_Click);
             // 
             // MnuFont1
             // 
             this.MnuFont1.Name = "MnuFont1";
-            this.MnuFont1.Size = new System.Drawing.Size(152, 26);
+            this.MnuFont1.Size = new System.Drawing.Size(224, 26);
             this.MnuFont1.Text = "新細明體";
+            this.MnuFont1.Click += new System.EventHandler(this.MnuFont1_Click);
             // 
             // MnuFont2
             // 
             this.MnuFont2.Name = "MnuFont2";
-            this.MnuFont2.Size = new System.Drawing.Size(152, 26);
+            this.MnuFont2.Size = new System.Drawing.Size(224, 26);
             this.MnuFont2.Text = "標楷體";
+            this.MnuFont2.Click += new System.EventHandler(this.MnuFont2_Click);
             // 
             // Form1
             // 

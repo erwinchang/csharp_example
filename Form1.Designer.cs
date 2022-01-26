@@ -109,6 +109,7 @@ namespace csharp_example
             this.MnuSet1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.MnuSet1.Size = new System.Drawing.Size(224, 26);
             this.MnuSet1.Text = "預設(&U)";
+            this.MnuSet1.Click += new System.EventHandler(this.MnuSet1_Click);
             // 
             // MnuSet2
             // 

@@ -21,13 +21,20 @@ namespace csharp_example
         {
             TxtW.Multiline = true;
             TxtW.Dock = DockStyle.Fill;
-            MnuStyle.CheckOnClick = true;
-
+            MnuStyle1.CheckOnClick = true;
+            MnuStyle2.CheckOnClick = true;
+            MnuSet2.CheckOnClick = true;
+            MnuSet1_Click(sender, e);
         }
 
         private void MnuStyle_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MnuSet1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("test11");
         }
     }
 }

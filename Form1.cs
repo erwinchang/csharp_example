@@ -25,6 +25,8 @@ namespace csharp_example
             MnuStyle2.CheckOnClick = true;
             MnuSet2.CheckOnClick = true;
             MnuSet1_Click(sender, e);
+            TxtW.ContextMenuStrip = contextMenuStrip1;
+            Clipboard.Clear();
         }
 
         private void MnuStyle_Click(object sender, EventArgs e)

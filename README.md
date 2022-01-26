@@ -2,11 +2,11 @@
 
 ## 多表單程式設計
 
-FrmMain: 主表單，顯示內容
-Frm1: 輸入表單
-Frm2: 輸入表單
+FrmMain: 主表單，顯示內容  
+Frm1: 輸入表單  
+Frm2: 輸入表單  
 
-使用PubClass.cs來串接資料內容
+使用PubClass.cs來串接資料內容  
 
 ### 範例如下
 

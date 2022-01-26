@@ -38,6 +38,8 @@ namespace csharp_example
             this.McdDate.Location = new System.Drawing.Point(86, 83);
             this.McdDate.Name = "McdDate";
             this.McdDate.TabIndex = 0;
+            this.McdDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.McdDate_DateChanged);
+            this.McdDate.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.McdDate_DateSelected);
             // 
             // LblMoney
             // 
@@ -51,7 +53,7 @@ namespace csharp_example
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(499, 350);
             this.Controls.Add(this.LblMoney);
             this.Controls.Add(this.McdDate);
             this.Name = "Form1";

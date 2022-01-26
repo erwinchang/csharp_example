@@ -14,4 +14,4 @@
 
 ### 範例如下
 
-![image](https://github.com/erwinchang/csharp_example/blob/ch08_01_CarRent_MonthCalendar/gif/carrent.gif.gif)
+![image](https://github.com/erwinchang/csharp_example/blob/ch08_01_CarRent_MonthCalendar/gif/carrent.gif)

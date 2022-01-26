@@ -44,6 +44,7 @@ namespace csharp_example
             this.LstvBooks.Size = new System.Drawing.Size(276, 378);
             this.LstvBooks.TabIndex = 0;
             this.LstvBooks.UseCompatibleStateImageBehavior = false;
+            this.LstvBooks.ItemActivate += new System.EventHandler(this.LstvBooks_ItemActivate);
             // 
             // label1
             // 
@@ -61,13 +62,14 @@ namespace csharp_example
             this.CboView.Name = "CboView";
             this.CboView.Size = new System.Drawing.Size(153, 23);
             this.CboView.TabIndex = 2;
+            this.CboView.SelectedIndexChanged += new System.EventHandler(this.CboView_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(375, 185);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 19);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "借書清單";
             // 
@@ -79,6 +81,7 @@ namespace csharp_example
             this.LstBorrow.Name = "LstBorrow";
             this.LstBorrow.Size = new System.Drawing.Size(152, 199);
             this.LstBorrow.TabIndex = 4;
+            this.LstBorrow.SelectedIndexChanged += new System.EventHandler(this.LstBorrow_SelectedIndexChanged);
             // 
             // Form1
             // 

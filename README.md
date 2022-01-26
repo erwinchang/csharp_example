@@ -1,21 +1,21 @@
 # csharp_example
 
-## MenuStrip 功能表控制項目
+## MenuStrip & ContextMenuStrip 功能表控制項目
 
 
-功能表: 功能分門別類安置在下拉式清單中  
-工具列: 以圖現化呈現  
+MenuStrip: 新增"編輯"   
+ContextMenuStrip: 新增"編輯"   
+兩者操作程式都要各別新增  
 
-![Imgur](https://i.imgur.com/pnjvUcp.png)
 
-### 1-1 如何設定子功能項目
+設定TxtW.ContextMenuStrip如下  
+就可以按下右鍵看到選單  
 
-點選 樣式 右鍵 -> 選 編輯 DropDownItem
-即可
-
-![Imgur](https://i.imgur.com/P0g4Uun.png)
+```
+TxtW.ContextMenuStrip = contextMenuStrip1;
+```
 
 
 ### 範例如下
 
-![image](https://github.com/erwinchang/csharp_example/blob/ch09_01_MenuStrip/gif/menustrip.gif)
+![image](https://github.com/erwinchang/csharp_example/blob/ch09_04_ContextMenuStrip/gif/contextMenuStrip.gif)

@@ -76,6 +76,7 @@ namespace csharp_example
             this.menuStrip1.Size = new System.Drawing.Size(600, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // MnuFont
             // 
@@ -219,18 +220,21 @@ namespace csharp_example
             this.MnuEdit1.Name = "MnuEdit1";
             this.MnuEdit1.Size = new System.Drawing.Size(180, 22);
             this.MnuEdit1.Text = "複製";
+            this.MnuEdit1.Click += new System.EventHandler(this.MnuEdit1_Click);
             // 
             // MnuEdit2
             // 
             this.MnuEdit2.Name = "MnuEdit2";
             this.MnuEdit2.Size = new System.Drawing.Size(180, 22);
             this.MnuEdit2.Text = "貼上";
+            this.MnuEdit2.Click += new System.EventHandler(this.MnuEdit2_Click);
             // 
             // MnuEdit3
             // 
             this.MnuEdit3.Name = "MnuEdit3";
             this.MnuEdit3.Size = new System.Drawing.Size(180, 22);
             this.MnuEdit3.Text = "剪下";
+            this.MnuEdit3.Click += new System.EventHandler(this.MnuEdit3_Click);
             // 
             // 設定ToolStripMenuItem
             // 
@@ -245,25 +249,29 @@ namespace csharp_example
             this.CMnuEdit2,
             this.CMnuEdit3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(99, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // CMnuEdit1
             // 
             this.CMnuEdit1.Name = "CMnuEdit1";
-            this.CMnuEdit1.Size = new System.Drawing.Size(98, 22);
+            this.CMnuEdit1.Size = new System.Drawing.Size(180, 22);
             this.CMnuEdit1.Text = "複製";
+            this.CMnuEdit1.Click += new System.EventHandler(this.CMnuEdit1_Click);
             // 
             // CMnuEdit2
             // 
             this.CMnuEdit2.Name = "CMnuEdit2";
-            this.CMnuEdit2.Size = new System.Drawing.Size(98, 22);
+            this.CMnuEdit2.Size = new System.Drawing.Size(180, 22);
             this.CMnuEdit2.Text = "貼上";
+            this.CMnuEdit2.Click += new System.EventHandler(this.CMnuEdit2_Click);
             // 
             // CMnuEdit3
             // 
             this.CMnuEdit3.Name = "CMnuEdit3";
-            this.CMnuEdit3.Size = new System.Drawing.Size(98, 22);
+            this.CMnuEdit3.Size = new System.Drawing.Size(180, 22);
             this.CMnuEdit3.Text = "剪下";
+            this.CMnuEdit3.Click += new System.EventHandler(this.CMnuEdit3_Click);
             // 
             // Form1
             // 

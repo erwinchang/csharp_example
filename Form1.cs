@@ -105,5 +105,84 @@ namespace csharp_example
         {
             TxtW.Font = new Font(TxtW.Font.Name, TxtW.Font.Size, TxtW.Font.Style ^ FontStyle.Italic);
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if(e.ClickedItem.ToString() == "編輯")
+            {
+                if(TxtW.SelectionLength > 0)
+                {
+                    MnuEdit1.Enabled = true; //複製
+                    MnuEdit3.Enabled = true; //剪下
+                }
+                else
+                {
+                    MnuEdit1.Enabled = false; //複製
+                    MnuEdit3.Enabled = false; //剪下                    
+                }
+
+                if(Clipboard.GetText() == "")
+                {
+                    MnuEdit2.Enabled = false;
+                }
+                else
+                {
+                    MnuEdit2.Enabled = true;
+                }
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (TxtW.SelectionLength > 0)
+            {
+                CMnuEdit1.Enabled = true; //複製
+                CMnuEdit3.Enabled = true; //剪下
+            }
+            else
+            {
+                CMnuEdit1.Enabled = false; //複製
+                CMnuEdit3.Enabled = false; //剪下                    
+            }
+
+            if (Clipboard.GetText() == "")
+            {
+                CMnuEdit2.Enabled = false;
+            }
+            else
+            {
+                CMnuEdit2.Enabled = true;
+            }
+        }
+
+        private void MnuEdit1_Click(object sender, EventArgs e)
+        {
+            TxtW.Copy();
+        }
+
+        private void MnuEdit2_Click(object sender, EventArgs e)
+        {
+            TxtW.Paste();
+        }
+
+        private void MnuEdit3_Click(object sender, EventArgs e)
+        {
+            TxtW.Cut();
+        }
+
+        private void CMnuEdit1_Click(object sender, EventArgs e)
+        {
+            TxtW.Copy();
+        }
+
+        private void CMnuEdit2_Click(object sender, EventArgs e)
+        {
+            TxtW.Paste();
+        }
+
+        private void CMnuEdit3_Click(object sender, EventArgs e)
+        {
+            TxtW.Cut();
+        }
     }
 }

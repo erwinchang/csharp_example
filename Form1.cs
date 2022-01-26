@@ -16,5 +16,10 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void cMnuTest_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("cMnuTest_Click");
+        }
     }
 }

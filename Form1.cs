@@ -16,6 +16,10 @@ namespace csharp_example
     public partial class Form1 : Form
     {
         //https://dotblogs.com.tw/masterhsu/2016/06/21/225343
+
+        //http://www.aspphp.online/bianchen/dnet/cxiapu/cxprm/201701/185553.html
+        //DTR,RTS可以用來detect gpio
+
         private SerialPort My_SerialPort;
         private bool Console_receiving = false;
         private Thread t;
@@ -54,6 +58,8 @@ namespace csharp_example
                 BtnSend.Enabled = true;
                 BtnClose.Enabled = true;
                 BtnConnect.Enabled = false;
+                BtnRTSDisable.Enabled = true;
+                BtnRTSEnable.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -134,6 +140,8 @@ namespace csharp_example
         {
             BtnSend.Enabled = false;
             BtnClose.Enabled = false;
+            BtnRTSDisable.Enabled = false;
+            BtnRTSEnable.Enabled = false;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -142,6 +150,18 @@ namespace csharp_example
             BtnConnect.Enabled = true;
             BtnSend.Enabled = false;
             BtnClose.Enabled = false;
+            BtnRTSDisable.Enabled = false;
+            BtnRTSEnable.Enabled = false;
+        }
+
+        private void BtnRTSEnable_Click(object sender, EventArgs e)
+        {
+            My_SerialPort.RtsEnable = true;
+        }
+
+        private void BtnRTSDisable_Click(object sender, EventArgs e)
+        {
+            My_SerialPort.RtsEnable = false;
         }
     }
 }

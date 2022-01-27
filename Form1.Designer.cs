@@ -39,6 +39,8 @@ namespace csharp_example
             this.label3 = new System.Windows.Forms.Label();
             this.TxtBaud = new System.Windows.Forms.TextBox();
             this.BtnClose = new System.Windows.Forms.Button();
+            this.BtnRTSEnable = new System.Windows.Forms.Button();
+            this.BtnRTSDisable = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TxtOutput
@@ -129,11 +131,33 @@ namespace csharp_example
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // BtnRTSEnable
+            // 
+            this.BtnRTSEnable.Location = new System.Drawing.Point(435, 16);
+            this.BtnRTSEnable.Name = "BtnRTSEnable";
+            this.BtnRTSEnable.Size = new System.Drawing.Size(135, 31);
+            this.BtnRTSEnable.TabIndex = 10;
+            this.BtnRTSEnable.Text = "RTS-Enable";
+            this.BtnRTSEnable.UseVisualStyleBackColor = true;
+            this.BtnRTSEnable.Click += new System.EventHandler(this.BtnRTSEnable_Click);
+            // 
+            // BtnRTSDisable
+            // 
+            this.BtnRTSDisable.Location = new System.Drawing.Point(435, 61);
+            this.BtnRTSDisable.Name = "BtnRTSDisable";
+            this.BtnRTSDisable.Size = new System.Drawing.Size(135, 31);
+            this.BtnRTSDisable.TabIndex = 11;
+            this.BtnRTSDisable.Text = "RTS-Disable";
+            this.BtnRTSDisable.UseVisualStyleBackColor = true;
+            this.BtnRTSDisable.Click += new System.EventHandler(this.BtnRTSDisable_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 588);
+            this.Controls.Add(this.BtnRTSDisable);
+            this.Controls.Add(this.BtnRTSEnable);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.TxtBaud);
             this.Controls.Add(this.label3);
@@ -164,6 +188,8 @@ namespace csharp_example
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtBaud;
         private System.Windows.Forms.Button BtnClose;
+        private System.Windows.Forms.Button BtnRTSEnable;
+        private System.Windows.Forms.Button BtnRTSDisable;
     }
 }
 

@@ -71,14 +71,16 @@ namespace csharp_example
             // MnuSave
             // 
             this.MnuSave.Name = "MnuSave";
-            this.MnuSave.Size = new System.Drawing.Size(122, 22);
+            this.MnuSave.Size = new System.Drawing.Size(180, 22);
             this.MnuSave.Text = "另存新檔";
+            this.MnuSave.Click += new System.EventHandler(this.MnuSave_Click);
             // 
             // MnuExit
             // 
             this.MnuExit.Name = "MnuExit";
             this.MnuExit.Size = new System.Drawing.Size(43, 20);
             this.MnuExit.Text = "結束";
+            this.MnuExit.Click += new System.EventHandler(this.MnuExit_Click);
             // 
             // openFileDialog1
             // 

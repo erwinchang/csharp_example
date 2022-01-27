@@ -42,5 +42,21 @@ namespace csharp_example
                 }
             }
         }
+
+        private void MnuSave_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.DefaultExt = "jpg";
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Console.WriteLine($"save filename:{saveFileDialog1.FileName}");
+                Form ActForm = this.ActiveMdiChild; //取得目前正在使用的子表單
+                ActForm.BackgroundImage.Save(saveFileDialog1.FileName);
+            }
+        }
+
+        private void MnuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

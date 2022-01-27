@@ -37,4 +37,4 @@ save filename:D:\tmp\test2.jpg
 
 ### 範例如下
 
-![image](https://github.com/erwinchang/csharp_example/blob/ch10-01-MultiForm/gif/openFileDialog.gif)
+![image](https://github.com/erwinchang/csharp_example/blob/ch10-02-OpenFileDialog/gif/openFileDialog.gif)

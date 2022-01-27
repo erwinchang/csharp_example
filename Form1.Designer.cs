@@ -38,6 +38,7 @@ namespace csharp_example
             this.TxtCOM = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TxtBaud = new System.Windows.Forms.TextBox();
+            this.BtnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TxtOutput
@@ -118,11 +119,22 @@ namespace csharp_example
             this.TxtBaud.TabIndex = 8;
             this.TxtBaud.Text = "115200";
             // 
+            // BtnClose
+            // 
+            this.BtnClose.Location = new System.Drawing.Point(149, 61);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(80, 34);
+            this.BtnClose.TabIndex = 9;
+            this.BtnClose.Text = "Disconnect";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 588);
+            this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.TxtBaud);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TxtCOM);
@@ -151,6 +163,7 @@ namespace csharp_example
         private System.Windows.Forms.TextBox TxtCOM;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtBaud;
+        private System.Windows.Forms.Button BtnClose;
     }
 }
 

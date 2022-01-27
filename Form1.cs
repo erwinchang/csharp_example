@@ -52,6 +52,8 @@ namespace csharp_example
                 t.Start();
                 Console.WriteLine($"Connect...COM:{COM},Baud:{baud}");
                 BtnSend.Enabled = true;
+                BtnClose.Enabled = true;
+                BtnConnect.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -131,6 +133,15 @@ namespace csharp_example
         private void Form1_Load(object sender, EventArgs e)
         {
             BtnSend.Enabled = false;
+            BtnClose.Enabled = false;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            CloseComport();
+            BtnConnect.Enabled = true;
+            BtnSend.Enabled = false;
+            BtnClose.Enabled = false;
         }
     }
 }

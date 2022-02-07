@@ -17,19 +17,6 @@ namespace csharp_example
             InitializeComponent();
         }
 
-        class PadClass
-        {
-            private int price;
-            public void setPrice(int tPrice)
-            {
-                price = tPrice;
-            }
-            public int getPrice()
-            {
-                return price;
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             PadClass bsus;

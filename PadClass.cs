@@ -9,13 +9,10 @@ namespace csharp_example
     class PadClass
     {
         private int price;
-        public void setPrice(int tPrice)
+        public int Price
         {
-            price = tPrice;
-        }
-        public int getPrice()
-        {
-            return price;
+            get { return price; }
+            set { price = value; }
         }
     }
 }

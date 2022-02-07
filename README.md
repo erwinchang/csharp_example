@@ -1,34 +1,26 @@
 # csharp_example
 
-## 18-2 類別與物件
+## 18-3 屬性與存取子
 
-建立PadClass.cs如下
+C#提供屬性配合get/set如下
+
 ```
-namespace csharp_example
-{
     class PadClass
     {
         private int price;
-        public void setPrice(int tPrice)
+        public int Price
         {
-            price = tPrice;
-        }
-        public int getPrice()
-        {
-            return price;
+            get { return price; }
+            set { price = value; }
         }
     }
-}
 ```
 
-使用方式
+用法如下
 ```
-        private void Form1_Load(object sender, EventArgs e)
-        {
             PadClass bsus;
             bsus = new PadClass();
-            bsus.setPrice(25900);
+            bsus.Price = 25900;
          
-            label1.Text = $"BSUS 平板電腦單價: {bsus.getPrice()}";
-        }
+            label1.Text = $"BSUS 平板電腦單價: {bsus.Price}";
 ```

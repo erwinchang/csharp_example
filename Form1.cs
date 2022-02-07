@@ -21,9 +21,9 @@ namespace csharp_example
         {
             PadClass bsus;
             bsus = new PadClass();
-            bsus.setPrice(25900);
+            bsus.Price = 25900;
          
-            label1.Text = $"BSUS 平板電腦單價: {bsus.getPrice()}";
+            label1.Text = $"BSUS 平板電腦單價: {bsus.Price}";
         }
     }
 }

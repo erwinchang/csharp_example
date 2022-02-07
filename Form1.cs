@@ -16,5 +16,19 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        class PadClass
+        {
+            public int price;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            PadClass bsus;
+            bsus = new PadClass();
+
+            bsus.price = 25900;
+            label1.Text = $"BSUS 平板電腦單價: {bsus.price}";
+        }
     }
 }

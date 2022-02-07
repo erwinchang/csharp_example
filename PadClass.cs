@@ -8,11 +8,14 @@ namespace csharp_example
 {
     class PadClass
     {
-        private int price;
+        private int price = 25900;
         public int Price
         {
             get { return price; }
-            set { price = value; }
+            set {
+                if (value < 0) value = 0;
+                price = value; 
+            }
         }
     }
 }

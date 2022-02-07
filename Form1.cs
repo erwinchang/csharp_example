@@ -19,16 +19,24 @@ namespace csharp_example
 
         class PadClass
         {
-            public int price;
+            private int price;
+            public void setPrice(int tPrice)
+            {
+                price = tPrice;
+            }
+            public int getPrice()
+            {
+                return price;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             PadClass bsus;
             bsus = new PadClass();
-
-            bsus.price = 25900;
-            label1.Text = $"BSUS 平板電腦單價: {bsus.price}";
+            bsus.setPrice(25900);
+         
+            label1.Text = $"BSUS 平板電腦單價: {bsus.getPrice()}";
         }
     }
 }

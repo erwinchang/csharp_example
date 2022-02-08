@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>Erwin.Util.AppLogger</PackageId>
+    <Authors>Erwin</Authors>
+    <Description>Library to log text to console</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/erwinchang/csharp_example</RepositoryUrl>
+    <PackageTags>Loggin,Logger,Logs,Text</PackageTags>
   </PropertyGroup>
 
 </Project>

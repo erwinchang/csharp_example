@@ -13,6 +13,7 @@ namespace csharp_example
 {
     public partial class Form1 : Form
     {
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public Form1()
         {
             InitializeComponent();
@@ -20,14 +21,23 @@ namespace csharp_example
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var log = LogManager.GetCurrentClassLogger();
-            log.Fatal("Test: Fatal");
-            log.Error("Test: Error");
-            log.Warn("Test: Warn");
-            log.Info("Test: Info");
-            log.Debug("Test: Debug");
-            log.Trace("Test: Trace");
-            
+            Logger.Fatal("Hello {0}", "Fatal");
+            Logger.Error("Hello {0}", "Error");
+            Logger.Warn("Hello {0}", "Warn");
+            Logger.Info("Hello {0}", "Info");
+            Logger.Debug("Hello {0}", "Debug");
+            Logger.Trace("Hello {0}", "Trace");
+
+            try
+            {
+                Logger.Info("Hello World");
+                System.Console.ReadKey();
+            }catch(Exception ex)
+            {
+                Logger.Error(ex, "Goodbye cruel world");
+            }
+
+            NLog.LogManager.Shutdown();
         }
     }
 }

@@ -21,7 +21,13 @@ namespace csharp_example
         private void Form1_Load(object sender, EventArgs e)
         {
             var log = LogManager.GetCurrentClassLogger();
-            log.Info($"Test");
+            log.Fatal("Test: Fatal");
+            log.Error("Test: Error");
+            log.Warn("Test: Warn");
+            log.Info("Test: Info");
+            log.Debug("Test: Debug");
+            log.Trace("Test: Trace");
+            
         }
     }
 }

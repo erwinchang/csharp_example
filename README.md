@@ -43,8 +43,8 @@ NLog.config修正如下
 
 ## 2 NLOG說明
 
-[Tutorial][1]
-[Configuration file][2]
+[Tutorial][1]  
+[Configuration file][2]  
 
 ### 2-1 Log Levels
 

@@ -10,23 +10,21 @@ using System.Windows.Forms;
 
 namespace csharp_example
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public delegate void EventReceive(string tmp);
+        public EventReceive CallReceive;
+        public Form2()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.CallReceive += new Form2.EventReceive(seeText);
-            form2.Show();
-
-        }
-        public void seeText(String tmp)
-        {
-            TxtSetValue.Text = tmp;
+            if(CallReceive != null)
+            {
+                CallReceive(TxtGetValue.Text);
+            }
         }
     }
 }

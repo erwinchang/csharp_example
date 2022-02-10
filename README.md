@@ -44,14 +44,14 @@
 
 - [NLog.Windows.Forms][2]
 
-- [RichTextBoxTarget][3]
-Log text a Rich Text Box control in an existing or new form.
-Supported in .NET, .NET Core 3.1 and .NET 5 - Windows only
+- [RichTextBoxTarget][3]  
+Log text a Rich Text Box control in an existing or new form.  
+Supported in .NET, .NET Core 3.1 and .NET 5 - Windows only  
 
 - [RichTextBoxTarget Class][4]
 
-- [NLog.Windows.Forms 4.5.0-rc.1][5]
-.NETFramework 3.5
+- [NLog.Windows.Forms 4.5.0-rc.1][5]  
+.NETFramework 3.5  
 
 ```
 .NETCoreApp 3.1

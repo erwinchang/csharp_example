@@ -19,6 +19,14 @@ namespace csharp_example
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //https://nlog-project.org/documentation/v2.0.1/html/T_NLog_Targets_RichTextBoxTarget.htm
+            NLog.Windows.Forms.RichTextBoxTarget target = new NLog.Windows.Forms.RichTextBoxTarget();
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
+            target.ControlName = "richTextBox1";
+            target.FormName = "Form1";
+            target.UseDefaultRowColoringRules = true;
+            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, NLog.LogLevel.Trace);
+
             Logger = NLog.LogManager.GetCurrentClassLogger();
             Logger.Fatal("Hello {0}", "Fatal");
             Logger.Error("Hello {0}", "Error");

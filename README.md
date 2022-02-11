@@ -3,6 +3,12 @@
 ###
 
 [在 .NET 中使用 Flurl 高效处理Http请求][1]
+[Use flurl to efficiently process HTTP requests in .NET.][2]
+
+```
+string text = await "http://site.com/readme.txt".GetStringAsync();
+```
+
 
 使用Flurl
 ```
@@ -27,3 +33,4 @@ string text = await "http://jsonplaceholder.typicode.com/posts".GetStringAsync()
 ```
 
 [1]:https://www.1024sou.com/article/75699.html
+[2]:https://www.programmerall.com/article/98562019717/

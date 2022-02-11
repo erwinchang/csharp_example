@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.IO;
 
 namespace csharp_example
 {
@@ -15,6 +17,21 @@ namespace csharp_example
         public Form1()
         {
             InitializeComponent();
+            HttpGetEx();
+        }
+
+        //https://blog.yowko.com/webrequest-and-httpwebrequest/
+        public static void HttpGetEx()
+        {
+            WebRequest request = WebRequest.Create("http://jsonplaceholder.typicode.com/posts");
+            request.Method = "GET";
+            using (var httpResponse = (HttpWebResponse)request.GetResponse())
+
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                Console.WriteLine($"result:{result}");
+            }
         }
     }
 }

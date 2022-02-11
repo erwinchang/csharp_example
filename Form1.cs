@@ -33,7 +33,7 @@ namespace csharp_example
             //.AppendPathSegment("posts");
 
             var url = "http://192.168.10.10"
-            .AppendPathSegment("posts")
+            .AppendPathSegment("scpictrl.htm")
             .SetQueryParams(new
             {
                 lang = "en",

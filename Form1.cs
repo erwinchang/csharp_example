@@ -29,11 +29,24 @@ namespace csharp_example
             //string text = await "http://jsonplaceholder.typicode.com/posts".GetStringAsync();
             //Console.WriteLine(text);
 
-            var url = "http://jsonplaceholder.typicode.com"
-            .AppendPathSegment("posts");
+            //var url = "http://jsonplaceholder.typicode.com"
+            //.AppendPathSegment("posts");
 
-            string text1 = await url.GetStringAsync();
+            var url = "http://192.168.10.10"
+            .AppendPathSegment("posts")
+            .SetQueryParams(new
+            {
+                lang = "en",
+                request = "*IDN?",
+                cmd = "Send"
+            });
+
+            string text1 = await url
+                            .WithHeader("Content-Type", "application/x-www-form-urlencoded")
+                            .GetStringAsync();
+
             Console.WriteLine(text1);
+            int i = 1;
         }
     }
 }

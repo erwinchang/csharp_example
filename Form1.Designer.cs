@@ -29,13 +29,33 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.BtnXMLFile = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BtnXMLFile
+            // 
+            this.BtnXMLFile.Location = new System.Drawing.Point(33, 12);
+            this.BtnXMLFile.Name = "BtnXMLFile";
+            this.BtnXMLFile.Size = new System.Drawing.Size(117, 33);
+            this.BtnXMLFile.TabIndex = 0;
+            this.BtnXMLFile.Text = "Select XML File";
+            this.BtnXMLFile.UseVisualStyleBackColor = true;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnXMLFile);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BtnXMLFile;
     }
 }
 

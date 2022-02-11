@@ -16,5 +16,13 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void BtnXMLFile_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog path = new FolderBrowserDialog();
+            path.ShowDialog();
+            TxtXMLFile.Text= path.SelectedPath;
+
+        }
     }
 }

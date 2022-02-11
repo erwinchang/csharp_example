@@ -30,32 +30,44 @@ namespace csharp_example
         private void InitializeComponent()
         {
             this.BtnXMLFile = new System.Windows.Forms.Button();
+            this.TxtXMLFile = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BtnXMLFile
             // 
-            this.BtnXMLFile.Location = new System.Drawing.Point(33, 12);
+            this.BtnXMLFile.Location = new System.Drawing.Point(33, 78);
             this.BtnXMLFile.Name = "BtnXMLFile";
             this.BtnXMLFile.Size = new System.Drawing.Size(117, 33);
             this.BtnXMLFile.TabIndex = 0;
             this.BtnXMLFile.Text = "Select XML File";
             this.BtnXMLFile.UseVisualStyleBackColor = true;
+            this.BtnXMLFile.Click += new System.EventHandler(this.BtnXMLFile_Click);
+            // 
+            // TxtXMLFile
+            // 
+            this.TxtXMLFile.Location = new System.Drawing.Point(33, 47);
+            this.TxtXMLFile.Name = "TxtXMLFile";
+            this.TxtXMLFile.Size = new System.Drawing.Size(444, 25);
+            this.TxtXMLFile.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TxtXMLFile);
             this.Controls.Add(this.BtnXMLFile);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button BtnXMLFile;
+        private System.Windows.Forms.TextBox TxtXMLFile;
     }
 }
 

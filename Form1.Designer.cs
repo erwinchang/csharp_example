@@ -40,6 +40,7 @@ namespace csharp_example
             this.BtnHttpGET.TabIndex = 0;
             this.BtnHttpGET.Text = "Http Get";
             this.BtnHttpGET.UseVisualStyleBackColor = true;
+            this.BtnHttpGET.Click += new System.EventHandler(this.BtnHttpGET_Click);
             // 
             // Form1
             // 

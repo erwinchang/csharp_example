@@ -18,5 +18,16 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void BtnHttpGET_Click(object sender, EventArgs e)
+        {
+            HttpGetEx01();
+        }
+        public async static void  HttpGetEx01()
+        {
+            //https://www.1024sou.com/article/75699.html
+            string text = await "http://jsonplaceholder.typicode.com/posts".GetStringAsync();
+            Console.WriteLine(text);
+        }
     }
 }

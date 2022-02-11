@@ -26,8 +26,14 @@ namespace csharp_example
         public async static void  HttpGetEx01()
         {
             //https://www.1024sou.com/article/75699.html
-            string text = await "http://jsonplaceholder.typicode.com/posts".GetStringAsync();
-            Console.WriteLine(text);
+            //string text = await "http://jsonplaceholder.typicode.com/posts".GetStringAsync();
+            //Console.WriteLine(text);
+
+            var url = "http://jsonplaceholder.typicode.com"
+            .AppendPathSegment("posts");
+
+            string text1 = await url.GetStringAsync();
+            Console.WriteLine(text1);
         }
     }
 }

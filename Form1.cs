@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace csharp_example
 {
@@ -19,10 +20,11 @@ namespace csharp_example
 
         private void BtnXMLFile_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog path = new FolderBrowserDialog();
-            path.ShowDialog();
-            TxtXMLFile.Text= path.SelectedPath;
-
+            //https://docs.microsoft.com/zh-tw/dotnet/desktop/winforms/controls/how-to-open-files-using-the-openfiledialog-component?view=netframeworkdesktop-4.8
+            OpenFileDialog  openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.ShowDialog();            
+            TxtXMLFile.Text= openFileDialog1.FileName;
+            Console.WriteLine($"file:{openFileDialog1.FileName}");
         }
     }
 }

@@ -60,6 +60,7 @@ namespace csharp_example
             this.BtnXMLParse.TabIndex = 2;
             this.BtnXMLParse.Text = "XML Parse";
             this.BtnXMLParse.UseVisualStyleBackColor = true;
+            this.BtnXMLParse.Click += new System.EventHandler(this.BtnXMLParse_Click);
             // 
             // TxtXML
             // 
@@ -80,6 +81,7 @@ namespace csharp_example
             this.Controls.Add(this.BtnXMLFile);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

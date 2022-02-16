@@ -19,7 +19,15 @@ namespace csharp_example
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //https://www.ruyut.com/2021/12/c-winform-datagridview.html
+            //dataGridView1.Dock = DockStyle.Fill;
 
+            //要顯示資料很簡單，先把資料儲存在DataTable中，之後再讓DataGridView直接顯示DataTable的所有資料即可
+
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("id", typeof(int));
+            dataTable.Columns.Add("name", typeof(string));
+            dataGridView1.DataSource = dataTable;
         }
     }
 }

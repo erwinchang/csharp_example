@@ -16,7 +16,7 @@ namespace FSM
 
 	class SimpleStateMachine : BaseFSM<PlayerState>
 	{
-		public void ChildFSM()
+		public SimpleStateMachine() : base()
         {
 			this.currentState = PlayerState.Idle;
 			this.transitions = new Dictionary<StateTransition, PlayerState>

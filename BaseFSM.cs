@@ -38,7 +38,6 @@ public class BaseFSM<T> where T : struct, IConvertible
 
 	protected BaseFSM()
 	{
-		Console.WriteLine("BaseFSM");
 		// Throw Exception on static initialization if the given type isn't an enum.
 		if (!typeof(T).IsEnum)
 			throw new Exception(typeof(T).FullName + " is not an enum type.");

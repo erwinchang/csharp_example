@@ -28,6 +28,17 @@ namespace csharp_example
             dataTable.Columns.Add("id", typeof(int));
             dataTable.Columns.Add("name", typeof(string));
             dataGridView1.DataSource = dataTable;
+
+            for (int i = 0; i < 10; i++)
+            {
+                DataRow row = dataTable.NewRow();
+                row[0] = i;
+                row[1] = "name" + i;
+                dataTable.Rows.Add(row);
+            }
+
+            //但是目前這樣有點不好看，周圍有空白，希望可以全部填滿，那就使用下面這行
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }
 }

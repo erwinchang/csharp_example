@@ -29,13 +29,37 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
+            this.BtnTurnOn = new System.Windows.Forms.Button();
+            this.BtnTurnOff = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // BtnTurnOn
+            // 
+            this.BtnTurnOn.Location = new System.Drawing.Point(48, 36);
+            this.BtnTurnOn.Name = "BtnTurnOn";
+            this.BtnTurnOn.Size = new System.Drawing.Size(108, 35);
+            this.BtnTurnOn.TabIndex = 0;
+            this.BtnTurnOn.Text = "Turn On";
+            this.BtnTurnOn.UseVisualStyleBackColor = true;
+            this.BtnTurnOn.Click += new System.EventHandler(this.BtnTurnOn_Click);
+            // 
+            // BtnTurnOff
+            // 
+            this.BtnTurnOff.Location = new System.Drawing.Point(52, 82);
+            this.BtnTurnOff.Name = "BtnTurnOff";
+            this.BtnTurnOff.Size = new System.Drawing.Size(103, 32);
+            this.BtnTurnOff.TabIndex = 1;
+            this.BtnTurnOff.Text = "Turn Off";
+            this.BtnTurnOff.UseVisualStyleBackColor = true;
+            this.BtnTurnOff.Click += new System.EventHandler(this.BtnTurnOff_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnTurnOff);
+            this.Controls.Add(this.BtnTurnOn);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -44,6 +68,9 @@ namespace csharp_example
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BtnTurnOn;
+        private System.Windows.Forms.Button BtnTurnOff;
     }
 }
 

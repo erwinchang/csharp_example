@@ -27,6 +27,8 @@ namespace csharp_example
             tableLayoutPanel1.Visible = false;
 
             TableLayoutPanel dynamicTableLayoutPanel = new TableLayoutPanel();
+            dynamicTableLayoutPanel.Dock = DockStyle.Top;
+
             dynamicTableLayoutPanel.Location = new Point(26, 12);
             dynamicTableLayoutPanel.Name = "TableLayoutPanel1";
             dynamicTableLayoutPanel.Size = new Size(228, 200);

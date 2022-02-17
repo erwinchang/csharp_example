@@ -27,7 +27,7 @@ namespace csharp_example
             tasks.Add(new Task(2));
             tasks.Add(new Task(3));
 
-            dataGridView1.AutoGenerateColumns = false;
+            //dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = tasks;
             AddColumns();
         }

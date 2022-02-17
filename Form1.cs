@@ -21,8 +21,14 @@ namespace csharp_example
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             Controls.Add(dataGridView1);
+
+            Load += new EventHandler(Form1_Load);
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
         }
     }
+
 }
 
 public class TestPlanTask

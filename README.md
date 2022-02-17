@@ -69,7 +69,7 @@ public class Task
 ```
 
 
-###　dataGridView1.AutoGenerateColumns = true如下，會自動產生Id欄位
+### dataGridView1.AutoGenerateColumns = true如下，會自動產生Id欄位
 
 ![Imgur](https://i.imgur.com/qwxc3CN.png)
 

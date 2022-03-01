@@ -41,21 +41,34 @@ namespace csharp_example
 
 	public class Response
 	{
-		[JsonProperty(PropertyName = "Head")]
-		Head head;
+		[JsonProperty(PropertyName = "TestPlan")]
+		TestPlan testplan;
 	}
 
-	internal class Head
+	internal class TestPlan
 	{
-		[JsonProperty(PropertyName = "param")]
-		List<Param> paramList;
+		[JsonProperty(PropertyName = "@PlanID")]
+		string planid;
+
+		[JsonProperty(PropertyName = "@Description")]
+		string description;
+
+		[JsonProperty(PropertyName = "TestCase")]
+		List<TestCase> testcaseList;
 	}
 
-	internal class Param
+	internal class TestCase
 	{
-		[JsonProperty(PropertyName = "@name")]
-		string name;
-		[JsonProperty(PropertyName = "#text")]
-		string text;
+		[JsonProperty(PropertyName = "@CaseID")]
+		string caseid;
+
+		[JsonProperty(PropertyName = "@XTTFileName")]
+		string xttfilename;
+
+		[JsonProperty(PropertyName = "@Temperature")]
+		string Temperature;
+
+		[JsonProperty(PropertyName = "@Voltage")]
+		string Voltage;
 	}
 }

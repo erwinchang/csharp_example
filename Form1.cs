@@ -16,5 +16,20 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var accounts = new List<Account> {
+            new Account {
+                          ID = 345678,
+                        Balance = 541.27
+                        },
+            new Account {
+                          ID = 1230221,
+                        Balance = -127.44
+                    }
+            };
+            MyProgram.DisplayInExcel(accounts);
+        }
     }
 }

@@ -16,5 +16,11 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String filename = @"D:\excel-template32.xlsx";
+            MyProgram.OpenExcel(filename);
+        }
     }
 }

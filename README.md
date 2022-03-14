@@ -82,5 +82,15 @@ Context: Sorting data using the strategy (not sure how it'll do it)
 e,d,c,b,a,
 ```
 
+### 參考
+
+- 下例說明很清楚  
+ - [C#設計模式系列菜單-『Strategy Pattern][3]  
+ 多用合成，少用繼承  
+ - [C# Strategy][4]  
+
+
 [1]:https://refactoring.guru/design-patterns/strategy/csharp/example
 [2]:https://refactoring.guru/design-patterns/strategy
+[3]:https://dotblogs.com.tw/h091237557/2014/05/29/145301
+[4]:https://www.dofactory.com/net/strategy-design-pattern

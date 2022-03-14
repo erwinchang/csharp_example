@@ -22,6 +22,7 @@ namespace csharp_example
             s.Notify();
 
             new ObserverTester().Main();
+            new TempatureMonitorSubjectTester().Main();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

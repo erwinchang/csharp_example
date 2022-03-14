@@ -16,8 +16,9 @@ User:Gino,observerState:Hello World!
 User:Jack,observerState:Hello World!
 ```
 
+--------
 
-[觀察者模式][1]
+## EX02 [觀察者模式][1]
 
 <a href="https://imgur.com/7fR7fQr"><img src="https://i.imgur.com/7fR7fQr.png" title="source: imgur.com" width="400px" /></a>
 
@@ -39,4 +40,21 @@ Observer1:message 2
 Observer2:message 2
 ```
 
+--------
+
+## EX03 
+
+[Observer Pattern到Delegate和Event][2]  
+
+測試結果   
+
+```
+Desktop App被通知溫度變化了: 30.5
+Mobile App被通知溫度變化了: 30.5
+Desktop App被通知溫度變化了: 28.6
+Mobile App被通知溫度變化了: 28.6
+Desktop App被通知溫度變化了: 27.2
+```
+
 [1]:https://zh.wikipedia.org/wiki/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F
+[2]:https://dotblogs.com.tw/wellwind/2016/05/22/csharp-observer-pattern-delegate-event

@@ -56,5 +56,24 @@ Mobile App被通知溫度變化了: 28.6
 Desktop App被通知溫度變化了: 27.2
 ```
 
+以Delegate實現測試如下  
+
+```
+Delegate Demo
+溫度發生變化了...30.5
+Desktop App被通知溫度變化了: 30.5
+Mobile App被通知溫度變化了: 30.5
+溫度發生變化了...28.6
+Desktop App被通知溫度變化了: 28.6
+Mobile App被通知溫度變化了: 28.6
+溫度發生變化了...27.2
+Desktop App被通知溫度變化了: 27.2
+```
+
+TempatureChangedHandler需為delegate  
+```
+public delegate void TempatureChangedHandler(double tempature);
+```
+
 [1]:https://zh.wikipedia.org/wiki/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F
 [2]:https://dotblogs.com.tw/wellwind/2016/05/22/csharp-observer-pattern-delegate-event

@@ -14,6 +14,13 @@ namespace csharp_example
         [STAThread]
         static void Main()
         {
+            ConcreteSubject s = new ConcreteSubject();
+            s.Attach(new ConcreteObserver(s, "Joe"));
+            s.Attach(new ConcreteObserver(s, "Gino"));
+            s.Attach(new ConcreteObserver(s, "Jack"));
+            s.SubjectState = "Hello World!";
+            s.Notify();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

@@ -19,12 +19,12 @@
 
 ### [Strategy in C#][1]
 
-1.定義IStrategy介面
-2.建立兩種Strategy(ConcreteStrategyA/ConcreteStrategyB)
-3.應用Context class內部private IStrategy _strategy;
-4.由SetStrategy動態設定
+- 1.定義IStrategy介面  
+- 2.建立兩種Strategy(ConcreteStrategyA/ConcreteStrategyB)  
+- 3.應用Context class內部private IStrategy _strategy  
+- 4.由SetStrategy動態設定  
 
-此方式，可以用來做為實做不同power supply控制方式
+此方式，可以用來做為實做不同power supply控制方式  
 
 ### 執行結果
 

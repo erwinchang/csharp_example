@@ -29,13 +29,34 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.BtnRun = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BtnRun
+            // 
+            this.BtnRun.Location = new System.Drawing.Point(44, 33);
+            this.BtnRun.Name = "BtnRun";
+            this.BtnRun.Size = new System.Drawing.Size(64, 30);
+            this.BtnRun.TabIndex = 0;
+            this.BtnRun.Text = "Run";
+            this.BtnRun.UseVisualStyleBackColor = true;
+            this.BtnRun.Click += new System.EventHandler(this.BtnRun_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnRun);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BtnRun;
     }
 }
 

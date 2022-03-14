@@ -16,5 +16,11 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void BtnRun_Click(object sender, EventArgs e)
+        {
+            SingletonServiceManager.Instance.Run();
+            SingletonServiceManager.Instance.Exit();
+        }
     }
 }

@@ -16,5 +16,27 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void BtnSQL_Click(object sender, EventArgs e)
+        {
+            SourceStrategy ss = new SQLSource();
+            ss.runFindString();
+        }
+
+        private void BtnHbase_Click(object sender, EventArgs e)
+        {
+            SourceStrategy ss = new HBaseSource();
+            ss.runFindString();
+        }
+
+        private void BtnDynamic_Click(object sender, EventArgs e)
+        {
+            SourceStrategy ss = new HBaseSource();
+            ss.setIFindString(new FindWithBigData());
+            ss.runFindString();
+
+            SourceStrategy sss = new HBaseSource("Cassandra");
+            sss.runFindString();
+        }
     }
 }

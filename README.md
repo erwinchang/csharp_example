@@ -84,10 +84,11 @@ e,d,c,b,a,
 
 ### 參考
 
-- 下例說明很清楚  
- - [C#設計模式系列菜單-『Strategy Pattern][3]  
- 多用合成，少用繼承  
- - [C# Strategy][4]  
+
+下例說明很清楚  
+- [C#設計模式系列菜單-『Strategy Pattern][3]  
+多用合成，少用繼承  
+- [C# Strategy][4]  
 
 
 [1]:https://refactoring.guru/design-patterns/strategy/csharp/example

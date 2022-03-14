@@ -32,6 +32,7 @@ namespace csharp_example
             this.BtnSQL = new System.Windows.Forms.Button();
             this.BtnHbase = new System.Windows.Forms.Button();
             this.BtnDynamic = new System.Windows.Forms.Button();
+            this.BtnEx02 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnSQL
@@ -64,11 +65,22 @@ namespace csharp_example
             this.BtnDynamic.UseVisualStyleBackColor = true;
             this.BtnDynamic.Click += new System.EventHandler(this.BtnDynamic_Click);
             // 
+            // BtnEx02
+            // 
+            this.BtnEx02.Location = new System.Drawing.Point(48, 192);
+            this.BtnEx02.Name = "BtnEx02";
+            this.BtnEx02.Size = new System.Drawing.Size(71, 36);
+            this.BtnEx02.TabIndex = 3;
+            this.BtnEx02.Text = "Ex02";
+            this.BtnEx02.UseVisualStyleBackColor = true;
+            this.BtnEx02.Click += new System.EventHandler(this.BtnEx02_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnEx02);
             this.Controls.Add(this.BtnDynamic);
             this.Controls.Add(this.BtnHbase);
             this.Controls.Add(this.BtnSQL);
@@ -83,6 +95,7 @@ namespace csharp_example
         private System.Windows.Forms.Button BtnSQL;
         private System.Windows.Forms.Button BtnHbase;
         private System.Windows.Forms.Button BtnDynamic;
+        private System.Windows.Forms.Button BtnEx02;
     }
 }
 

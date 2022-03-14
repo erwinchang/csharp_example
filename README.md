@@ -15,6 +15,16 @@
   2.分別實做二種類料庫來源(SQLSource/HBaseSource)
   3.利用動態置換技巧(setIFindString)
 
+----------
+
+### [Strategy in C#][1]
+
+1.定義IStrategy介面
+2.建立兩種Strategy(ConcreteStrategyA/ConcreteStrategyB)
+3.應用Context class內部private IStrategy _strategy;
+4.由SetStrategy動態設定
+
+此方式，可以用來做為實做不同power supply控制方式
 
 ### 執行結果
 
@@ -29,3 +39,17 @@ String finding from HBase !!, FindWithHBase
 String finding from BigData !!, FindWithBigData
 String finding from BigData !!, FindWithBigData
 ```
+
+ex02
+
+```
+Client: Strategy is set to normal sorting.
+Context: Sorting data using the strategy (not sure how it'll do it)
+a,b,c,d,e,
+
+Client: Strategy is set to reverse sorting.
+Context: Sorting data using the strategy (not sure how it'll do it)
+e,d,c,b,a,
+```
+
+[1]:https://refactoring.guru/design-patterns/strategy/csharp/example

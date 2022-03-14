@@ -29,13 +29,60 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.BtnTXT = new System.Windows.Forms.Button();
+            this.BtnXML = new System.Windows.Forms.Button();
+            this.BtnXLS = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BtnTXT
+            // 
+            this.BtnTXT.Location = new System.Drawing.Point(33, 38);
+            this.BtnTXT.Name = "BtnTXT";
+            this.BtnTXT.Size = new System.Drawing.Size(69, 35);
+            this.BtnTXT.TabIndex = 0;
+            this.BtnTXT.Text = "TXT";
+            this.BtnTXT.UseVisualStyleBackColor = true;
+            this.BtnTXT.Click += new System.EventHandler(this.BtnTXT_Click);
+            // 
+            // BtnXML
+            // 
+            this.BtnXML.Location = new System.Drawing.Point(33, 79);
+            this.BtnXML.Name = "BtnXML";
+            this.BtnXML.Size = new System.Drawing.Size(69, 35);
+            this.BtnXML.TabIndex = 1;
+            this.BtnXML.Text = "XML";
+            this.BtnXML.UseVisualStyleBackColor = true;
+            this.BtnXML.Click += new System.EventHandler(this.BtnXML_Click);
+            // 
+            // BtnXLS
+            // 
+            this.BtnXLS.Location = new System.Drawing.Point(33, 120);
+            this.BtnXLS.Name = "BtnXLS";
+            this.BtnXLS.Size = new System.Drawing.Size(69, 35);
+            this.BtnXLS.TabIndex = 2;
+            this.BtnXLS.Text = "XLS";
+            this.BtnXLS.UseVisualStyleBackColor = true;
+            this.BtnXLS.Click += new System.EventHandler(this.BtnXLS_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnXLS);
+            this.Controls.Add(this.BtnXML);
+            this.Controls.Add(this.BtnTXT);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BtnTXT;
+        private System.Windows.Forms.Button BtnXML;
+        private System.Windows.Forms.Button BtnXLS;
     }
 }
 

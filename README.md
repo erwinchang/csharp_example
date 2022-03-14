@@ -79,6 +79,60 @@ TempatureChangedHandler需為delegate
 public delegate void TempatureChangedHandler(double tempature);
 ```
 
+
+-------
+
+### EX 
+
+測試結果如下
+```
+Arrivals information from BaggageClaimMonitor1
+Detroit                712    3
+
+Arrivals information from BaggageClaimMonitor1
+Detroit                712    3
+Kalamazoo              712    3
+
+Arrivals information from BaggageClaimMonitor1
+Detroit                712    3
+Kalamazoo              712    3
+New York-Kennedy       400    1
+
+Arrivals information from SecurityExit
+Detroit                712    3
+
+Arrivals information from SecurityExit
+Detroit                712    3
+Kalamazoo              712    3
+
+Arrivals information from SecurityExit
+Detroit                712    3
+Kalamazoo              712    3
+New York-Kennedy       400    1
+
+Arrivals information from BaggageClaimMonitor1
+Detroit                712    3
+Kalamazoo              712    3
+New York-Kennedy       400    1
+San Francisco          511    2
+
+Arrivals information from SecurityExit
+Detroit                712    3
+Kalamazoo              712    3
+New York-Kennedy       400    1
+San Francisco          511    2
+
+Arrivals information from BaggageClaimMonitor1
+New York-Kennedy       400    1
+San Francisco          511    2
+
+Arrivals information from SecurityExit
+New York-Kennedy       400    1
+San Francisco          511    2
+
+Arrivals information from BaggageClaimMonitor1
+San Francisco          511    2
+```
 [1]:https://zh.wikipedia.org/wiki/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F
 [2]:https://dotblogs.com.tw/wellwind/2016/05/22/csharp-observer-pattern-delegate-event
 [3]:https://www.dofactory.com/net/observer-design-pattern

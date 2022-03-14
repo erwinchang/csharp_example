@@ -24,6 +24,7 @@ namespace csharp_example
             new ObserverTester().Main();
             new TempatureMonitorSubjectTester().Main();
             new TempatureMonitorUsingDelegateTester().Main();
+            new Example().Main();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

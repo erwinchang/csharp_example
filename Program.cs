@@ -21,6 +21,8 @@ namespace csharp_example
             s.SubjectState = "Hello World!";
             s.Notify();
 
+            new ObserverTester().Main();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

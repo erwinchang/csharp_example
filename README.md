@@ -15,3 +15,28 @@ User:Joe,observerState:Hello World!
 User:Gino,observerState:Hello World!
 User:Jack,observerState:Hello World!
 ```
+
+
+[觀察者模式][1]
+
+<a href="https://imgur.com/7fR7fQr"><img src="https://i.imgur.com/7fR7fQr.png" title="source: imgur.com" width="400px" /></a>
+
+抽象目標類別  
+- 此抽象類別提供一個界面讓觀察者進行添附與解附作業。此類別內有個不公開的觀察者串鍊，並透過下列函式(方法)進行作業  
+- 添附(Attach)：新增觀察者到串鍊內，以追蹤目標物件的變化。  
+- 解附(Detach)：將已經存在的觀察者從串鍊中移除。  
+- 通知(Notify)：利用觀察者所提供的更新函式來通知此目標已經產生變化  
+
+用途
+- 當其中一個物件的變更會影響其他物件，卻又不知道多少物件必須被同時變更時
+- 當物件應該有能力通知其他物件，又不應該知道其他物件的實做細節時
+
+測試結果
+```
+Observer1:message 1
+Observer2:message 1
+Observer1:message 2
+Observer2:message 2
+```
+
+[1]:https://zh.wikipedia.org/wiki/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F

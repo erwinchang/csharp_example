@@ -7,6 +7,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using VBIDE = Microsoft.Vbe.Interop;
 using System.Reflection;
 using System.IO;
+using System.Diagnostics;
 
 //https://docs.microsoft.com/zh-tw/visualstudio/vsto/walkthrough-calling-code-from-vba-in-a-visual-csharp-project?view=vs-2022
 //https://www.twblogs.net/a/5b8ca4f02b71771883343c57
@@ -58,11 +59,15 @@ namespace csharp_example
                 buttonMacro(xlButton.Name,oWB);
 
                 //run excel vba
-                oXL.Run("test_autorun");
+                //oXL.Run("test_autorun");
+                //
+                //注意要先把檔案copy到D:\Admin\Documents\USIToolV00_0101.xlam才能正確執行到
+                oXL.Run("USIToolV00_0101.xlam!test_autorun");
+
 
                 //https://dotblogs.com.tw/killysss/2015/10/01/153471
                 oWB.Save();
-                oWB.Close();
+                oWB.Close();                
                 releaseObject(oWB);
                 releaseObject(oXL);
             }
@@ -107,6 +112,28 @@ namespace csharp_example
                 GC.Collect();
             }
         }
+
+        //https://stackoverflow.com/questions/9316141/kill-process-excel-c-sharp
+        public static  void KillSpecificExcelFileProcess(string excelFileName)
+        {
+            var processes = from p in Process.GetProcessesByName("EXCEL")      
+            select p;
+            foreach (var process in processes)
+            {
+                if (process.MainWindowTitle == "Microsoft Excel - " + excelFileName)
+                    process.Kill();
+            }
+        }
+        //kill all excel process
+        public static void KillAllExcelProcess()
+        {
+            var processes = from p in Process.GetProcessesByName("EXCEL")
+                            select p;
+            foreach (var process in processes)
+            {
+                process.Kill();
+            }
+        }
     }
     public class MyProgramTester
     {
@@ -115,6 +142,10 @@ namespace csharp_example
             String excel_template_file = @"D:\gitWork\0316-testexcel\test.xlsm";
             String excel_result_file = @"D:\gitWork\0316-testexcel\test-result.xlsm";
             MyProgram.ex01(excel_template_file, excel_result_file);
+
+            //MyProgram.KillSpecificExcelFileProcess("USIToolV00_0101.xlam");
+            //執行完USIToolV00_0101.xlam會被excel佔用，要先把excel process刪除，查看名再是空的
+            MyProgram.KillAllExcelProcess();
         }
     }
 }

@@ -17,6 +17,23 @@
 [呼叫Excel VBA Macro][3]  
 
 
+----------
+
+## 範例3
+
+[Kill Process Excel C#][4]  
+[Call a function in another Excel 2010 AddIn (.xlam)][5]
+
+改用call xlam方式
+
+```
+//注意要先把檔案copy到D:\Admin\Documents\USIToolV00_0101.xlam才能正確執行到 why?
+oXL.Run("USIToolV00_0101.xlam!test_autorun")
+```
+
+
 [1]:https://social.msdn.microsoft.com/Forums/lync/en-US/2e33b8e5-c9fd-42a1-8d67-3d61d2cedc1c/how-to-call-excel-macros-programmatically-in-c?forum=exceldev
 [2]:https://stackoverflow.com/questions/38997796/run-a-macro-from-c-sharp
 [3]:https://dotblogs.com.tw/killysss/2015/10/01/153471
+[4]:https://stackoverflow.com/questions/9316141/kill-process-excel-c-sharp
+[5]:https://www.mrexcel.com/board/threads/call-a-function-in-another-excel-2010-addin-xlam.678608/

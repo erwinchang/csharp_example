@@ -14,6 +14,7 @@ namespace csharp_example
         [STAThread]
         static void Main()
         {
+            new MyProgramTester().Main();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

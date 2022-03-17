@@ -1,33 +1,22 @@
 # csharp_example
 
-## 如何使用c#建立excel vba程式
+## 範例2
+
+1. 依tempalte產生新的excel  
+2. 執行template裡面的vba程式  
+
+程序  
+1.copy template excel to new excel  
+2.新增config分頁，新增raw data(未新增)  
+3.執行 template裡面的vba產生passed/failed(未新增)  
+
+### 參考來源:
+
+[how to call excel macros programmatically in C#? ][1]
+[Run a Macro from C#][2]
+[呼叫Excel VBA Macro][3]
 
 
-### 1-1 .xlsm建立方式
-
-注意:excel安全性，依每個excel設定而不同  
-建立的template要先設定把vba都開打這樣子c#程式才能寫入  
-
-程序如下  
-1.先建立excel(.xlsx)  
-2.別存新檔(.xlsm)，一定要.xlsm才能建立module程式   
-3.設定.xlsm開啟巨集功能，才能執行巨集 =>讓c#可以寫入excel程式，讓excel可以執行巨集  
-
-1.開啟信任存取VBA專案物件模型  
-需要開啟，不然無在excel增加程式  
-
-<a href="https://imgur.com/dhg48AT"><img src="https://i.imgur.com/dhg48AT.png" title="source: imgur.com" width="400px" /></a>
-
-### 1-2 如何建立template內部sub function  
-
-記得要建立在module裡面(即模組Module裡面)  
-
-<a href="https://imgur.com/UOI4L6O"><img src="https://i.imgur.com/UOI4L6O.png" title="source: imgur.com" width="400px" /></a>
-
-若是建立sheet內，使用巨集需採用(sheet!test_click)如下  
-
-<a href="https://imgur.com/bLAFVvc"><img src="https://i.imgur.com/bLAFVvc.png" title="source: imgur.com" width="400px" /></a>
-
-### 執行如下  
-
-<a href="https://imgur.com/WIvng1W"><img src="https://i.imgur.com/WIvng1W.png" title="source: imgur.com" width="400px" /></a>
+[1]:https://social.msdn.microsoft.com/Forums/lync/en-US/2e33b8e5-c9fd-42a1-8d67-3d61d2cedc1c/how-to-call-excel-macros-programmatically-in-c?forum=exceldev
+[2]:https://stackoverflow.com/questions/38997796/run-a-macro-from-c-sharp
+[3]:https://dotblogs.com.tw/killysss/2015/10/01/153471

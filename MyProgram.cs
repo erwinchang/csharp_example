@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using VBIDE = Microsoft.Vbe.Interop;
 using System.Reflection;
+using System.IO;
 
 //https://docs.microsoft.com/zh-tw/visualstudio/vsto/walkthrough-calling-code-from-vba-in-a-visual-csharp-project?view=vs-2022
 //https://www.twblogs.net/a/5b8ca4f02b71771883343c57
@@ -23,20 +24,26 @@ namespace csharp_example
 {
     class MyProgram
     {
-        public static void ex01(String excelfile)
+        public static void ex01(String templatefile,String resultfile)
         {
             Excel.Application oXL;
             Excel._Workbook oWB;
             Excel._Worksheet oSheet;
             Excel.Range range;
 
+            if (File.Exists(resultfile))
+            {
+                File.Delete(resultfile);                
+            }
+            File.Copy(templatefile, resultfile);
+
             try
             {
                 oXL = new Excel.Application();
-                oXL.Visible = true;
+                //oXL.Visible = true;
 
                 //excelfile is template excel file
-                oWB = (Excel._Workbook)oXL.Workbooks.Open(excelfile);
+                oWB = (Excel._Workbook)oXL.Workbooks.Open(resultfile);
                 oSheet = oWB.Worksheets[1];
 
                 range = oSheet.get_Range("A1:A1");
@@ -50,21 +57,14 @@ namespace csharp_example
                 xlButton.OnAction = "btnDoSomething_Click";
                 buttonMacro(xlButton.Name,oWB);
 
-                //https://social.msdn.microsoft.com/Forums/lync/en-US/2e33b8e5-c9fd-42a1-8d67-3d61d2cedc1c/how-to-call-excel-macros-programmatically-in-c?forum=exceldev
-                oXL.Run("ShowMsg", "Hello from C# Client", "Demo to run Excel macros from C#");
-                //oXL.Run("btnDoSomething_Click");
-                String tt = "11";
-                //oWB.Close();
-                //oXL.Quit();
-                //releaseObject(oXL);
-                //releaseObject(oWB);
+                //run excel vba
+                oXL.Run("test_autorun");
 
-                //execfile2 = excelfile +  vba code 
-                //String execfile2 = @"D:\gitWork\0316-testexcel\test99.xlsm";
-                //oXL.ActiveWorkbook.SaveCopyAs(execfile2);
-                //oXL.ActiveWorkbook.Saved = true;
-                //oXL.ActiveWorkbook.Close();
-                //oXL.Quit();
+                //https://dotblogs.com.tw/killysss/2015/10/01/153471
+                oWB.Save();
+                oWB.Close();
+                releaseObject(oWB);
+                releaseObject(oXL);
             }
             catch (Exception ex)
             {
@@ -97,6 +97,10 @@ namespace csharp_example
             catch (Exception ex)
             {
                 obj = null;
+                String errorMessage;
+                errorMessage = "Error: ";
+                errorMessage = String.Concat(errorMessage, ex.Message);
+                Console.WriteLine($"Error:{errorMessage}");                
             }
             finally
             {
@@ -108,8 +112,9 @@ namespace csharp_example
     {
         public void Main()
         {
-            String execfile = @"D:\gitWork\0316-testexcel\test.xlsm";
-            MyProgram.ex01(execfile);
+            String excel_template_file = @"D:\gitWork\0316-testexcel\test.xlsm";
+            String excel_result_file = @"D:\gitWork\0316-testexcel\test-result.xlsm";
+            MyProgram.ex01(excel_template_file, excel_result_file);
         }
     }
 }

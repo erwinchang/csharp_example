@@ -125,13 +125,15 @@ namespace csharp_example
             }
         }
         //kill all excel process
-        public static void KillAllExcelProcess()
+        public static void KillLockXLAMProcess()
         {
             var processes = from p in Process.GetProcessesByName("EXCEL")
                             select p;
             foreach (var process in processes)
             {
-                process.Kill();
+                //only kill lock .xlam process
+                if (process.MainWindowTitle == "")
+                    process.Kill();
             }
         }
     }
@@ -145,7 +147,7 @@ namespace csharp_example
 
             //MyProgram.KillSpecificExcelFileProcess("USIToolV00_0101.xlam");
             //執行完USIToolV00_0101.xlam會被excel佔用，要先把excel process刪除，查看名再是空的
-            MyProgram.KillAllExcelProcess();
+            MyProgram.KillLockXLAMProcess();
         }
     }
 }

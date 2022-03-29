@@ -16,5 +16,14 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            TestProcOutput.MyProgram.StopProc();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {           
+        }
     }
 }

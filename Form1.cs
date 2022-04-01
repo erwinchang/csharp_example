@@ -28,6 +28,8 @@ namespace csharp_example
             ConcreteComponet cc = new ConcreteComponet();
             ConcreteDecoratorA cda = new ConcreteDecoratorA(cc);
             ConcreteDecoratorB cdb = new ConcreteDecoratorB(cc);
+            //也可以 ConcreteDecoratorB cdb = new ConcreteDecoratorB(cda);
+            //
             cda.operation();
             cdb.operation();
         }

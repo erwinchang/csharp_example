@@ -16,5 +16,20 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ConcreteComponet cc = new ConcreteComponet();
+            cc.operation();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ConcreteComponet cc = new ConcreteComponet();
+            ConcreteDecoratorA cda = new ConcreteDecoratorA(cc);
+            ConcreteDecoratorB cdb = new ConcreteDecoratorB(cc);
+            cda.operation();
+            cdb.operation();
+        }
     }
 }

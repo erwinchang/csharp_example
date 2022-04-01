@@ -16,5 +16,30 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InvokerCommand invokerCmd = new InvokerCommand(2);
+            BusinessCheckCommand bcc = new BusinessCheckCommand();
+            IdentityChecksCommand identityChecks = new IdentityChecksCommand(bcc);
+            DoCheckCommand doCheck = new DoCheckCommand(bcc);
+
+            invokerCmd.setCommand(0, identityChecks);
+            invokerCmd.setCommand(1, doCheck);
+
+            invokerCmd.runAllCommands();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InvokerCommand invokerCmd = new InvokerCommand(1);
+            BusinessCheckCommand bcc = new BusinessCheckCommand();
+
+            IdentityChecksCommand identityChecks = new IdentityChecksCommand(bcc);
+            invokerCmd.setCommand(0, identityChecks);
+
+            invokerCmd.runCommand(0);
+        }
     }
 }

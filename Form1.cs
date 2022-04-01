@@ -16,5 +16,19 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Adaptee adaptee = new Adaptee();
+            adaptee.fileName = "test.xls";
+            adaptee.SpecificRequest();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            iTarget target = new Adapter();
+            target.fileName = "test.xls";
+            target.Request();
+        }
     }
 }

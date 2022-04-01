@@ -16,7 +16,8 @@ namespace csharp_example
         public static void test()
         {
             Console.WriteLine("Example Main");
-            CreateCustomSection();
+            //CreateCustomSection();
+            test();
         }
         public static void CreateCustomSection()
         {
@@ -38,6 +39,13 @@ namespace csharp_example
             {
                 Console.WriteLine("CreateCustomSection: {0}", err.ToString());
             }
+        }
+        public static void test2()
+        {
+            var config = (MySection)ConfigurationManager.GetSection("MySection");
+            Assert.AreEqual("23", config.Code);
+            Assert.AreEqual(2, config.Member.Id);
+            Assert.AreEqual("余小章", config.Member.Name);
         }
     }
 
@@ -83,6 +91,42 @@ namespace csharp_example
             {
                 this["port"] = value;
             }
+        }
+    }
+
+    //https://dotblogs.com.tw/yc421206/2015/06/19/151599
+    public class MySection : ConfigurationSection
+    {
+        private MySection()
+        {
+
+        }
+        [ConfigurationProperty("Code", DefaultValue = "9527")]
+        public string Code
+        {
+            get { return this["Code"].ToString(); }
+            set { this["Code"] = value; }
+        }
+        [ConfigurationProperty("Member")]
+        public MemberElement Member
+        {
+            get { return (MemberElement)this["Member"]; }
+            set { this["Member"] = value; }
+        }
+    }
+    public class MemberElement : ConfigurationElement
+    {
+        [ConfigurationProperty("Id", DefaultValue = 2)]
+        public int Id
+        {
+            get { return (int)this["Id"]; }
+            set { this["Id"] = value; }
+        }
+        [ConfigurationProperty("Name", DefaultValue = "Yao")]
+        public string Name
+        {
+            get { return (string)this["Name"]; }
+            set { this["Name"] = value; }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace csharp_example
             {
                 Console.WriteLine($"-- name:{s}");
             }
+            List<string> ports = FindPort();
         }
 
         //https://www.codeproject.com/Tips/349002/Select-a-USB-Serial-Device-via-its-VID-PID
@@ -54,6 +56,26 @@ namespace csharp_example
                         }
                     }
                 }
+            }
+            return comports;
+        }
+        List<string> FindPort()
+        {
+            List<String> comports = new List<String>();
+
+            ManagementObjectCollection ManObjReturn;
+            ManagementObjectSearcher ManObjSearch;
+
+            ManObjSearch = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE ClassGuid=\"{4d36e978-e325-11ce-bfc1-08002be10318}\"");
+            ManObjReturn = ManObjSearch.Get();
+
+            foreach (ManagementObject ManObj in ManObjReturn)
+            {
+                //Name:Qualcomm HS-USB Diagnostics 9084 (COM5), Manufacturer:Qualcomm Incorporated
+                //Name:USB Serial Port (COM4), Manufacturer:FTDI
+                string name = ManObj["Name"].ToString();
+                string man = ManObj["Manufacturer"].ToString();
+                Console.WriteLine($"Name:{name}, Manufacturer:{man}");
             }
             return comports;
         }

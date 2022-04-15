@@ -64,5 +64,12 @@ s2:AR0KAUUD
 
 <a href="https://imgur.com/bFnnlHy"><img src="https://i.imgur.com/bFnnlHy.png" title="source: imgur.com" width="400px" /></a>
 
+------------
+
+實際使用的COM   
+```
+Name:USB Serial Port (COM7), Manufacturer:FTDI
+```
+
 
 [1]:https://www.codeproject.com/Tips/349002/Select-a-USB-Serial-Device-via-its-VID-PID

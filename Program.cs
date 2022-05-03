@@ -14,6 +14,8 @@ namespace csharp_example
         [STAThread]
         static void Main()
         {
+            System.IO.File.AppendAllText("D:\\log1.txt", "Main| ");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

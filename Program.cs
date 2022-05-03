@@ -14,6 +14,9 @@ namespace csharp_example
         [STAThread]
         static void Main()
         {
+            //https://vimsky.com/zh-tw/examples/detail/csharp-property-system.appdomain.friendlyname.html
+            Console.WriteLine("currentDomain.FriendlyName : {0}", AppDomain.CurrentDomain.FriendlyName);
+
             //https://docs.microsoft.com/zh-tw/dotnet/api/system.appdomain.friendlyname?view=net-6.0
             AppDomain root = AppDomain.CurrentDomain;
             AppDomainSetup setup = new AppDomainSetup();

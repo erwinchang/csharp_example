@@ -15,7 +15,20 @@
 ## AppDomain.FriendlyName 屬性
 
 
+
 取得應用程式定義域的易記名稱
+
+方式一.
+
+[AppDomain.FriendlyName屬性代碼示例][4]
+
+AppDomain.CurrentDomain.FriendlyName
+```
+currentDomain.FriendlyName : csharp_example.exe
+```
+
+
+方式二.
 
 
 執行結果如下
@@ -36,3 +49,4 @@ Shadow copy files is set to: False
 [1]:https://docs.microsoft.com/zh-tw/dotnet/api/system.appdomain?view=net-6.0
 [2]:https://docs.microsoft.com/zh-tw/dotnet/api/system.appdomain.friendlyname?view=net-6.0
 [3]:https://docs.microsoft.com/zh-tw/dotnet/framework/app-domains/retrieve-setup-information
+[4]:https://vimsky.com/zh-tw/examples/detail/csharp-property-system.appdomain.friendlyname.html

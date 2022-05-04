@@ -23,6 +23,7 @@ namespace csharp_example
             InitializeComponent();
             //this.contextMenu1 = new System.Windows.Forms.ContextMenu();
             //this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.notifyIcon1.Visible = false;
         }
 
         private void menuStrip1_Click(object sender, EventArgs e)
@@ -32,14 +33,26 @@ namespace csharp_example
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
-                this.WindowState = FormWindowState.Normal;
-            this.Activate();
+            //if (this.WindowState == FormWindowState.Minimized)
+            //    this.WindowState = FormWindowState.Normal;
+            //this.Activate();
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.notifyIcon1.Visible = false;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                this.notifyIcon1.Visible = true;
+            }
         }
     }
 }

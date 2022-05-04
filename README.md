@@ -11,10 +11,35 @@ menuStrip,contextmenustrip,notifyicon如下
 <a href="https://imgur.com/Gij87DB"><img src="https://i.imgur.com/Gij87DB.png" title="source: imgur.com" width="400px" /></a>
 
 
-參考範例來源  
+參考範例來源   
 [NotifyIcon Class][7]  
 
+------------
+
+### 如何設定min時才移到右下角
+
+[讓視窗縮小到工具列吧-NotifyIcon][8]
+
+```
+private void Form1_SizeChanged(object sender, EventArgs e)
+{
+    if (this.WindowState == FormWindowState.Minimized)
+    {
+        this.Hide();
+        this.notifyIcon1.Visible = true;
+    }
+}
+private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+{
+    this.Show();
+    this.WindowState = FormWindowState.Normal;
+    this.notifyIcon1.Visible = false;
+}
+```
+
 ---------
+
+###　其它說明
 
 [ContextMenu 類別][1]  
 - 代表捷徑功能表  
@@ -55,3 +80,4 @@ menuStrip,contextmenustrip,notifyicon如下
 [5]:https://docs.microsoft.com/zh-tw/dotnet/desktop/winforms/controls/contextmenu-component-overview-windows-forms?view=netframeworkdesktop-4.8
 [6]:https://docs.microsoft.com/zh-tw/dotnet/desktop/winforms/controls/contextmenustrip-control-overview?view=netframeworkdesktop-4.8
 [7]:https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.notifyicon?view=netframework-4.8
+[8]:https://dotblogs.com.tw/jimmyyu/2009/09/21/10733

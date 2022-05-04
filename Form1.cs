@@ -29,5 +29,17 @@ namespace csharp_example
         {
             this.Close();
         }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+                this.WindowState = FormWindowState.Normal;
+            this.Activate();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

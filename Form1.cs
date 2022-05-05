@@ -16,12 +16,19 @@ namespace csharp_example
         {
             InitializeComponent();
             this.objectListView1.SetObjects(haha.GET());
+            this.objectListView1.ShowGroups = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             haha newObject = new haha("memo", "zezo");
             objectListView1.AddObject(newObject);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.objectListView1.ShowGroups = ((CheckBox)sender).Checked;
+            this.objectListView1.BuildList();
         }
     }
 }

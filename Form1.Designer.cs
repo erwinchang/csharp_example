@@ -31,6 +31,8 @@ namespace csharp_example
         {
             this.label1 = new System.Windows.Forms.Label();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.NameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.DetailColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +47,11 @@ namespace csharp_example
             // 
             // objectListView1
             // 
+            this.objectListView1.AllColumns.Add(this.NameColumn);
+            this.objectListView1.AllColumns.Add(this.DetailColumn);
+            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.NameColumn,
+            this.DetailColumn});
             this.objectListView1.HideSelection = false;
             this.objectListView1.Location = new System.Drawing.Point(24, 57);
             this.objectListView1.Name = "objectListView1";
@@ -52,6 +59,16 @@ namespace csharp_example
             this.objectListView1.TabIndex = 1;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.AspectName = "Name";
+            this.NameColumn.CellPadding = null;
+            // 
+            // DetailColumn
+            // 
+            this.DetailColumn.AspectName = "Detail";
+            this.DetailColumn.CellPadding = null;
             // 
             // Form1
             // 
@@ -72,6 +89,8 @@ namespace csharp_example
 
         private System.Windows.Forms.Label label1;
         private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.OLVColumn NameColumn;
+        private BrightIdeasSoftware.OLVColumn DetailColumn;
     }
 }
 

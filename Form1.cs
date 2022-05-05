@@ -20,7 +20,8 @@ namespace csharp_example
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            haha newObject = new haha("memo", "zezo");
+            objectListView1.AddObject(newObject);
         }
     }
 }

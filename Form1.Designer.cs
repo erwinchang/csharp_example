@@ -30,6 +30,8 @@ namespace csharp_example
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -41,14 +43,26 @@ namespace csharp_example
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
+            // objectListView1
+            // 
+            this.objectListView1.HideSelection = false;
+            this.objectListView1.Location = new System.Drawing.Point(24, 57);
+            this.objectListView1.Name = "objectListView1";
+            this.objectListView1.Size = new System.Drawing.Size(537, 281);
+            this.objectListView1.TabIndex = 1;
+            this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.View = System.Windows.Forms.View.Details;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -57,6 +71,7 @@ namespace csharp_example
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private BrightIdeasSoftware.ObjectListView objectListView1;
     }
 }
 

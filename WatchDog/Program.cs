@@ -14,6 +14,8 @@ namespace WatchDog
         [STAThread]
         static void Main()
         {
+            ExceptionsManager.Logger = null;
+            ExceptionsManager.TrayIcon = null;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

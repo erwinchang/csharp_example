@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,5 +17,17 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+        private void Test()
+        {
+            textBox1.AppendText("Hello" + Environment.NewLine);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var thread = new Thread(Test);
+            thread.Start();
+        }
+
+
     }
 }

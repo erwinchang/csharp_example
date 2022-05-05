@@ -33,6 +33,7 @@ namespace csharp_example
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.NameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.DetailColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,11 +71,22 @@ namespace csharp_example
             this.DetailColumn.AspectName = "Detail";
             this.DetailColumn.CellPadding = null;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(450, 352);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 22);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -91,6 +103,7 @@ namespace csharp_example
         private BrightIdeasSoftware.ObjectListView objectListView1;
         private BrightIdeasSoftware.OLVColumn NameColumn;
         private BrightIdeasSoftware.OLVColumn DetailColumn;
+        private System.Windows.Forms.Button button1;
     }
 }
 

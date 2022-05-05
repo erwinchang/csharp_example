@@ -65,11 +65,13 @@ namespace csharp_example
             // 
             this.NameColumn.AspectName = "Name";
             this.NameColumn.CellPadding = null;
+            this.NameColumn.Text = "Name";
             // 
             // DetailColumn
             // 
             this.DetailColumn.AspectName = "Detail";
             this.DetailColumn.CellPadding = null;
+            this.DetailColumn.Text = "Detail";
             // 
             // button1
             // 

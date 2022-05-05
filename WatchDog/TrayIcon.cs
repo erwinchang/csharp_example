@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,9 @@ namespace WatchDog
             //Component declarations
             private NotifyIcon _trayIcon;
             private LogForm _logForm;
+            private ContextMenuStrip _trayIconContextMenu;
+            private ToolStripMenuItem _showLogMenuItem;
+            private ToolStripMenuItem _closeMenuItem;
             private Logger _logger;
             private MainForm _mainForm;
 
@@ -24,10 +28,17 @@ namespace WatchDog
             {
                 Application.ApplicationExit += OnApplicationExit;
                 InitializeComponent();
+
+                // Todo visibility dependent on configuration. If not, only show config form on 2nd startup
+
+                _logForm = new LogForm();
+                _mainForm = new MainForm();
+                _trayIcon.Visible =true;
             }
             private void OnApplicationExit(object sender, EventArgs e)
             {
-
+                _logger.Info("Stopping the watchdog application");
+                if (_trayIcon != null) _trayIcon.Visible = false;
             }
 
             private void InitializeComponent()
@@ -58,6 +69,35 @@ namespace WatchDog
                     _trayIcon.Click += TrayIconClick;
                     _trayIcon.DoubleClick += TrayIconDoubleClick;
 
+                    // Optional - Add a context menu to the TrayIcon:
+                    _trayIconContextMenu = new ContextMenuStrip();
+
+                    _trayIconContextMenu.SuspendLayout();
+                    _trayIconContextMenu.Name = "_trayIconContextMenu";
+                    _trayIconContextMenu.Size = new Size(153, 70);
+
+                    // Show log
+                    _showLogMenuItem = new ToolStripMenuItem
+                    {
+                        Name = "_showLogMenuItem",
+                        Size = new Size(152, 22),
+                        Text = "Show watchdog log"
+                    };
+                    _showLogMenuItem.Click += ShowLogMenuItemClick;
+                    _trayIconContextMenu.Items.AddRange(new ToolStripItem[] { _showLogMenuItem });
+
+                    // CloseMenuItem
+                    _closeMenuItem = new ToolStripMenuItem
+                    {
+                        Name = "_suspendResumeMenuItem",
+                        Size = new Size(152, 22),
+                        Text = "Suspend watchdog server"
+                    };
+                    _closeMenuItem.Click += CloseMenuItemClick;
+                    _trayIconContextMenu.Items.AddRange(new ToolStripItem[] { _closeMenuItem });
+
+                    _trayIconContextMenu.ResumeLayout(false);
+                    _trayIcon.ContextMenuStrip = _trayIconContextMenu;
                 }
                 catch (Exception ex)
                 {
@@ -79,6 +119,22 @@ namespace WatchDog
             private void TrayIconDoubleClick(object sender, EventArgs e)
             {
                 _logForm.Visible = true;
+            }
+
+            private void ShowLogMenuItemClick(object sender, EventArgs e)
+            {
+                _logForm.Visible = true;
+            }
+
+            private void CloseMenuItemClick(object sender, EventArgs e)
+            {
+                ApplicationExit();
+            }
+
+            private void ApplicationExit()
+            {
+                _trayIcon.Visible = false;
+                OnApplicationExit(this, null);
             }
         }
     }

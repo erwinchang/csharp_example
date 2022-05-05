@@ -15,6 +15,7 @@ namespace csharp_example
         public Form1()
         {
             InitializeComponent();
+            this.objectListView1.SetObjects(haha.GET());
         }
 
         private void button1_Click(object sender, EventArgs e)

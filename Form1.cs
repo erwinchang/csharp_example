@@ -21,7 +21,10 @@ namespace csharp_example
         private void button1_Click(object sender, EventArgs e)
         {
             Logger _logger = LogManager.GetLogger("WatchdogServer");
+            _logger.Debug("test");
             _logger.Trace("test");
+
+            Console.WriteLine("test");
         }
     }
 }

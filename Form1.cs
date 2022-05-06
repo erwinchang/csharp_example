@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,7 +20,17 @@ namespace csharp_example
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "TEST11";
+            //m_comm_MessageEvent("TEST11");
+            var thread = new Thread(Test);
+            thread.Start();
+        }
+        private void m_comm_MessageEvent(String msg)
+        {
+            textBox1.Text = msg;
+        }
+        private void Test()
+        {
+            m_comm_MessageEvent("TEST22");
         }
     }
 }

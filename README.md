@@ -7,8 +7,8 @@
 
 <a href="https://imgur.com/gNroYlO"><img src="https://i.imgur.com/gNroYlO.png" title="source: imgur.com" width="400px" /></a>
 
-[Control.InvokeRequired 屬性][2]
-取得一個值。這個值會指示是否由於呼叫端是在建立控制項之執行緒以外的執行緒
+[Control.InvokeRequired 屬性][2]  
+取得一個值。這個值會指示是否由於呼叫端是在建立控制項之執行緒以外的執行緒  
 
 
 [多執行緒中InvokeRequired和Invoke的用法，講的很清楚][3]

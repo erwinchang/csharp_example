@@ -49,4 +49,16 @@
 InvokeRequired:True
 InvokeRequired:False
 ```
+
+-------------
+
+在Form1中建立timer測試InvokeRequired，皆為false
+表示timer產生是在Form1中的thread的函數
+```
+InvokeRequired:False
+InvokeRequired:False
+InvokeRequired:False
+InvokeRequired:False
+```
+
 [1]:https://www.796t.com/content/1549952496.html

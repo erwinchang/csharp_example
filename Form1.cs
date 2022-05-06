@@ -16,6 +16,7 @@ namespace csharp_example
         public Form1()
         {
             InitializeComponent();
+            timer1.Start();
         }
 
         private delegate void InvokeCallback(string msg);
@@ -43,6 +44,13 @@ namespace csharp_example
         private void Test()
         {
             m_comm_MessageEvent("TEST22");
+        }
+
+        private int cnt = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        { 
+            m_comm_MessageEvent($"TEST :{cnt.ToString()}");
+            cnt++;
         }
     }
 }

@@ -31,9 +31,11 @@ namespace WatchDog
 
                 // Todo visibility dependent on configuration. If not, only show config form on 2nd startup
 
-                _logForm = new LogForm();
+                _logForm = new LogForm() { Visible = false };
                 _mainForm = new MainForm();
                 _trayIcon.Visible =true;
+
+                InitializeApplication();
             }
             private void OnApplicationExit(object sender, EventArgs e)
             {
@@ -135,6 +137,18 @@ namespace WatchDog
             {
                 _trayIcon.Visible = false;
                 OnApplicationExit(this, null);
+            }
+
+            private void InitializeApplication()
+            {
+                try
+                {
+                    _logger = LogManager.GetLogger("WatchdogServer");
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
         }
     }

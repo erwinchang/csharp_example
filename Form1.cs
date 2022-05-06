@@ -18,6 +18,7 @@ namespace csharp_example
             InitializeComponent();
         }
 
+        private delegate void InvokeCallback(string msg);
         private void button1_Click(object sender, EventArgs e)
         {
             //m_comm_MessageEvent("TEST11");
@@ -26,7 +27,18 @@ namespace csharp_example
         }
         private void m_comm_MessageEvent(String msg)
         {
-            textBox1.Text = msg;
+            //https://www.796t.com/content/1549952496.html
+            Console.WriteLine($"InvokeRequired:{textBox1.InvokeRequired}");
+            if (textBox1.InvokeRequired)
+            {
+                InvokeCallback msgCallback = new InvokeCallback(m_comm_MessageEvent);
+                textBox1.Invoke(msgCallback, new object[] { msg });
+            }
+            else            
+            {
+                //form1 thread InvokeRequired=0
+                textBox1.Text = msg;
+            }                
         }
         private void Test()
         {

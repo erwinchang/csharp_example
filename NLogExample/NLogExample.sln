@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogExample", "NLogExample\NLogExample.csproj", "{9651DF92-3E3F-4668-BB30-49D9B531E538}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLOG.Slack", "NLOG.Slack\NLOG.Slack.csproj", "{09A3DD3B-95A1-468B-B814-965E6C946A04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9651DF92-3E3F-4668-BB30-49D9B531E538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9651DF92-3E3F-4668-BB30-49D9B531E538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9651DF92-3E3F-4668-BB30-49D9B531E538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9651DF92-3E3F-4668-BB30-49D9B531E538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A3DD3B-95A1-468B-B814-965E6C946A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A3DD3B-95A1-468B-B814-965E6C946A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A3DD3B-95A1-468B-B814-965E6C946A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A3DD3B-95A1-468B-B814-965E6C946A04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFCAD90C-F199-4695-A7BD-6FAE46089DB5}
+	EndGlobalSection
+EndGlobal

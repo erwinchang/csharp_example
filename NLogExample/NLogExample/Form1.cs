@@ -13,6 +13,7 @@ namespace NLogExample
 {
     public partial class Form1 : Form
     {
+        private Logger _logger;
         public Form1()
         {
             InitializeComponent();
@@ -21,9 +22,18 @@ namespace NLogExample
         private void button1_Click(object sender, EventArgs e)
         {
             //Logger log = LogManager.GetCurrentClassLogger();
-            Logger log = LogManager.GetLogger("WatchdogServer");
-            log.Debug("test debug");
-            Console.WriteLine("test11");
+            //Logger log = LogManager.GetLogger("WatchdogServer");
+            //log.Debug("test debug");
+            //Console.WriteLine("test11");
+            try
+            {
+                _logger = LogManager.GetLogger("WatchdogServer");
+                _logger.Debug("test debug111");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"ex:{ex.Message}");
+            }
         }
     }
 }

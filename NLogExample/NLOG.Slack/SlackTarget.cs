@@ -54,6 +54,19 @@ namespace NLog.Targets
     [Target("NlogEvent")]
     public sealed class NlogEventTarget : TargetWithLayout
     {
+        private static NlogEventTarget _instance;
+
+        public static NlogEventTarget Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new NlogEventTarget();
+                }
+                return _instance;
+            }
+        }
         protected override void Write(LogEventInfo logEvent)
         {
             var logMessage = this.Layout.Render(logEvent);

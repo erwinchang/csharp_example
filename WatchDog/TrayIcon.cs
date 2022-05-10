@@ -54,7 +54,7 @@ namespace WatchDog
                     _logger = LogManager.GetLogger("WatchdogServer");
                     ExceptionsManager.Logger = _logger;
 
-                    _logger.Trace("test");
+                    _logger.Trace("InitializeComponent init");
 
                     _trayIcon = new NotifyIcon();
                     ExceptionsManager.TrayIcon = _trayIcon;
@@ -144,10 +144,11 @@ namespace WatchDog
                 try
                 {
                     _logger = LogManager.GetLogger("WatchdogServer");
+                    _logger.Trace("InitializeApplication init");
                 }
                 catch(Exception ex)
                 {
-
+                    Console.WriteLine($"ex:{ex.Message}");
                 }
             }
         }

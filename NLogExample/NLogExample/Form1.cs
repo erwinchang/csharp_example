@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,9 @@ namespace NLogExample
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Logger log = LogManager.GetCurrentClassLogger();
+            Logger log = LogManager.GetLogger("WatchdogServer");
+            log.Debug("test debug");
             Console.WriteLine("test11");
         }
     }

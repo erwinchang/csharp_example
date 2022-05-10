@@ -11,7 +11,7 @@ using NLog.Targets;
 namespace Utilities
 {
     [Target("NlogEvent")]
-    class NlogEventTarget : TargetWithLayout
+    public class NlogEventTarget : TargetWithLayout
     {
         private static NlogEventTarget _instance;
 
@@ -22,6 +22,7 @@ namespace Utilities
                 if (_instance == null)
                 {
                     _instance = new NlogEventTarget();
+                    Register(_instance);
                 }
                 return _instance;
             }
@@ -30,6 +31,19 @@ namespace Utilities
         public NlogEventTarget()
         {
 
+        }
+        public static void Register(NlogEventTarget nlogEventTarget)
+        {
+            nlogEventTarget.Name = "event";
+            nlogEventTarget.Layout = "${longdate} ${uppercase:${level}} ${message}";
+
+            var config = LogManager.Configuration;
+            config.AddTarget("nlogEvent", nlogEventTarget);
+            var rule = new LoggingRule("*", LogLevel.Trace, nlogEventTarget);
+            config.LoggingRules.Add(rule);
+
+            LogManager.Configuration = config;
+            LogManager.Configuration.Reload();
         }
         //https://nlog-project.org/documentation/v4.0.0/html/T_NLog_Targets_TargetWithLayout.htm
         //Write(LogEventInfo)	Writes logging event to the log target.classes.

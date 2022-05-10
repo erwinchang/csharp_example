@@ -144,6 +144,8 @@ namespace WatchDog
                 try
                 {
                     _logger = LogManager.GetLogger("WatchdogServer");
+                    var nlogEventTarget = Utilities.NlogEventTarget.Instance;
+
                     _logger.Trace("InitializeApplication init");
                 }
                 catch(Exception ex)

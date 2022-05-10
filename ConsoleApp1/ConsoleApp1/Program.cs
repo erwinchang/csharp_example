@@ -8,8 +8,11 @@ namespace ConsoleApp1
 {
     class Program
     {
+        //https://docs.microsoft.com/zh-tw/dotnet/standard/events/how-to-raise-and-consume-events
         static void Main(string[] args)
         {
+            Console.WriteLine("test11");
+            Console.ReadLine();
         }
     }
 }

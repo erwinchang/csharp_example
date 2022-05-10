@@ -50,4 +50,16 @@ namespace NLog.Targets
             }
         }
     }
+
+    [Target("NlogEvent")]
+    public sealed class NlogEventTarget : TargetWithLayout
+    {
+        protected override void Write(LogEventInfo logEvent)
+        {
+            var logMessage = this.Layout.Render(logEvent);
+            String filepath = @"D:\nlog-NlogEvent.txt";
+            String msg = $"logMessage:{logMessage}";
+            System.IO.File.AppendAllText(filepath, msg);
+        }
+    }
 }

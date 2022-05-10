@@ -57,13 +57,13 @@ namespace ConsoleApp1
         }
         protected virtual void OnThresholdReached(ThresholdReachedEventArgs e)
         {
-            EventHandler<ThresholdReachedEventArgs> handler = ThresholdReached;
+            ThresholdReachedEventHandler handler = ThresholdReached;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
-        public event EventHandler<ThresholdReachedEventArgs> ThresholdReached;
+        public event ThresholdReachedEventHandler ThresholdReached;
     }
 
     public class ThresholdReachedEventArgs : EventArgs
@@ -71,4 +71,6 @@ namespace ConsoleApp1
         public int Threshold { get; set; }
         public DateTime TimeReached { get; set; }
     }
+
+    public delegate void ThresholdReachedEventHandler(Object sender, ThresholdReachedEventArgs e);
 }

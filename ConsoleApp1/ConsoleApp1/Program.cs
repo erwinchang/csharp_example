@@ -25,13 +25,14 @@ namespace ConsoleApp1
             Console.ReadLine();
         }
 
-        static void c_ThresholdReached(object sender, EventArgs e)
+        static void c_ThresholdReached(object sender, ThresholdReachedEventArgs e)
         {
-            Console.WriteLine("The threshold was reached.");
+            Console.WriteLine("The threshold of {0} was reached at {1}.", e.Threshold, e.TimeReached);
             Console.ReadLine();
             Environment.Exit(0);
         }
     }
+
     class Counter
     {
         private int threshold;
@@ -48,9 +49,26 @@ namespace ConsoleApp1
             total += x;
             if (total >= threshold)
             {
-                ThresholdReached?.Invoke(this, EventArgs.Empty);
+                ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
+                args.Threshold = threshold;
+                args.TimeReached = DateTime.Now;
+                OnThresholdReached(args);
             }
         }
-        public event EventHandler ThresholdReached;
+        protected virtual void OnThresholdReached(ThresholdReachedEventArgs e)
+        {
+            EventHandler<ThresholdReachedEventArgs> handler = ThresholdReached;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        public event EventHandler<ThresholdReachedEventArgs> ThresholdReached;
+    }
+
+    public class ThresholdReachedEventArgs : EventArgs
+    {
+        public int Threshold { get; set; }
+        public DateTime TimeReached { get; set; }
     }
 }

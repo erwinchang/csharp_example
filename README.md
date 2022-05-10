@@ -2,19 +2,21 @@
 
 ## EventHandler 
 
-使用沒有資料的事件
+使用沒有資料的事件  
 
 ```
 ThresholdReached?.Invoke(this, EventArgs.Empty);
 ```
 
-測試如下
+測試如下  
+
 <a href="https://imgur.com/YGRA5Va"><img src="https://i.imgur.com/YGRA5Va.png" title="source: imgur.com" width="400px" /></a>
 
 ---
 
-使用有提供資料的事件
-EventHandler<TEventArgs> 委派會與事件相關聯，而且會提供自訂事件資料物件的執行個
+使用有提供資料的事件  
+EventHandler<TEventArgs> 委派會與事件相關聯，而且會提供自訂事件資料物件的執行個  
+
 ```
 	ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
 	args.Threshold = threshold;

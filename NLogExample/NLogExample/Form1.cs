@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,14 +26,27 @@ namespace NLogExample
             //Logger log = LogManager.GetLogger("WatchdogServer");
             //log.Debug("test debug");
             //Console.WriteLine("test11");
+            Debug.WriteLine("debug test");
             try
             {
                 _logger = LogManager.GetLogger("WatchdogServer");
+                
+                var nlogEventTarget = NLog.Targets.NlogEventTarget.Instance;
+                nlogEventTarget.OnLogEvent += OnLogEvent;
+
                 _logger.Debug("test debug111");
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"ex:{ex.Message}");
+            }
+        }
+
+        private void OnLogEvent(object sender, NLog.Targets.LogEventArgs logEventArgs)
+        {
+            foreach (var logLine in logEventArgs.LogLines)
+            {
+                Debug.WriteLine(logLine);
             }
         }
     }

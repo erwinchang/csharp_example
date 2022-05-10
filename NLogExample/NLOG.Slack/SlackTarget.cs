@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,15 @@ using NLog.Layouts;
 //https://github.com/NLog/NLog/wiki/How-to-write-a-custom-async-target
 namespace NLog.Targets
 {
+    public class LogEventArgs : EventArgs
+    {
+        public List<string> LogLines { get; private set; }
+        public LogEventArgs(List<string> logLines)
+        {
+            LogLines = logLines;
+        }
+    }
+
     [Target("MyFirst")]
     public class MyFirstTarget : AsyncTaskTarget
     {
@@ -54,6 +64,9 @@ namespace NLog.Targets
     [Target("NlogEvent")]
     public sealed class NlogEventTarget : TargetWithLayout
     {
+        public EventHandler<LogEventArgs> OnLogEvent;
+        private readonly ConcurrentQueue<string> _logQueue;
+
         private static NlogEventTarget _instance;
 
         public static NlogEventTarget Instance
@@ -63,9 +76,28 @@ namespace NLog.Targets
                 if (_instance == null)
                 {
                     _instance = new NlogEventTarget();
+                    Register(_instance);
                 }
                 return _instance;
             }
+        }
+
+        public NlogEventTarget()
+        {
+            _logQueue = new ConcurrentQueue<string>();
+        }
+        public static void Register(NlogEventTarget nlogEventTarget)
+        {
+            nlogEventTarget.Name = "event";
+            nlogEventTarget.Layout = "${longdate} ${uppercase:${level}} ${message}";
+
+            var config = LogManager.Configuration;
+            config.AddTarget("nlogEvent", nlogEventTarget);
+            var rule = new LoggingRule("*", LogLevel.Trace, nlogEventTarget);
+            config.LoggingRules.Add(rule);
+
+            LogManager.Configuration = config;
+            LogManager.Configuration.Reload();
         }
         protected override void Write(LogEventInfo logEvent)
         {

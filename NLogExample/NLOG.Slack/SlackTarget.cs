@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Timers;
 using NLog.Config;
 using NLog.Layouts;
 
@@ -85,6 +86,9 @@ namespace NLog.Targets
         public NlogEventTarget()
         {
             _logQueue = new ConcurrentQueue<string>();
+            var timer = new System.Timers.Timer(100);
+            timer.Elapsed += TimerElapsed;
+            timer.Start();
         }
         public static void Register(NlogEventTarget nlogEventTarget)
         {
@@ -98,6 +102,18 @@ namespace NLog.Targets
 
             LogManager.Configuration = config;
             LogManager.Configuration.Reload();
+        }
+        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            var logList = new List<string>();
+            var localValue = "";
+            while (_logQueue.TryDequeue(out localValue)) logList.Add(localValue);
+
+            if (logList.Count <= 0) return;
+            if (OnLogEvent == null) return;
+            var args = new LogEventArgs(logList);
+
+            OnLogEvent(this, args);
         }
         protected override void Write(LogEventInfo logEvent)
         {

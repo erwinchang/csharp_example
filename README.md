@@ -109,6 +109,25 @@ hostName:localhost, message:2022-05-10 15:00:57.3162|DEBUG|WatchdogServer|test d
 
 --------
 
+
+###  NLog/如何由程式加入NLog設定
+
+```
+        public static void Register(NlogEventTarget nlogEventTarget)
+        {
+            nlogEventTarget.Name = "event";
+            nlogEventTarget.Layout = "${longdate} ${uppercase:${level}} ${message}";
+
+            var config = LogManager.Configuration;
+            config.AddTarget("nlogEvent", nlogEventTarget);
+            var rule = new LoggingRule("*", LogLevel.Trace, nlogEventTarget);
+            config.LoggingRules.Add(rule);
+
+            LogManager.Configuration = config;
+            LogManager.Configuration.Reload();
+        }
+```
+
 參考  
 - [自製 NLog 的 Target（以 Slack 的 Incoming WebHooks 為例）][1]  
 - [How to write a custom async target][2]  

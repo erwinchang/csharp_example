@@ -34,7 +34,8 @@ namespace NLogExample
                 var nlogEventTarget = NLog.Targets.NlogEventTarget.Instance;
                 nlogEventTarget.OnLogEvent += OnLogEvent;
 
-                _logger.Debug("test debug111");
+                _logger.Debug($"test debug111 {Environment.NewLine}");
+                _logger.Trace($"test debug222 {Environment.NewLine}");
             }
             catch(Exception ex)
             {

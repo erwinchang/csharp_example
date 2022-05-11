@@ -29,9 +29,22 @@ namespace Utilities.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.eagerTimer1 = new Utilities.EagerTimer();
+            ((System.ComponentModel.ISupportInitialize)(this.eagerTimer1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // eagerTimer1
+            // 
+            this.eagerTimer1.AutoStart = false;
+            this.eagerTimer1.Enabled = true;
+            this.eagerTimer1.SynchronizingObject = this;
+            ((System.ComponentModel.ISupportInitialize)(this.eagerTimer1)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private EagerTimer eagerTimer1;
     }
 }

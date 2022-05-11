@@ -63,9 +63,6 @@
     <Compile Include="EagerTimer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EagerTimer.Designer.cs">
-      <DependentUpon>EagerTimer.cs</DependentUpon>
-    </Compile>
     <Compile Include="NlogEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

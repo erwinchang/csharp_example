@@ -53,14 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Controls\LoggingView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LoggingView.Designer.cs">
+      <DependentUpon>LoggingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="NlogEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

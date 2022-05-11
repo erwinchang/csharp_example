@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -145,12 +146,20 @@ namespace WatchDog
                 {
                     _logger = LogManager.GetLogger("WatchdogServer");
                     var nlogEventTarget = Utilities.NlogEventTarget.Instance;
+                    nlogEventTarget.OnLogEvent += OnLogEvent;
 
                     _logger.Trace("InitializeApplication init");
                 }
                 catch(Exception ex)
                 {
                     Console.WriteLine($"ex:{ex.Message}");
+                }
+            }
+            private void OnLogEvent(object sender, Utilities.LogEventArgs logEventArgs)
+            {
+                foreach (var logLine in logEventArgs.LogLines)
+                {
+                    Debug.WriteLine(logLine);
                 }
             }
         }

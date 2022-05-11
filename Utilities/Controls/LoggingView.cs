@@ -15,5 +15,26 @@ namespace Utilities.Controls
         {
             InitializeComponent();
         }
+        public int MaxEntriesInListBox { get; set; }
+
+        public void AddEntry(string[] items)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate { AddEntry(items); }));
+                return;
+            }
+            BeginUpdate();
+            foreach (var item in items)
+            {
+                Items.Add(item);
+                if (Items.Count > MaxEntriesInListBox)
+                {
+                    Items.RemoveAt(0);
+                }
+            }
+            EndUpdate();
+        }
+
     }
 }

@@ -37,7 +37,7 @@ namespace WatchDog
             this.loggingView.FormattingEnabled = true;
             this.loggingView.ItemHeight = 15;
             this.loggingView.Location = new System.Drawing.Point(12, 12);
-            this.loggingView.MaxEntriesInListBox = 0;
+            this.loggingView.MaxEntriesInListBox = 3000;
             this.loggingView.Name = "loggingView";
             this.loggingView.Size = new System.Drawing.Size(776, 409);
             this.loggingView.TabIndex = 0;

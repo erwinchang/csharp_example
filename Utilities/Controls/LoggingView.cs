@@ -15,12 +15,5 @@ namespace Utilities.Controls
         {
             InitializeComponent();
         }
-
-        public LoggingView(IContainer container)
-        {
-            container.Add(this);
-
-            InitializeComponent();
-        }
     }
 }

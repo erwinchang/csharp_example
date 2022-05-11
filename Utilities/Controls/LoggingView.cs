@@ -5,10 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Utilities.Controls
 {
-    public partial class LoggingView : Component
+    public partial class LoggingView : ListBox
     {
         public LoggingView()
         {

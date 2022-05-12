@@ -64,6 +64,8 @@
     <Compile Include="EagerTimer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FileUtilities\FileUtils.cs" />
+    <Compile Include="FileUtilities\FileUtilsMatch.cs" />
     <Compile Include="NlogEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,5 +77,6 @@
       <DependentUpon>LoggingView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,9 @@ namespace WatchdogLib
 {
     public class HeartbeatServer
     {
+        private const string PipeName = "named_pipe_watchdog";
+        private readonly NamedPipeServer<string> _server = new NamedPipeServer<string>(PipeName);
+
         private static HeartbeatServer _instance;
         public static HeartbeatServer Instance
         {

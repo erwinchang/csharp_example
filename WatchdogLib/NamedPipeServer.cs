@@ -70,6 +70,16 @@ namespace WatchdogLib
         public void Start()
         {
             _shouldKeepRunning = true;
+            var worker = new Worker();
+            worker.Error += OnError;
+        }
+
+        /// <summary>
+        ///     Invoked on the UI thread.
+        /// </summary>
+        /// <param name="exception"></param>
+        private void OnError(Exception exception)
+        {
         }
 
     }

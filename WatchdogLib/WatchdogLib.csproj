@@ -48,6 +48,7 @@
     <Compile Include="ApplicationWatcher.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="HeartbeatServer.cs" />
+    <Compile Include="NamedPipeServer.cs" />
     <Compile Include="ProcessHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

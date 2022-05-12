@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace Utilities.Controls
         public LoggingView()
         {
             InitializeComponent();
+
+            //https://blog.csdn.net/weixin_44855978/article/details/103803956
+            DrawMode = DrawMode.OwnerDrawFixed;
         }
         public int MaxEntriesInListBox { get; set; }
 
@@ -36,5 +40,14 @@ namespace Utilities.Controls
             EndUpdate();
         }
 
+        protected override void OnDrawItem(DrawItemEventArgs e)
+        {
+            if (Items.Count > 0)
+            {
+                e.DrawBackground();
+                e.Graphics.DrawString(Items[e.Index].ToString(), e.Font, new SolidBrush(ForeColor), new PointF(e.Bounds.X, e.Bounds.Y));
+            }
+            base.OnDrawItem(e);
+        }
     }
 }

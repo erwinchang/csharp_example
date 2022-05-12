@@ -65,6 +65,7 @@
     <Compile Include="EagerTimer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EventWaiter.cs" />
     <Compile Include="FileUtilities\FileUtils.cs" />
     <Compile Include="FileUtilities\FileUtilsMatch.cs" />
     <Compile Include="NlogEvent.cs" />

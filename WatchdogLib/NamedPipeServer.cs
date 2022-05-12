@@ -50,6 +50,8 @@ namespace WatchdogLib
         private readonly string _pipeName;
         private readonly PipeSecurity _pipeSecurity;
 
+        private volatile bool _shouldKeepRunning;
+
         /// <summary>
         /// Constructs a new <c>NamedPipeServer</c> object that listens for client connections on the given <paramref name="pipeName"/>.
         /// </summary>
@@ -59,6 +61,15 @@ namespace WatchdogLib
         {
             _pipeName = pipeName;
             _pipeSecurity = pipeSecurity;
+        }
+
+        /// <summary>
+        /// Begins listening for client connections in a separate background thread.
+        /// This method returns immediately.
+        /// </summary>
+        public void Start()
+        {
+            _shouldKeepRunning = true;
         }
 
     }

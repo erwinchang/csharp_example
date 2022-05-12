@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog", "WatchDog\WatchDog.csproj", "{0654AE20-8705-434F-9276-CAF4AC8E8AC0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E12E6614-91ED-437F-812C-9A9BD9822A16} = {E12E6614-91ED-437F-812C-9A9BD9822A16}
+		{6DC91E68-212B-45F9-8770-F2C8129F0977} = {6DC91E68-212B-45F9-8770-F2C8129F0977}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{6DC91E68-212B-45F9-8770-F2C8129F0977}"
 EndProject

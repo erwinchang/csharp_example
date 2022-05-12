@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WatchdogLib
 {
-    public class ProcessHander
+    public class ProcessHandler
     {
         private Stopwatch _nonresponsiveInterval;
         private Stopwatch _fromStart;
@@ -16,7 +16,7 @@ namespace WatchdogLib
         public uint NonresponsiveInterval { get; set; }
         public uint StartingInterval { get; set; }
 
-        public void ProcessHandler()
+        public ProcessHandler()
         {
             WaitForExit = true;
             RunInDir = true;

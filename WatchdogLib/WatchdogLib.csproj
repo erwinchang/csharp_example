@@ -47,6 +47,7 @@
     <Compile Include="ApplicationHandler.cs" />
     <Compile Include="ApplicationWatcher.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ProcessHander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

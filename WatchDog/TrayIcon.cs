@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utilities;
 using WatchDog.Properties;
 
 namespace WatchDog
@@ -149,8 +150,14 @@ namespace WatchDog
                     nlogEventTarget.OnLogEvent += OnLogEvent;
 
                     _logger.Trace("InitializeApplication init");
+
+                    //codebase:    file:///D:/gitWork/github/my-watchdog/WatchDog/bin/Debug/WatchDog.exe
+                    //local_path:  D:\gitWork\github\my-watchdog\WatchDog\bin\Debug\WatchDog.exe
+                    //dirname:     D:\gitWork\github\my-watchdog\WatchDog\bin\Debug
+                    //             D:\gitWork\github\my-watchdog\WatchDog\bin\Debug\logs  => it's create by NLog
+                    //Directory.CreateDirectory(FileUtils.Combine(Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath), "\\logs"));
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"ex:{ex.Message}");
                 }

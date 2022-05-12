@@ -31,6 +31,37 @@ namespace Utilities
                 Monitor.Pulse(_key);
             }
         }
+        /// <summary>
+        /// Wait function. Blocks until signal is set or time-out
+        /// </summary>
+        /// <param name="timeOut">time-out in ms</param>
+        /// <returns></returns>
+        public WaitState WaitOne(int timeOut)
+        {
+            lock (_key)
+            {
+                // Check if signal has already been raised before the wait function is entered                
+                if (!_block)
+                {
+                    // If so, reset event for next time and exit wait loop
+                    _block = true;
+                    return WaitState.Normal;
+                }
+
+                // Wait under conditions
+                bool noTimeOut = true;
+                while (noTimeOut && _block)
+                {
+                    noTimeOut = Monitor.Wait(_key, timeOut);
+                }
+
+                // Block Wait for next entry
+                _block = true;
+
+                // Return whether the Wait function was quit because of an Set event or timeout
+                return noTimeOut ? WaitState.Normal : WaitState.TimeOut;
+            }
+        }
 
         /// <summary>
         /// Resets signal, will block threads entering Wait function

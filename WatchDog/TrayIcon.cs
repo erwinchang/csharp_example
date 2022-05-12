@@ -156,6 +156,12 @@ namespace WatchDog
                     //dirname:     D:\gitWork\github\my-watchdog\WatchDog\bin\Debug
                     //             D:\gitWork\github\my-watchdog\WatchDog\bin\Debug\logs  => it's create by NLog
                     //Directory.CreateDirectory(FileUtils.Combine(Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath), "\\logs"));
+
+                    string[] args = Environment.GetCommandLineArgs();
+
+                    // Strip application from arguments
+                    args = args.Where(w => w != args[0]).ToArray();
+                    MainApplication(args);
                 }
                 catch (Exception ex)
                 {
@@ -169,6 +175,11 @@ namespace WatchDog
                 {
                     Debug.WriteLine(logLine);
                 }
+            }
+
+            private void MainApplication(string[] args)
+            {
+
             }
         }
     }

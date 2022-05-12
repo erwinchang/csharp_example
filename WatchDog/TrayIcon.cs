@@ -157,6 +157,7 @@ namespace WatchDog
             }
             private void OnLogEvent(object sender, Utilities.LogEventArgs logEventArgs)
             {
+                _logForm.LoggingView.AddEntry(logEventArgs.LogLines.ToArray());
                 foreach (var logLine in logEventArgs.LogLines)
                 {
                     Debug.WriteLine(logLine);

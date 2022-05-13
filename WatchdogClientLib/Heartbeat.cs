@@ -23,6 +23,33 @@ namespace WatchdogClientLib
         private void Initialize()
         {
             Timeout = 5;
+            _client.ServerMessage += OnServerMessage;
+            _client.Disconnected += OnDisconnected;
+            _client.Connected += OnConnected;
+        }
+        private void OnServerMessage(NamedPipeConnection<string, string> connection, string message)
+        {
+
+        }
+
+        private void OnDisconnected(NamedPipeConnection<string, string> connection)
+        {
+        }
+        private void OnConnected(NamedPipeConnection<string, string> connection)
+        {
+            SendCommand(Commands.Heartbeat, _processName);
+        }
+
+        private enum Commands
+        {
+            SetTimeOut,
+            Heartbeat,
+            RequestKill,
+        }
+
+        private void SendCommand<T>(Commands command, T argument)
+        {
+            _client.PushMessage(((int)command).ToString() + "," + argument.ToString());
         }
     }
 }

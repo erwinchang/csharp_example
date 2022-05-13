@@ -1,7 +1,7 @@
 ﻿
 namespace MonitoredApplication
 {
-    partial class Form1
+    partial class MonitoredApplicationForm
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -29,10 +29,17 @@ namespace MonitoredApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MonitoredApplicationForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "MonitoredApplicationForm";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

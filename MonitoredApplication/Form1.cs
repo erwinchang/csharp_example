@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MonitoredApplication
 {
-    public partial class Form1 : Form
+    public partial class MonitoredApplicationForm : Form
     {
-        public Form1()
+        public MonitoredApplicationForm()
         {
             InitializeComponent();
         }

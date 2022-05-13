@@ -50,6 +50,8 @@ namespace WatchdogLib
         private readonly string _pipeName;
         private readonly PipeSecurity _pipeSecurity;
 
+
+        private int _nextPipeId;
         private volatile bool _shouldKeepRunning;
         private volatile bool _isRunning;
 
@@ -104,8 +106,41 @@ namespace WatchdogLib
 
         private void WaitForConnection(string pipeName, PipeSecurity pipeSecurity)
         {
+            NamedPipeServerStream handshakePipe = null;
+            NamedPipeServerStream dataPipe = null;
+            NamedPipeConnection<TRead, TWrite> connection = null;
 
+            var connectionPipeName = GetNextConnectionPipeName(pipeName);
+
+            try
+            {
+                // Send the client the name of the data pipe to use
+                handshakePipe = PipeServerFactory.CreateAndConnectPipe(pipeName, pipeSecurity);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine("Named pipe is broken or disconnected: {0}", e);
+            }
+        }
+
+        private string GetNextConnectionPipeName(string pipeName)
+        {
+            return string.Format("{0}_{1}", pipeName, ++_nextPipeId);
         }
         #endregion
+    }
+
+    static class PipeServerFactory
+    {
+        public static NamedPipeServerStream CreateAndConnectPipe(string pipeName, PipeSecurity pipeSecurity)
+        {
+            var pipe = CreatePipe(pipeName, pipeSecurity);
+            pipe.WaitForConnection();
+            return pipe;
+        }
+        public static NamedPipeServerStream CreatePipe(string pipeName, PipeSecurity pipeSecurity)
+        {
+            return new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous | PipeOptions.WriteThrough, 0, 0, pipeSecurity);
+        }
     }
 }

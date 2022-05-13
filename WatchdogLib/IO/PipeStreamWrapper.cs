@@ -50,5 +50,15 @@ namespace WatchdogLib.IO
             _reader = new PipeStreamReader<TRead>(BaseStream);
             _writer = new PipeStreamWriter<TWrite>(BaseStream);
         }
+
+        /// <summary>
+        /// Writes an object to the pipe.  This method blocks until all data is sent.
+        /// </summary>
+        /// <param name="obj">Object to write to the pipe</param>
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="TRead"/> is not marked as serializable.</exception>
+        public void WriteObject(TWrite obj)
+        {
+            _writer.WriteObject(obj);
+        }
     }
 }

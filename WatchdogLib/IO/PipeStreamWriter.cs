@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Pipes;
 using System.Linq;
+using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +22,9 @@ namespace WatchdogLib.IO
         /// </summary>
         public PipeStream BaseStream { get; private set; }
 
+        //https://docs.microsoft.com/zh-tw/dotnet/core/compatibility/core-libraries/5.0/binaryformatter-serialization-obsolete
+        private readonly BinaryFormatter _binaryFormatter = new BinaryFormatter();
+
         /// <summary>
         /// Constructs a new <c>PipeStreamWriter</c> object that writes to given <paramref name="stream"/>.
         /// </summary>
@@ -26,6 +32,45 @@ namespace WatchdogLib.IO
         public PipeStreamWriter(PipeStream stream)
         {
             BaseStream = stream;
+        }
+
+        #region Private stream writers
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="T"/> is not marked as serializable.</exception>
+        private byte[] Serialize(T obj)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                _binaryFormatter.Serialize(memoryStream, obj);
+                return memoryStream.ToArray();
+            }
+        }
+        private void WriteLength(int len)
+        {
+            var lenbuf = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(len));
+            BaseStream.Write(lenbuf, 0, lenbuf.Length);
+        }
+        private void WriteObject(byte[] data)
+        {
+            BaseStream.Write(data, 0, data.Length);
+        }
+
+        private void Flush()
+        {
+            BaseStream.Flush();
+        }
+        #endregion
+
+        /// <summary>
+        /// Writes an object to the pipe.  This method blocks until all data is sent.
+        /// </summary>
+        /// <param name="obj">Object to write to the pipe</param>
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="T"/> is not marked as serializable.</exception>
+        public void WriteObject(T obj)
+        {
+            var data = Serialize(obj);
+            WriteLength(data.Length);
+            WriteObject(data);
+            Flush();
         }
     }
 }

@@ -51,6 +51,12 @@ namespace WatchdogLib
         private readonly PipeSecurity _pipeSecurity;
 
         private volatile bool _shouldKeepRunning;
+        private volatile bool _isRunning;
+
+        /// <summary>
+        /// Invoked whenever an exception is thrown during a read or write operation.
+        /// </summary>
+        public event PipeExceptionEventHandler Error;
 
         /// <summary>
         /// Constructs a new <c>NamedPipeServer</c> object that listens for client connections on the given <paramref name="pipeName"/>.
@@ -72,6 +78,7 @@ namespace WatchdogLib
             _shouldKeepRunning = true;
             var worker = new Worker();
             worker.Error += OnError;
+            worker.DoWork(ListenSync);
         }
 
         /// <summary>
@@ -80,7 +87,25 @@ namespace WatchdogLib
         /// <param name="exception"></param>
         private void OnError(Exception exception)
         {
+            if (Error != null)
+                Error(exception);
         }
 
+        #region Private methods
+        private void ListenSync()
+        {
+            _isRunning = true;
+            while (_shouldKeepRunning)
+            {
+                WaitForConnection(_pipeName, _pipeSecurity);
+            }
+            _isRunning = false;
+        }
+
+        private void WaitForConnection(string pipeName, PipeSecurity pipeSecurity)
+        {
+
+        }
+        #endregion
     }
 }

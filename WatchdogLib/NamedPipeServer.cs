@@ -4,6 +4,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WatchdogLib.IO;
 
 namespace WatchdogLib
 {
@@ -115,7 +116,12 @@ namespace WatchdogLib
             try
             {
                 // Send the client the name of the data pipe to use
-                handshakePipe = PipeServerFactory.CreateAndConnectPipe(pipeName, pipeSecurity);
+                handshakePipe = PipeServerFactory.CreateAndConnectPipe(pipeName, pipeSecurity);  //https://blog.csdn.net/kingfox/article/details/7237842
+                                                                                                 //WaitForConnection() 會等待clinet連線才會往下
+                var handshakeWrapper = new PipeStreamWrapper<string, string>(handshakePipe);
+                handshakeWrapper.WriteObject(connectionPipeName);
+                handshakeWrapper.WaitForPipeDrain();
+                handshakeWrapper.Close();
             }
             catch (Exception e)
             {

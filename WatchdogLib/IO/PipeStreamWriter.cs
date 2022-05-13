@@ -72,5 +72,16 @@ namespace WatchdogLib.IO
             WriteObject(data);
             Flush();
         }
+
+        /// <summary>
+        ///     Waits for the other end of the pipe to read all sent bytes.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The pipe is closed.</exception>
+        /// <exception cref="NotSupportedException">The pipe does not support write operations.</exception>
+        /// <exception cref="IOException">The pipe is broken or another I/O error occurred.</exception>
+        public void WaitForPipeDrain()
+        {
+            BaseStream.WaitForPipeDrain();
+        }
     }
 }

@@ -37,6 +37,28 @@ namespace WatchdogLib.IO
         /// </summary>
         public PipeStream BaseStream { get; private set; }
 
+        /// <summary>
+        ///     Gets a value indicating whether the <see cref="BaseStream"/> object is connected or not.
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if the <see cref="BaseStream"/> object is connected; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsConnected
+        {
+            get { return BaseStream.IsConnected && _reader.IsConnected; }
+        }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current stream supports read operations.
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if the stream supports read operations; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRead
+        {
+            get { return BaseStream.CanRead; }
+        }
+
         private readonly PipeStreamReader<TRead> _reader;
         private readonly PipeStreamWriter<TWrite> _writer;
 
@@ -49,6 +71,17 @@ namespace WatchdogLib.IO
             BaseStream = stream;
             _reader = new PipeStreamReader<TRead>(BaseStream);
             _writer = new PipeStreamWriter<TWrite>(BaseStream);
+        }
+
+        /// <summary>
+        /// Reads the next object from the pipe.  This method blocks until an object is sent
+        /// or the pipe is disconnected.
+        /// </summary>
+        /// <returns>The next object read from the pipe, or <c>null</c> if the pipe disconnected.</returns>
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="TRead"/> is not marked as serializable.</exception>
+        public TRead ReadObject()
+        {
+            return _reader.ReadObject();
         }
 
         /// <summary>

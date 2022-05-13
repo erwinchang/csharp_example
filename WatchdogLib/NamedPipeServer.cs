@@ -122,6 +122,13 @@ namespace WatchdogLib
                 handshakeWrapper.WriteObject(connectionPipeName);
                 handshakeWrapper.WaitForPipeDrain();
                 handshakeWrapper.Close();
+
+                // Wait for the client to connect to the data pipe
+                dataPipe = PipeServerFactory.CreatePipe(connectionPipeName, pipeSecurity);
+                dataPipe.WaitForConnection();     //WaitForConnection() 會等待clinet連線才會往下
+
+                // Add the client's connection to the list of connections
+
             }
             catch (Exception e)
             {

@@ -9,5 +9,6 @@ namespace WatchdogClientLib
     public class Heartbeat
     {
         private const string PipeName = "named_pipe_watchdog";
+        private readonly NamedPipeClient<string> _client = new NamedPipeClient<string>(PipeName);
     }
 }

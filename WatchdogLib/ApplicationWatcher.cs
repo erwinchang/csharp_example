@@ -31,7 +31,8 @@ namespace WatchdogLib
             _sleepStopwatch.Restart();
             foreach (var applicationHandler in ApplicationHandlers.ToArray())
             {
-                //applicationHandler.Check();
+                Debug.WriteLine("applicationHandler.Check");
+                applicationHandler.Check();
             }
             Thread.Sleep(Math.Max(0, 500 - (int)_sleepStopwatch.ElapsedMilliseconds));
             return true;

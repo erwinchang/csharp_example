@@ -59,6 +59,9 @@
     <Reference Include="Utilities">
       <HintPath>..\Utilities\bin\Debug\Utilities.dll</HintPath>
     </Reference>
+    <Reference Include="WatchdogLib">
+      <HintPath>..\WatchdogLib\bin\Debug\WatchdogLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExceptionsManager.cs" />

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utilities;
 using WatchDog.Properties;
+using WatchdogLib;
 
 namespace WatchDog
 {
@@ -179,7 +180,7 @@ namespace WatchDog
 
             private void MainApplication(string[] args)
             {
-
+                ApplicationWatcher applicationWatcher = new ApplicationWatcher(_logger);
             }
         }
     }

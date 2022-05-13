@@ -36,6 +36,7 @@ namespace WatchdogLib
         private const string PipeName = "named_pipe_watchdog";
         private readonly NamedPipeServer<string> _server = new NamedPipeServer<string>(PipeName);
         private readonly ISet<HeartbeatClient> _clients = new HashSet<HeartbeatClient>();
+        private readonly DateTime _serverStarted;
 
         private static HeartbeatServer _instance;
         public static HeartbeatServer Instance
@@ -58,6 +59,8 @@ namespace WatchdogLib
             _server.ClientConnected += OnClientConnected;
             _server.ClientDisconnected += OnClientDisconnected;
             _server.ClientMessage += OnClientMessage;
+            _serverStarted = DateTime.Now;
+            _server.Start();
         }
 
         private void OnClientMessage(NamedPipeConnection<string, string> connection, string message)

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitoredApplication", "MonitoredApplication\MonitoredApplication.csproj", "{60429813-CAA4-4579-B16B-8EBC404178AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DBC5CC9-CEAB-4574-979D-47D7FEF33940} = {1DBC5CC9-CEAB-4574-979D-47D7FEF33940}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchdogClientLib", "WatchdogClientLib\WatchdogClientLib.csproj", "{1DBC5CC9-CEAB-4574-979D-47D7FEF33940}"
 EndProject

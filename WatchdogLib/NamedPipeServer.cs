@@ -48,8 +48,24 @@ namespace WatchdogLib
         where TWrite : class
     {
 
+        /// <summary>
+        /// Invoked whenever a client connects to the server.
+        /// </summary>
+        public event ConnectionEventHandler<TRead, TWrite> ClientConnected;
+
+        /// <summary>
+        /// Invoked whenever a client sends a message to the server.
+        /// </summary>
+        public event ConnectionMessageEventHandler<TRead, TWrite> ClientMessage;
+
+        /// <summary>
+        /// Invoked whenever a client disconnects from the server.
+        /// </summary>
+        public event ConnectionEventHandler<TRead, TWrite> ClientDisconnected;
+
         private readonly string _pipeName;
         private readonly PipeSecurity _pipeSecurity;
+        private readonly List<NamedPipeConnection<TRead, TWrite>> _connections = new List<NamedPipeConnection<TRead, TWrite>>();
 
 
         private int _nextPipeId;
@@ -128,12 +144,55 @@ namespace WatchdogLib
                 dataPipe.WaitForConnection();     //WaitForConnection() 會等待clinet連線才會往下
 
                 // Add the client's connection to the list of connections
+                connection = ConnectionFactory.CreateConnection<TRead, TWrite>(dataPipe);
+                connection.ReceiveMessage += ClientOnReceiveMessage;
+                connection.Disconnected += ClientOnDisconnected;
+                connection.Error += ConnectionOnError;
+                connection.Open();
+
+                lock (_connections)
+                {
+                    _connections.Add(connection);
+                }
 
             }
             catch (Exception e)
             {
                 Console.Error.WriteLine("Named pipe is broken or disconnected: {0}", e);
             }
+        }
+
+        private void ClientOnConnected(NamedPipeConnection<TRead, TWrite> connection)
+        {
+            if (ClientConnected != null)
+                ClientConnected(connection);
+        }
+
+        private void ClientOnReceiveMessage(NamedPipeConnection<TRead, TWrite> connection, TRead message)
+        {
+            if (ClientMessage != null)
+                ClientMessage(connection, message);
+        }
+        private void ClientOnDisconnected(NamedPipeConnection<TRead, TWrite> connection)
+        {
+            if (connection == null)
+                return;
+
+            lock (_connections)
+            {
+                _connections.Remove(connection);
+            }
+
+            if (ClientDisconnected != null)
+                ClientDisconnected(connection);
+        }
+
+        /// <summary>
+        ///     Invoked on the UI thread.
+        /// </summary>
+        private void ConnectionOnError(NamedPipeConnection<TRead, TWrite> connection, Exception exception)
+        {
+            OnError(exception);
         }
 
         private string GetNextConnectionPipeName(string pipeName)

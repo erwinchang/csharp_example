@@ -50,6 +50,7 @@
     <Compile Include="HeartbeatServer.cs" />
     <Compile Include="IO\PipeStreamReader.cs" />
     <Compile Include="IO\PipeStreamWrapper.cs" />
+    <Compile Include="IO\PipeStreamWriter.cs" />
     <Compile Include="NamedPipeConnection.cs" />
     <Compile Include="NamedPipeServer.cs" />
     <Compile Include="PipeExceptionEventHandler.cs" />

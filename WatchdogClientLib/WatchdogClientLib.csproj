@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Heartbeat.cs" />
+    <Compile Include="IO\PipeStreamReader.cs" />
+    <Compile Include="IO\PipeStreamWrapper.cs" />
+    <Compile Include="IO\PipeStreamWriter.cs" />
     <Compile Include="NamedPipeClient.cs" />
     <Compile Include="NamedPipeConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

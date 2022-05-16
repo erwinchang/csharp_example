@@ -52,5 +52,45 @@ namespace WatchdogClient.IO
             _reader = new PipeStreamReader<TRead>(BaseStream);
             _writer = new PipeStreamWriter<TWrite>(BaseStream);
         }
+
+        /// <summary>
+        /// Reads the next object from the pipe.  This method blocks until an object is sent
+        /// or the pipe is disconnected.
+        /// </summary>
+        /// <returns>The next object read from the pipe, or <c>null</c> if the pipe disconnected.</returns>
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="TRead"/> is not marked as serializable.</exception>
+        public TRead ReadObject()
+        {
+            return _reader.ReadObject();
+        }
+
+        /// <summary>
+        /// Writes an object to the pipe.  This method blocks until all data is sent.
+        /// </summary>
+        /// <param name="obj">Object to write to the pipe</param>
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="TRead"/> is not marked as serializable.</exception>
+        public void WriteObject(TWrite obj)
+        {
+            _writer.WriteObject(obj);
+        }
+
+        /// <summary>
+        ///     Waits for the other end of the pipe to read all sent bytes.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The pipe is closed.</exception>
+        /// <exception cref="NotSupportedException">The pipe does not support write operations.</exception>
+        /// <exception cref="IOException">The pipe is broken or another I/O error occurred.</exception>
+        public void WaitForPipeDrain()
+        {
+            _writer.WaitForPipeDrain();
+        }
+
+        /// <summary>
+        ///     Closes the current stream and releases any resources (such as sockets and file handles) associated with the current stream.
+        /// </summary>
+        public void Close()
+        {
+            BaseStream.Close();
+        }
     }
 }

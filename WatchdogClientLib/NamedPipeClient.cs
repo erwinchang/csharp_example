@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WatchdogClientLib
 {
+    public delegate void PipeExceptionEventHandler(Exception exception);
     /// <summary>
     /// Wraps a <see cref="NamedPipeClientStream"/>.
     /// </summary>
@@ -53,10 +54,18 @@ namespace WatchdogClientLib
         /// </summary>
         public event ConnectionEventHandler<TRead, TWrite> Connected;
 
+        /// <summary>
+        /// Invoked whenever an exception is thrown during a read or write operation on the named pipe.
+        /// </summary>
+        public event PipeExceptionEventHandler Error;
+
         private readonly string _pipeName;
         private NamedPipeConnection<TRead, TWrite> _connection;
 
         private readonly AutoResetEvent _connected = new AutoResetEvent(false);
+
+        private volatile bool _closedExplicitly;
+        private bool _wasConnected;
 
         /// <summary>
         /// Constructs a new <c>NamedPipeClient</c> to connect to the NamedPipeServer /> specified by <paramref name="pipeName"/>.
@@ -69,6 +78,15 @@ namespace WatchdogClientLib
         }
 
         /// <summary>
+        /// Connects to the named pipe server asynchronously.
+        /// This method returns immediately, possibly before the connection has been established.
+        /// </summary>
+        public void Start()
+        {
+
+        }
+
+        /// <summary>
         ///     Sends a message to the server over a named pipe.
         /// </summary>
         /// <param name="message">Message to send to the server.</param>
@@ -77,7 +95,17 @@ namespace WatchdogClientLib
             if (_connection != null)
                 _connection.PushMessage(message);
         }
-
+        #region Private methods
+        /// <summary>
+        ///     Invoked on the UI thread.
+        /// </summary>
+        /// <param name="exception"></param>
+        private void OnError(Exception exception)
+        {
+            if (Error != null)
+                Error(exception);
+        }
+        #endregion
     }
 
     /// <summary>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WatchdogClientLib
+namespace WatchdogClient
 {
     /// <summary>
     /// Represents a connection between a named pipe client and server.

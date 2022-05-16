@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WatchdogClient.Threading;
 
-namespace WatchdogClientLib
+namespace WatchdogClient
 {
     public delegate void PipeExceptionEventHandler(Exception exception);
     /// <summary>
@@ -83,7 +84,9 @@ namespace WatchdogClientLib
         /// </summary>
         public void Start()
         {
-
+            _closedExplicitly = false;
+            _wasConnected = false;
+             var worker = new Worker();
         }
 
         /// <summary>

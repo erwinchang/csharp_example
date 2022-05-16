@@ -33,4 +33,25 @@ namespace WatchdogClient
             _writeSignal.Set();
         }
     }
+
+    /// <summary>
+    /// Handles new connections.
+    /// </summary>
+    /// <param name="connection">The newly established connection</param>
+    /// <typeparam name="TRead">Reference type</typeparam>
+    /// <typeparam name="TWrite">Reference type</typeparam>
+    public delegate void ConnectionEventHandler<TRead, TWrite>(NamedPipeConnection<TRead, TWrite> connection)
+        where TRead : class
+        where TWrite : class;
+
+    /// <summary>
+    /// Handles messages received from a named pipe.
+    /// </summary>
+    /// <typeparam name="TRead">Reference type</typeparam>
+    /// <typeparam name="TWrite">Reference type</typeparam>
+    /// <param name="connection">Connection that received the message</param>
+    /// <param name="message">Message sent by the other end of the pipe</param>
+    public delegate void ConnectionMessageEventHandler<TRead, TWrite>(NamedPipeConnection<TRead, TWrite> connection, TRead message)
+        where TRead : class
+        where TWrite : class;
 }

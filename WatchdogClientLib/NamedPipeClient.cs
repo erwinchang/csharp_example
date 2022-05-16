@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WatchdogClient.IO;
 using WatchdogClient.Threading;
 
 namespace WatchdogClient
@@ -88,6 +90,7 @@ namespace WatchdogClient
             _wasConnected = false;
              var worker = new Worker();
             worker.Error += OnError;
+            worker.DoWork(ListenSync);
         }
 
         /// <summary>
@@ -100,6 +103,13 @@ namespace WatchdogClient
                 _connection.PushMessage(message);
         }
         #region Private methods
+
+        private void ListenSync()
+        {
+            // Get the name of the data pipe that should be used from now on by this NamedPipeClient
+            var handshake = PipeClientFactory.Connect<string, string>(_pipeName);
+
+        }
         /// <summary>
         ///     Invoked on the UI thread.
         /// </summary>
@@ -110,5 +120,26 @@ namespace WatchdogClient
                 Error(exception);
         }
         #endregion
+    }
+
+    static class PipeClientFactory
+    {
+        public static PipeStreamWrapper<TRead, TWrite> Connect<TRead, TWrite>(string pipeName)
+            where TRead : class
+            where TWrite : class
+        {
+            return new PipeStreamWrapper<TRead, TWrite>(CreateAndConnectPipe(pipeName));
+        }
+
+        public static NamedPipeClientStream CreateAndConnectPipe(string pipeName)
+        {
+            var pipe = CreatePipe(pipeName);
+            pipe.Connect();
+            return pipe;
+        }
+        private static NamedPipeClientStream CreatePipe(string pipeName)
+        {
+            return new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.Asynchronous | PipeOptions.WriteThrough);
+        }
     }
 }

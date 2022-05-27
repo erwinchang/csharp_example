@@ -42,11 +42,12 @@ namespace WatchdogClient.Threading
             var action = (Action)oAction;
             try
             {
-
+                action();
+                Callback(Succeed);
             }
             catch (Exception e)
             {
-
+                Callback(() => Fail(e));
             }
         }
 

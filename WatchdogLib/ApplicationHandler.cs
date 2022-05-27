@@ -14,10 +14,38 @@ namespace WatchdogLib
         public int NonResponsiveInterval { get; set; }
         public string ApplicationPath { get; set; }
         public string ApplicationName { get; set; }
+        public bool UseHeartbeat { get; set; }
         public Logger Logger { get; set; }
-
+        public bool GrantKillRequest { get; set; }
+        public uint HeartbeatInterval { get; set; }
+        public int MaxProcesses { get; set; }
+        public int MinProcesses { get; set; }
         public bool Active { get; set; }
+        public bool KeepExistingNoProcesses { get; set; }
         public uint StartupMonitorDelay { get; set; }
+
+        public ApplicationHandler(ApplicationHandlerConfig applicationHandlerConfig)
+        {
+            Logger = LogManager.GetLogger("WatchdogServer");
+            ProcessHandlers = new List<ProcessHandler>();
+            Set(applicationHandlerConfig);
+        }
+
+        public void Set(ApplicationHandlerConfig applicationHandlerConfig)
+        {
+            ApplicationName = applicationHandlerConfig.ApplicationName;
+            ApplicationPath = applicationHandlerConfig.ApplicationPath;
+            NonResponsiveInterval = applicationHandlerConfig.NonResponsiveInterval;
+            HeartbeatInterval = applicationHandlerConfig.HeartbeatInterval;
+            MinProcesses = applicationHandlerConfig.MinProcesses;
+            MaxProcesses = applicationHandlerConfig.MaxProcesses;
+            KeepExistingNoProcesses = applicationHandlerConfig.KeepExistingNoProcesses;
+            UseHeartbeat = applicationHandlerConfig.UseHeartbeat;
+            GrantKillRequest = applicationHandlerConfig.GrantKillRequest;
+            Active = applicationHandlerConfig.Active;
+            StartupMonitorDelay = applicationHandlerConfig.StartupMonitorDelay;
+            Active = applicationHandlerConfig.Active;
+        }
 
         public void Check()
         {

@@ -73,7 +73,6 @@ namespace WatchdogLib
 
         public void CallExecutable()
         {
-            Console.WriteLine($"CallExecutable,Executable:{Executable}, RunInDir:{RunInDir},WaitForExit:{WaitForExit}");
             if (!File.Exists(Executable)) return;
             var commandLine = Executable;
             Trace.WriteLine("Running command: " + Executable + " " + Args);
@@ -116,6 +115,7 @@ namespace WatchdogLib
             }
             catch (Exception ex)
             {
+                Console.WriteLine("CallExecutable ex:{ex.Message},name:{Name}");
                 if (ErrorHandler != null) ErrorHandler(this, new ProcessMessageArgs(ex.Message, Process));
                 if (!ProcessUtils.ProcessRunning(Executable))
                 {
@@ -135,20 +135,20 @@ namespace WatchdogLib
         public string Name { get; private set; }
         private void Output(object sender, DataReceivedEventArgs dataReceivedEventArgs)
         {
-            Console.WriteLine("Process.OutputDataReceived-Output");
+            Console.WriteLine($"Process.OutputDataReceived-Output:{dataReceivedEventArgs.Data},name:{Name}");
             if (string.IsNullOrEmpty(dataReceivedEventArgs.Data)) return;
 
             var output = dataReceivedEventArgs.Data;
-            Console.WriteLine("Process.OutputDataReceived-Output:{dataReceivedEventArgs.Data}");
+            
             // Fire Output event
             if (OutputHandler != null) OutputHandler(sender, dataReceivedEventArgs);
         }
 
         private void OutputError(object sender, DataReceivedEventArgs dataReceivedEventArgs)
         {
-            Console.WriteLine("Process.OutputDataReceived-OutputError");
-
+            Console.WriteLine($"Process.OutputDataReceived-OutputError:{dataReceivedEventArgs.Data},{Name}}");
             if (string.IsNullOrEmpty(dataReceivedEventArgs.Data)) return;
+            
             // Fire OutputError event
             var progressEventArgs = new ProcessMessageArgs(dataReceivedEventArgs.Data, Process);
         }

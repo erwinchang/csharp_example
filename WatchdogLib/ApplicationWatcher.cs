@@ -31,11 +31,19 @@ namespace WatchdogLib
             _sleepStopwatch.Restart();
             foreach (var applicationHandler in ApplicationHandlers.ToArray())
             {
-                Debug.WriteLine("applicationHandler.Check");
                 applicationHandler.Check();
             }
             Thread.Sleep(Math.Max(0, 500 - (int)_sleepStopwatch.ElapsedMilliseconds));
             return true;
+        }
+
+        public void Deserialize(Configuration configuration)
+        {
+            foreach (var applicationHandlerConfig in configuration.ApplicationHandlers)
+            {
+                var applicationHandler = new ApplicationHandler(applicationHandlerConfig);
+                ApplicationHandlers.Add(applicationHandler);
+            }
         }
     }
 }

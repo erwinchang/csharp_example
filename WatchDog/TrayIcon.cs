@@ -153,10 +153,6 @@ namespace WatchDog
             {
                 try
                 {
-                    var path = Path.GetDirectoryName(Application.ExecutablePath);
-                    if (!String.IsNullOrEmpty(path) && Directory.Exists(path))
-                        Directory.SetCurrentDirectory(path);
-
                     _logger = LogManager.GetLogger("WatchdogServer");
                     var nlogEventTarget = Utilities.NlogEventTarget.Instance;
                     nlogEventTarget.OnLogEvent += OnLogEvent;

@@ -26,17 +26,24 @@ namespace WatchDog
             private ToolStripMenuItem _closeMenuItem;
             private Logger _logger;
             private MainForm _mainForm;
+            private Configuration _configuration;
+            private ConfigurationSerializer<Configuration> _configurationSerializer;
 
             public TrayIcon()
             {
                 Application.ApplicationExit += OnApplicationExit;
                 InitializeComponent();
 
+                _configuration = new Configuration();
+                _configurationSerializer = new Utilities.ConfigurationSerializer<Configuration>("configuration.json", _configuration);
+                _configuration = _configurationSerializer.Deserialize();
+
                 // Todo visibility dependent on configuration. If not, only show config form on 2nd startup
 
                 _logForm = new LogForm() { Visible = false };
                 _mainForm = new MainForm();
-                _trayIcon.Visible =true;
+
+                _trayIcon.Visible = _configuration.ShowTrayIcon;
 
                 InitializeApplication();
             }

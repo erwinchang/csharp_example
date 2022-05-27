@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Utilities;
 
 namespace WatchdogLib
 {
@@ -16,6 +17,17 @@ namespace WatchdogLib
         }
     }
 
+    public class ProcessStatusArgs : EventArgs
+    {
+        public int ExitCode { get; private set; }
+        public Process Process { get; private set; }
+        public ProcessStatusArgs(int exitCode, Process process)
+        {
+            ExitCode = exitCode;
+            Process = process;
+        }
+    }
+
     public class ProcessHandler
     {
         private Stopwatch _nonresponsiveInterval;
@@ -23,6 +35,7 @@ namespace WatchdogLib
 
         public DataReceivedEventHandler OutputHandler;
 
+        public event EventHandler<ProcessStatusArgs> ExitHandler;
         public event EventHandler<ProcessMessageArgs> ErrorHandler;
 
         public int NonResponsiveInterval { get; set; }
@@ -104,6 +117,10 @@ namespace WatchdogLib
             catch (Exception ex)
             {
                 if (ErrorHandler != null) ErrorHandler(this, new ProcessMessageArgs(ex.Message, Process));
+                if (!ProcessUtils.ProcessRunning(Executable))
+                {
+                    if (ExitHandler != null) ExitHandler(this, new ProcessStatusArgs(-1, Process));
+                }                    
             }
         }
 

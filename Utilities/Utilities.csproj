@@ -70,6 +70,7 @@
     <Compile Include="FileUtilities\FileUtils.cs" />
     <Compile Include="FileUtilities\FileUtilsMatch.cs" />
     <Compile Include="NlogEvent.cs" />
+    <Compile Include="ProcessUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

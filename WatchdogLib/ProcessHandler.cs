@@ -1,16 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace WatchdogLib
 {
+    public class ProcessMessageArgs : EventArgs
+    {
+        public string Message { get; private set; }
+        public Process Process { get; private set; }
+        public ProcessMessageArgs(string message, Process process)
+        {
+            Message = message;
+            Process = process;
+        }
+    }
+
     public class ProcessHandler
     {
         private Stopwatch _nonresponsiveInterval;
         private Stopwatch _fromStart;
+
+        public DataReceivedEventHandler OutputHandler;
+
+        public event EventHandler<ProcessMessageArgs> ErrorHandler;
+
+        public int NonResponsiveInterval { get; set; }
+        public string Executable { get; set; }
+        public string Args { get; set; }
         public bool WaitForExit { get; set; }
         public bool RunInDir { get; set; }
         public uint NonresponsiveInterval { get; set; }
@@ -24,6 +41,99 @@ namespace WatchdogLib
             StartingInterval = 5000;
             _nonresponsiveInterval = new Stopwatch();
             _fromStart = new Stopwatch();
+        }
+
+        public void CallExecutable(string executable, string args)
+        {
+            Args = args;
+            Executable = executable;
+            CallExecutable();
+        }
+
+        private void EndProcess()
+        {
+            if (Process == null) return;
+            Process.Close();
+            Process.Dispose();
+            Process = null;
+        }
+
+        public void CallExecutable()
+        {
+            Console.WriteLine($"CallExecutable,Executable:{Executable}, RunInDir:{RunInDir},WaitForExit:{WaitForExit}");
+            if (!File.Exists(Executable)) return;
+            var commandLine = Executable;
+            Trace.WriteLine("Running command: " + Executable + " " + Args);
+            var psi = new ProcessStartInfo(commandLine)
+            {
+                UseShellExecute = false,
+                LoadUserProfile = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true,
+                Arguments = Args
+            };
+            if (RunInDir)
+            {
+                var path = Path.GetDirectoryName(Executable);
+                if (path != null) psi.WorkingDirectory = path;
+            }
+            Process = new Process { StartInfo = psi };
+            try
+            {
+                Process.Start();
+                Process.BeginOutputReadLine();
+                Process.BeginErrorReadLine();
+                Process.OutputDataReceived += Output;
+                Process.ErrorDataReceived += OutputError;
+                _fromStart.Restart();
+                Name = Process.ProcessName;
+
+                // Watch process for not responding
+                if (WaitForExit)
+                {
+                    Process.WaitForExit();
+                    EndProcess();
+                }
+                else
+                {
+                    Process.Exited += ProcessExited;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ErrorHandler != null) ErrorHandler(this, new ProcessMessageArgs(ex.Message, Process));
+            }
+        }
+
+        private void ProcessExited(object sender, EventArgs e)
+        {
+            Running = true;
+            Console.WriteLine($"ProcessHandler / ProcessExited, Running:{Running}");
+        }
+
+        public bool Running { get; set; }
+        public Process Process { get; private set; }
+        public string Name { get; private set; }
+        private void Output(object sender, DataReceivedEventArgs dataReceivedEventArgs)
+        {
+            Console.WriteLine("Process.OutputDataReceived-Output");
+            if (string.IsNullOrEmpty(dataReceivedEventArgs.Data)) return;
+
+            var output = dataReceivedEventArgs.Data;
+            Console.WriteLine("Process.OutputDataReceived-Output:{dataReceivedEventArgs.Data}");
+            // Fire Output event
+            if (OutputHandler != null) OutputHandler(sender, dataReceivedEventArgs);
+        }
+
+        private void OutputError(object sender, DataReceivedEventArgs dataReceivedEventArgs)
+        {
+            Console.WriteLine("Process.OutputDataReceived-OutputError");
+
+            if (string.IsNullOrEmpty(dataReceivedEventArgs.Data)) return;
+            // Fire OutputError event
+            var progressEventArgs = new ProcessMessageArgs(dataReceivedEventArgs.Data, Process);
         }
     }
 }

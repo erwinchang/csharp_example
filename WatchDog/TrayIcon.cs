@@ -173,7 +173,7 @@ namespace WatchDog
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"ex:{ex.Message}");
+                    ExceptionsManager.ServerCrash("Exception during Watchdog initialization", "Exception during Watchdog initialization :" + ex.Message, true);
                 }
             }
             private void OnLogEvent(object sender, Utilities.LogEventArgs logEventArgs)

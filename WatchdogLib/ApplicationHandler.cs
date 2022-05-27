@@ -53,6 +53,7 @@ namespace WatchdogLib
                 };
                 Logger.Info("No process of application {0} is running, so one will be started", ApplicationName);
                 processHandler.CallExecutable(ApplicationPath, "");
+                ProcessHandlers.Add(processHandler);
             }
         }
     }

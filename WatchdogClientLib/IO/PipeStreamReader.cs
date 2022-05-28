@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
-using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WatchdogClient.IO
 {
@@ -49,7 +46,7 @@ namespace WatchdogClient.IO
         /// <exception cref="IOException">Any I/O error occurred.</exception>
         private int ReadLength()
         {
-            const int lensize = sizeof(int);
+            const int lensize = sizeof (int);
             var lenbuf = new byte[lensize];
             var bytesRead = BaseStream.Read(lenbuf, 0, lensize);
             if (bytesRead == 0)
@@ -69,10 +66,12 @@ namespace WatchdogClient.IO
             BaseStream.Read(data, 0, len);
             using (var memoryStream = new MemoryStream(data))
             {
-                return (T)_binaryFormatter.Deserialize(memoryStream);
+                return (T) _binaryFormatter.Deserialize(memoryStream);
             }
         }
+
         #endregion
+
         /// <summary>
         /// Reads the next object from the pipe.  This method blocks until an object is sent
         /// or the pipe is disconnected.

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using System.IO.Pipes;
-using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WatchdogClient.IO
 {
@@ -22,6 +19,7 @@ namespace WatchdogClient.IO
         /// </summary>
         public PipeStream BaseStream { get; private set; }
 
+        //https://docs.microsoft.com/zh-tw/dotnet/core/compatibility/core-libraries/5.0/binaryformatter-serialization-obsolete
         private readonly BinaryFormatter _binaryFormatter = new BinaryFormatter();
 
         /// <summary>
@@ -34,6 +32,7 @@ namespace WatchdogClient.IO
         }
 
         #region Private stream writers
+
         /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="T"/> is not marked as serializable.</exception>
         private byte[] Serialize(T obj)
         {
@@ -43,6 +42,7 @@ namespace WatchdogClient.IO
                 return memoryStream.ToArray();
             }
         }
+
         private void WriteLength(int len)
         {
             var lenbuf = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(len));
@@ -58,6 +58,7 @@ namespace WatchdogClient.IO
         {
             BaseStream.Flush();
         }
+
         #endregion
 
         /// <summary>

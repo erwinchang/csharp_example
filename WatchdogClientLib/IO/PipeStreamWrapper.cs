@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.IO.Pipes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace WatchdogClient.IO
 {
@@ -37,7 +35,38 @@ namespace WatchdogClient.IO
         /// </summary>
         public PipeStream BaseStream { get; private set; }
 
+        /// <summary>
+        ///     Gets a value indicating whether the <see cref="BaseStream"/> object is connected or not.
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if the <see cref="BaseStream"/> object is connected; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsConnected
+        {
+            get { return BaseStream.IsConnected && _reader.IsConnected; }
+        }
 
+        /// <summary>
+        ///     Gets a value indicating whether the current stream supports read operations.
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if the stream supports read operations; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanRead
+        {
+            get { return BaseStream.CanRead; }
+        }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current stream supports write operations.
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if the stream supports write operations; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanWrite
+        {
+            get { return BaseStream.CanWrite; }
+        }
 
         private readonly PipeStreamReader<TRead> _reader;
         private readonly PipeStreamWriter<TWrite> _writer;

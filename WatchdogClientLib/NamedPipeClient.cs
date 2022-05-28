@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.Pipes;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using WatchdogClient.IO;
 using WatchdogClient.Threading;
 
 namespace WatchdogClient
 {
     public delegate void PipeExceptionEventHandler(Exception exception);
+
     /// <summary>
     /// Wraps a <see cref="NamedPipeClientStream"/>.
     /// </summary>
@@ -66,6 +63,7 @@ namespace WatchdogClient
         private NamedPipeConnection<TRead, TWrite> _connection;
 
         private readonly AutoResetEvent _connected = new AutoResetEvent(false);
+        private readonly AutoResetEvent _disconnected = new AutoResetEvent(false);
 
         private volatile bool _closedExplicitly;
         private bool _wasConnected;
@@ -102,14 +100,87 @@ namespace WatchdogClient
             if (_connection != null)
                 _connection.PushMessage(message);
         }
+
+        #region Wait for connection/disconnection
+        /// <summary>
+        /// Wait for disconnection
+        /// </summary>
+        public void WaitForDisconnection()
+        {
+            _disconnected.WaitOne();
+        }
+
+        /// <summary>
+        /// Wait for disconnection with time-out
+        /// </summary>
+        /// <param name="millisecondsTimeout"></param>
+        public void WaitForDisconnection(int millisecondsTimeout)
+        {
+            _disconnected.WaitOne(millisecondsTimeout);
+        }
+        #endregion
+
         #region Private methods
 
         private void ListenSync()
         {
+            Console.WriteLine($"NamedPipeClient - ListenSync, _pipeName:{_pipeName}");
             // Get the name of the data pipe that should be used from now on by this NamedPipeClient
             var handshake = PipeClientFactory.Connect<string, string>(_pipeName);
+           var dataPipeName = handshake.ReadObject();
+            handshake.Close();
 
+            // Connect to the actual data pipe
+            var dataPipe = PipeClientFactory.CreateAndConnectPipe(dataPipeName);
+
+            Console.WriteLine($"NamedPipeClient - ListenSync, _pipeName:{dataPipeName}");
+
+            // Create a Connection object for the data pipe
+            _connection = ConnectionFactory.CreateConnection<TRead, TWrite>(dataPipe);
+            _connection.Disconnected += OnDisconnected;
+            _connection.ReceiveMessage += OnReceiveMessage;
+            _connection.Error += ConnectionOnError;
+            _connection.Open();
+
+            _connected.Set();
         }
+
+        private void OnDisconnected(NamedPipeConnection<TRead, TWrite> connection)
+        {
+            if (Disconnected != null)
+                Disconnected(connection);
+
+            _wasConnected = false;
+
+
+            // AutoResetEvent [_disconnected] for server control client
+            _disconnected.Set();
+
+            // Reconnect
+            if (AutoReconnect && !_closedExplicitly)
+                Start();
+        }
+
+        private void OnReceiveMessage(NamedPipeConnection<TRead, TWrite> connection, TRead message)
+        {
+            if (!_wasConnected && Connected != null)
+            {
+                Connected(connection);
+                _wasConnected = true;
+            }
+
+            if (ServerMessage != null)
+                ServerMessage(connection, message);
+        }
+
+        /// <summary>
+        ///     Invoked on the UI thread.
+        /// </summary>
+        private void ConnectionOnError(NamedPipeConnection<TRead, TWrite> connection, Exception exception)
+        {
+            OnError(exception);
+        }
+
         /// <summary>
         ///     Invoked on the UI thread.
         /// </summary>

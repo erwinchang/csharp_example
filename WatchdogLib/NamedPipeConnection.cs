@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Pipes;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using WatchdogLib.IO;
 
 namespace WatchdogLib
@@ -51,6 +48,7 @@ namespace WatchdogLib
         private readonly PipeStreamWrapper<TRead, TWrite> _streamWrapper;
 
         private readonly AutoResetEvent _writeSignal = new AutoResetEvent(false);
+        private readonly Queue<TWrite> _writeQueue = new Queue<TWrite>();
 
         private bool _notifiedSucceeded;
 
@@ -68,6 +66,34 @@ namespace WatchdogLib
         public void Open()
         {
             var readWorker = new Worker();
+            readWorker.Succeeded += OnSucceeded;
+            readWorker.Error += OnError;
+            readWorker.DoWork(ReadPipe);
+
+            var writeWorker = new Worker();
+            writeWorker.Succeeded += OnSucceeded;
+            writeWorker.Error += OnError;
+            writeWorker.DoWork(WritePipe);
+        }
+
+        /// <summary>
+        /// Adds the specified <paramref name="message"/> to the write queue.
+        /// The message will be written to the named pipe by the background thread
+        /// at the next available opportunity.
+        /// </summary>
+        /// <param name="message"></param>
+        public void PushMessage(TWrite message)
+        {
+            _writeQueue.Enqueue(message);
+            _writeSignal.Set();
+        }
+
+        /// <summary>
+        /// Closes the named pipe connection and underlying <c>PipeStream</c>.
+        /// </summary>
+        public void Close()
+        {
+            CloseImpl();
         }
 
         /// <summary>
@@ -93,6 +119,7 @@ namespace WatchdogLib
             if (Disconnected != null)
                 Disconnected(this);
         }
+
         /// <summary>
         ///     Invoked on the UI thread.
         /// </summary>
@@ -102,6 +129,7 @@ namespace WatchdogLib
             if (Error != null)
                 Error(this, exception);
         }
+
         /// <summary>
         ///     Invoked on the background thread.
         /// </summary>
@@ -118,6 +146,23 @@ namespace WatchdogLib
                 }
                 if (ReceiveMessage != null)
                     ReceiveMessage(this, obj);
+            }
+        }
+
+        /// <summary>
+        ///     Invoked on the background thread.
+        /// </summary>
+        /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="TWrite"/> is not marked as serializable.</exception>
+        private void WritePipe()
+        {
+            while (IsConnected && _streamWrapper.CanWrite)
+            {
+                _writeSignal.WaitOne();
+                while (_writeQueue.Count > 0)
+                {
+                    _streamWrapper.WriteObject(_writeQueue.Dequeue());
+                    _streamWrapper.WaitForPipeDrain();
+                }
             }
         }
     }

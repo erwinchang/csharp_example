@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 
 namespace WatchdogClient
@@ -34,11 +31,21 @@ namespace WatchdogClient
         }
         private void OnServerMessage(NamedPipeConnection<string, string> connection, string message)
         {
+            Console.WriteLine($"Clinet OnServerMessage,message:{message}");
+        }
 
+        public void SendHeartbeat()
+        {
+            if (_stopwatchHeartBeat.ElapsedMilliseconds > 25)
+            {
+                _stopwatchHeartBeat.Restart();
+                SendCommand(Commands.Heartbeat, _processName);
+            }
         }
 
         private void OnDisconnected(NamedPipeConnection<string, string> connection)
         {
+            Console.WriteLine("Heartbeat, OnDisconnected");
         }
         private void OnConnected(NamedPipeConnection<string, string> connection)
         {

@@ -146,7 +146,7 @@ namespace WatchdogLib
 
         private void OutputError(object sender, DataReceivedEventArgs dataReceivedEventArgs)
         {
-            Console.WriteLine($"Process.OutputDataReceived-OutputError:{dataReceivedEventArgs.Data},{Name}}");
+            Console.WriteLine($"Process.OutputDataReceived-OutputError:{dataReceivedEventArgs.Data},name:{Name}");
             if (string.IsNullOrEmpty(dataReceivedEventArgs.Data)) return;
             
             // Fire OutputError event

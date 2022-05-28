@@ -1,15 +1,15 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NLog;
 
 namespace WatchdogLib
 {
     public class ApplicationHandler
     {
+        private readonly HeartbeatServer _heartbeatServer;
+
         public List<ProcessHandler> ProcessHandlers { get; set; }
         public int NonResponsiveInterval { get; set; }
         public string ApplicationPath { get; set; }
@@ -24,11 +24,13 @@ namespace WatchdogLib
         public bool KeepExistingNoProcesses { get; set; }
         public uint StartupMonitorDelay { get; set; }
 
+
         public ApplicationHandler(ApplicationHandlerConfig applicationHandlerConfig)
         {
             Logger = LogManager.GetLogger("WatchdogServer");
             ProcessHandlers = new List<ProcessHandler>();
             Set(applicationHandlerConfig);
+            _heartbeatServer = HeartbeatServer.Instance;
         }
 
         public void Set(ApplicationHandlerConfig applicationHandlerConfig)

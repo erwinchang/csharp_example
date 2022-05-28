@@ -188,6 +188,7 @@ namespace WatchDog
             private void MainApplication(string[] args)
             {
                 ApplicationWatcher applicationWatcher = new ApplicationWatcher(_logger);
+                applicationWatcher.Deserialize(_configuration);
             }
         }
     }

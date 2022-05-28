@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using System.IO.Pipes;
-using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WatchdogLib.IO
 {
@@ -35,6 +32,7 @@ namespace WatchdogLib.IO
         }
 
         #region Private stream writers
+
         /// <exception cref="SerializationException">An object in the graph of type parameter <typeparamref name="T"/> is not marked as serializable.</exception>
         private byte[] Serialize(T obj)
         {
@@ -44,11 +42,13 @@ namespace WatchdogLib.IO
                 return memoryStream.ToArray();
             }
         }
+
         private void WriteLength(int len)
         {
             var lenbuf = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(len));
             BaseStream.Write(lenbuf, 0, lenbuf.Length);
         }
+
         private void WriteObject(byte[] data)
         {
             BaseStream.Write(data, 0, data.Length);
@@ -58,6 +58,7 @@ namespace WatchdogLib.IO
         {
             BaseStream.Flush();
         }
+
         #endregion
 
         /// <summary>

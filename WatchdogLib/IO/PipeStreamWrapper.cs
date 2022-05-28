@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.IO.Pipes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace WatchdogLib.IO
 {
@@ -22,6 +20,7 @@ namespace WatchdogLib.IO
         {
         }
     }
+
     /// <summary>
     /// Wraps a <see cref="PipeStream"/> object to read and write .NET CLR objects.
     /// </summary>
@@ -31,7 +30,6 @@ namespace WatchdogLib.IO
         where TRead : class
         where TWrite : class
     {
-
         /// <summary>
         /// Gets the underlying <c>PipeStream</c> object.
         /// </summary>
@@ -57,6 +55,17 @@ namespace WatchdogLib.IO
         public bool CanRead
         {
             get { return BaseStream.CanRead; }
+        }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current stream supports write operations.
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if the stream supports write operations; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanWrite
+        {
+            get { return BaseStream.CanWrite; }
         }
 
         private readonly PipeStreamReader<TRead> _reader;

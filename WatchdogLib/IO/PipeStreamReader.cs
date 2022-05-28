@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
-using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WatchdogLib.IO
 {
@@ -21,6 +18,7 @@ namespace WatchdogLib.IO
         /// Gets the underlying <c>PipeStream</c> object.
         /// </summary>
         public PipeStream BaseStream { get; }
+
         /// <summary>
         /// Gets a value indicating whether the pipe is connected or not.
         /// </summary>
@@ -48,7 +46,7 @@ namespace WatchdogLib.IO
         /// <exception cref="IOException">Any I/O error occurred.</exception>
         private int ReadLength()
         {
-            const int lensize = sizeof(int);
+            const int lensize = sizeof (int);
             var lenbuf = new byte[lensize];
             var bytesRead = BaseStream.Read(lenbuf, 0, lensize);
             if (bytesRead == 0)
@@ -68,9 +66,10 @@ namespace WatchdogLib.IO
             BaseStream.Read(data, 0, len);
             using (var memoryStream = new MemoryStream(data))
             {
-                return (T)_binaryFormatter.Deserialize(memoryStream);
+                return (T) _binaryFormatter.Deserialize(memoryStream);
             }
         }
+
         #endregion
 
         /// <summary>

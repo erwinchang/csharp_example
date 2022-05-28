@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Pipes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WatchdogLib.IO;
 
 namespace WatchdogLib
@@ -59,6 +56,11 @@ namespace WatchdogLib
         public event ConnectionMessageEventHandler<TRead, TWrite> ClientMessage;
 
         /// <summary>
+        /// Invoked whenever an exception is thrown during a read or write operation.
+        /// </summary>
+        public event PipeExceptionEventHandler Error;
+
+        /// <summary>
         /// Invoked whenever a client disconnects from the server.
         /// </summary>
         public event ConnectionEventHandler<TRead, TWrite> ClientDisconnected;
@@ -72,10 +74,6 @@ namespace WatchdogLib
         private volatile bool _shouldKeepRunning;
         private volatile bool _isRunning;
 
-        /// <summary>
-        /// Invoked whenever an exception is thrown during a read or write operation.
-        /// </summary>
-        public event PipeExceptionEventHandler Error;
 
         /// <summary>
         /// Constructs a new <c>NamedPipeServer</c> object that listens for client connections on the given <paramref name="pipeName"/>.
@@ -101,13 +99,20 @@ namespace WatchdogLib
         }
 
         /// <summary>
-        ///     Invoked on the UI thread.
+        /// Sends a message to all connected clients asynchronously.
+        /// This method returns immediately, possibly before the message has been sent to all clients.
         /// </summary>
-        /// <param name="exception"></param>
-        private void OnError(Exception exception)
+        /// <param name="message"></param>
+        public void PushMessage(TWrite message)
         {
-            if (Error != null)
-                Error(exception);
+            lock (_connections)
+            {
+                foreach (var client in _connections)
+                {
+                    Console.WriteLine($"Server - PushMessage, name:{client.Name}, message:{message}");
+                    client.PushMessage(message);
+                }
+            }
         }
 
         #region Private methods
@@ -126,15 +131,16 @@ namespace WatchdogLib
             NamedPipeServerStream handshakePipe = null;
             NamedPipeServerStream dataPipe = null;
             NamedPipeConnection<TRead, TWrite> connection = null;
-
+            
             var connectionPipeName = GetNextConnectionPipeName(pipeName);
-
+            Console.WriteLine($"WaitForConnection,pipeName:{pipeName},connectionPipeName:{connectionPipeName}");
             try
             {
                 // Send the client the name of the data pipe to use
                 handshakePipe = PipeServerFactory.CreateAndConnectPipe(pipeName, pipeSecurity);  //https://blog.csdn.net/kingfox/article/details/7237842
                                                                                                  //WaitForConnection() 會等待clinet連線才會往下
                 var handshakeWrapper = new PipeStreamWrapper<string, string>(handshakePipe);
+                Console.WriteLine("WaitForConnection, WriteObject ");
                 handshakeWrapper.WriteObject(connectionPipeName);
                 handshakeWrapper.WaitForPipeDrain();
                 handshakeWrapper.Close();
@@ -142,6 +148,7 @@ namespace WatchdogLib
                 // Wait for the client to connect to the data pipe
                 dataPipe = PipeServerFactory.CreatePipe(connectionPipeName, pipeSecurity);
                 dataPipe.WaitForConnection();     //WaitForConnection() 會等待clinet連線才會往下
+                Console.WriteLine("WaitForConnection, dataPipe.WaitForConnection()  finish");
 
                 // Add the client's connection to the list of connections
                 connection = ConnectionFactory.CreateConnection<TRead, TWrite>(dataPipe);
@@ -155,26 +162,36 @@ namespace WatchdogLib
                     _connections.Add(connection);
                 }
 
+                ClientOnConnected(connection);
             }
+            // Catch the IOException that is raised if the pipe is broken or disconnected.
             catch (Exception e)
             {
                 Console.Error.WriteLine("Named pipe is broken or disconnected: {0}", e);
+
+                Cleanup(handshakePipe);
+                Cleanup(dataPipe);
+
+                ClientOnDisconnected(connection);
             }
         }
 
         private void ClientOnConnected(NamedPipeConnection<TRead, TWrite> connection)
         {
+            Console.WriteLine($"T11 Server - ClientOnConnected, name:{connection.Name},{(ClientConnected != null)}");
             if (ClientConnected != null)
                 ClientConnected(connection);
         }
 
         private void ClientOnReceiveMessage(NamedPipeConnection<TRead, TWrite> connection, TRead message)
         {
+            Console.WriteLine($"Server - ClientOnReceiveMessage, name:{connection.Name},messgae:{message}");
             if (ClientMessage != null)
                 ClientMessage(connection, message);
         }
         private void ClientOnDisconnected(NamedPipeConnection<TRead, TWrite> connection)
         {
+            Console.WriteLine($"Server - ClientOnDisconnected, name:{connection.Name}");
             if (connection == null)
                 return;
 
@@ -192,12 +209,32 @@ namespace WatchdogLib
         /// </summary>
         private void ConnectionOnError(NamedPipeConnection<TRead, TWrite> connection, Exception exception)
         {
+            Console.WriteLine($"Server - ConnectionOnError, name:{connection.Name}");
             OnError(exception);
+        }
+
+        /// <summary>
+        ///     Invoked on the UI thread.
+        /// </summary>
+        /// <param name="exception"></param>
+        private void OnError(Exception exception)
+        {
+            if (Error != null)
+                Error(exception);
         }
 
         private string GetNextConnectionPipeName(string pipeName)
         {
             return string.Format("{0}_{1}", pipeName, ++_nextPipeId);
+        }
+
+        private static void Cleanup(NamedPipeServerStream pipe)
+        {
+            if (pipe == null) return;
+            using (var x = pipe)
+            {
+                x.Close();
+            }
         }
         #endregion
     }

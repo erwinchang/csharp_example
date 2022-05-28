@@ -1,10 +1,8 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NLog;
 
 namespace WatchdogLib
 {
@@ -59,12 +57,16 @@ namespace WatchdogLib
             _server.ClientConnected += OnClientConnected;
             _server.ClientDisconnected += OnClientDisconnected;
             _server.ClientMessage += OnClientMessage;
+            //_serverStarted              = DateTime.Now;
+            //HardTimeout                 = hardTimeout;
+            //SoftTimeout                 = softTimeout;
             _serverStarted = DateTime.Now;
             _server.Start();
         }
 
         private void OnClientMessage(NamedPipeConnection<string, string> connection, string message)
         {
+            Debug.WriteLine($"OnClientMessage,message:{message}");
             var args = message.Split(',');
             if (args.Length == 0) return;
             uint command; if (!uint.TryParse(args[0], out command)) return;
@@ -96,15 +98,18 @@ namespace WatchdogLib
 
         private void OnClientConnected(NamedPipeConnection<string, string> connection)
         {
+            Debug.WriteLine($"OnClientConnected, name:{connection.Name}");
             if (FindByName(connection.Name) == null)
             {
+                Console.WriteLine("_clients.Add");
                 _clients.Add(new HeartbeatClient(connection.Name));
             }
-            //SendCommand(Commands.SetTimeOut, HardTimeout);
+            SendCommand(Commands.SetTimeOut, 1000);
         }
 
         private void OnClientDisconnected(NamedPipeConnection<string, string> connection)
         {
+            Console.WriteLine($"OnClientDisconnected, name:{connection.Name}");
             var client = FindByName(connection.Name);
             if (client != null) _clients.Remove(client);
         }
@@ -114,6 +119,11 @@ namespace WatchdogLib
             //https://docs.microsoft.com/zh-tw/dotnet/api/system.collections.generic.hashset-1?view=net-6.0
             //傳回序列中符合條件的第一個元素；如果找不到這類元素，則傳回預設值
             return _clients.FirstOrDefault((client) => client.Name == name);
+        }
+
+        private void SendCommand<T>(Commands command, T argument)
+        {
+            _server.PushMessage(((int)command).ToString() + "," + argument.ToString());
         }
     }
 }

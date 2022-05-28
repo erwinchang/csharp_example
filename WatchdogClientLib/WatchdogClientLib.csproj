@@ -7,7 +7,7 @@
     <ProjectGuid>{1DBC5CC9-CEAB-4574-979D-47D7FEF33940}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WatchdogClientLib</RootNamespace>
+    <RootNamespace>WatchdogClient</RootNamespace>
     <AssemblyName>WatchdogClientLib</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

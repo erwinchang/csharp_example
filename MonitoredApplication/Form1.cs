@@ -45,5 +45,15 @@ namespace MonitoredApplication
         {
             _timer.Stop();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            _heartbeat.RequestKill();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            _heartbeat.RequestKill(10);
+        }
     }
 }

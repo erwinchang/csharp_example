@@ -42,7 +42,15 @@ namespace WatchdogClient
                 SendCommand(Commands.Heartbeat, _processName);
             }
         }
+        public void RequestKill()
+        {
+            SendCommand(Commands.RequestKill, _processName);
+        }
 
+        public void RequestKill(uint sec)
+        {
+            SendCommand(Commands.RequestKill, _processName, sec);
+        }
         private void OnDisconnected(NamedPipeConnection<string, string> connection)
         {
             Console.WriteLine("Heartbeat, OnDisconnected");
@@ -62,6 +70,10 @@ namespace WatchdogClient
         private void SendCommand<T>(Commands command, T argument)
         {
             _client.PushMessage(((int)command).ToString() + "," + argument.ToString());
+        }
+        private void SendCommand<T1, T2>(Commands command, T1 argument1, T2 argument2)
+        {
+            _client.PushMessage(((int)command).ToString() + "," + argument1.ToString() + "," + argument2.ToString());
         }
     }
 }

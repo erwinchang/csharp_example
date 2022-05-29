@@ -54,6 +54,7 @@ namespace WatchdogLib
             if (!Active) return;
             // Check if  new unmonitored process is running 
             //HandleDuplicateProcesses();
+            HandleExitedProcesses();
             HandleNonResponsiveProcesses();
             HandleProcessNotRunning();
         }
@@ -131,8 +132,41 @@ namespace WatchdogLib
                     StartingInterval = StartupMonitorDelay
                 };
                 Logger.Info("No process of application {0} is running, so one will be started", ApplicationName);
+                Debug.WriteLine($"HandleProcessNotRunning - processHandler.CallExecutable(ApplicationPath:{ApplicationPath}, ");
                 processHandler.CallExecutable(ApplicationPath, "");
                 ProcessHandlers.Add(processHandler);
+            }
+        }
+
+        private void HandleExitedProcesses()
+        {
+            for (int index = 0; index < ProcessHandlers.Count; index++)
+            {
+                var processHandler = ProcessHandlers[index];
+                if (processHandler.HasExited)
+                {
+                    Logger.Warn("Process {0} has exited", processHandler.Name);
+                    processHandler.Close();
+
+                    var notEnoughProcesses = (ProcessNo(processHandler.Name) < MinProcesses);
+                    var lessProcessesThanBefore = (ProcessNo(processHandler.Name) < MaxProcesses) && KeepExistingNoProcesses;
+
+                    if (notEnoughProcesses || lessProcessesThanBefore)
+                    {
+                        if (notEnoughProcesses) Logger.Info("Process {0} has exited and no others are running, so start new", processHandler.Name);
+                        if (lessProcessesThanBefore) Logger.Info("Process {0} has exited, and number of processed needs to maintained , so start new", processHandler.Name);
+                        Debug.WriteLine($"HandleExitedProcesses - processHandler.CallExecutable() ");
+                        processHandler.CallExecutable();
+
+                    }
+                    else
+                    {
+                        Logger.Info("Process {0} has exited, but no requirement to start new one", processHandler.Name);
+                        Debug.WriteLine($"HandleExitedProcesses - ProcessHandlers.Remove(processHandler); ");
+                        ProcessHandlers.Remove(processHandler);
+                    }
+
+                }
             }
         }
         private int ProcessNo(string applicationName)

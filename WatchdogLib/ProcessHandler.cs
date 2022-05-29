@@ -6,6 +6,22 @@ using Utilities;
 
 namespace WatchdogLib
 {
+    // todo: http://msdn.microsoft.com/en-us/library/system.diagnostics.process.exitcode(v=vs.110).aspx
+    //http://stackoverflow.com/questions/2279181/catch-another-process-unhandled-exception
+    // http://social.msdn.microsoft.com/Forums/vstudio/en-US/62259e21-3280-4d10-a27c-740d35efe51c/catch-another-process-unhandled-exception?forum=csharpgeneral
+    /*
+    public class ProgressEventArgs : EventArgs
+    {
+        public float Progress { get; private set; }
+        public Process Process { get; private set; }
+        public ProgressEventArgs(float progress, Process process)
+        {
+            Progress = progress;
+            Process = process;
+        }
+    }
+    */
+
     public class ProcessMessageArgs : EventArgs
     {
         public string Message { get; private set; }
@@ -34,17 +50,24 @@ namespace WatchdogLib
         private Stopwatch _fromStart;
 
         public DataReceivedEventHandler OutputHandler;
+        //public EventHandler<ProcessMessageArgs> ErrorOutputHandler;
 
         public event EventHandler<ProcessStatusArgs> ExitHandler;
         public event EventHandler<ProcessMessageArgs> ErrorHandler;
 
-        public int NonResponsiveInterval { get; set; }
-        public string Executable { get; set; }
-        public string Args { get; set; }
-        public bool WaitForExit { get; set; }
-        public bool RunInDir { get; set; }
-        public uint NonresponsiveInterval { get; set; }
-        public uint StartingInterval { get; set; }
+
+
+        public int NonResponsiveInterval        { get; set; }
+        public string Executable                { get; set; }
+
+        public string Args                      { get; set; }
+
+        public bool WaitForExit                 { get; set; }
+        public bool RunInDir                    { get; set; }
+        public uint NonresponsiveInterval       { get; set; }
+
+        public uint StartingInterval            { get; set; }
+
         public bool HasExited
         {
             get { return (Process == null) || Process.HasExited; }
@@ -69,12 +92,12 @@ namespace WatchdogLib
 
         public ProcessHandler()
         {
-            WaitForExit = true;
-            RunInDir = true;
-            NonresponsiveInterval = 2000;
-            StartingInterval = 5000;
-            _nonresponsiveInterval = new Stopwatch();
-            _fromStart = new Stopwatch();
+            WaitForExit                 = true;
+            RunInDir                    = true;
+            NonresponsiveInterval       = 2000;
+            StartingInterval            = 5000;
+            _nonresponsiveInterval      = new Stopwatch();
+            _fromStart                  = new Stopwatch();
         }
 
         public void CallExecutable(string executable, string args)
@@ -83,6 +106,40 @@ namespace WatchdogLib
             Executable = executable;
             CallExecutable();
         }
+
+        /*
+        public bool MonitorProcess(Process process)
+        {
+            Process = process;
+            try
+            {
+                Process.OutputDataReceived += Output;
+                Process.ErrorDataReceived += OutputError;
+                Name = Process.ProcessName;
+                _fromStart.Restart();
+                if (WaitForExit)
+                {
+                    Process.WaitForExit();
+                    EndProcess();
+                }
+                else
+                {
+                    Process.Exited += ProcessExited;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ErrorHandler != null) ErrorHandler(this, new ProcessMessageArgs(ex.Message, Process));
+                if (Process.HasExited)
+                {
+                    if (ExitHandler != null) ExitHandler(this, new ProcessStatusArgs(-1, Process));
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        */
 
         private void EndProcess()
         {
@@ -141,7 +198,7 @@ namespace WatchdogLib
                 if (!ProcessUtils.ProcessRunning(Executable))
                 {
                     if (ExitHandler != null) ExitHandler(this, new ProcessStatusArgs(-1, Process));
-                }                    
+                }
             }
         }
 
@@ -154,6 +211,7 @@ namespace WatchdogLib
         public bool Running { get; set; }
         public Process Process { get; private set; }
         public string Name { get; private set; }
+
         public bool NotRespondingAfterInterval
         {
             get { return (!Responding && _nonresponsiveInterval.ElapsedMilliseconds > NonresponsiveInterval); }

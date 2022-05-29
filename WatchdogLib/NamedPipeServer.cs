@@ -44,11 +44,20 @@ namespace WatchdogLib
         where TRead : class
         where TWrite : class
     {
+        /// <summary>
+        /// Indicates whether the server is running
+        /// </summary>
+        public bool IsRunning { get { return _isRunning; } }
 
         /// <summary>
         /// Invoked whenever a client connects to the server.
         /// </summary>
         public event ConnectionEventHandler<TRead, TWrite> ClientConnected;
+
+        /// <summary>
+        /// Invoked whenever a client disconnects from the server.
+        /// </summary>
+        public event ConnectionEventHandler<TRead, TWrite> ClientDisconnected;
 
         /// <summary>
         /// Invoked whenever a client sends a message to the server.
@@ -60,17 +69,13 @@ namespace WatchdogLib
         /// </summary>
         public event PipeExceptionEventHandler Error;
 
-        /// <summary>
-        /// Invoked whenever a client disconnects from the server.
-        /// </summary>
-        public event ConnectionEventHandler<TRead, TWrite> ClientDisconnected;
-
         private readonly string _pipeName;
         private readonly PipeSecurity _pipeSecurity;
         private readonly List<NamedPipeConnection<TRead, TWrite>> _connections = new List<NamedPipeConnection<TRead, TWrite>>();
 
 
         private int _nextPipeId;
+
         private volatile bool _shouldKeepRunning;
         private volatile bool _isRunning;
 
@@ -114,6 +119,33 @@ namespace WatchdogLib
                 }
             }
         }
+
+        /// <summary>
+        /// Closes all open client connections and stops listening for new ones.
+        /// </summary>
+
+        /*
+        public void Stop()
+        {
+            _shouldKeepRunning = false;
+
+            lock (_connections)
+            {
+                foreach (var client in _connections.ToArray())
+                {
+                    client.Close();
+                }
+            }
+
+            // If background thread is still listening for a client to connect,
+            // initiate a dummy connection that will allow the thread to exit.
+            var dummyClient = new NamedPipeClient<TRead, TWrite>(_pipeName);
+            dummyClient.Start();
+            dummyClient.WaitForConnection(TimeSpan.FromSeconds(2));
+            dummyClient.Stop();
+            dummyClient.WaitForDisconnection(TimeSpan.FromSeconds(2));
+        }
+        */
 
         #region Private methods
         private void ListenSync()

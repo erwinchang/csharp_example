@@ -10,17 +10,17 @@ namespace WatchdogLib
     {
         public HeartbeatClient(string name)
         {
-            Name = name;
-            RequestKill = false;
-            LastHeartbeat = DateTime.Now;
+            Name            = name;
+            RequestKill     = false;
+            LastHeartbeat   = DateTime.Now;
             LogManager.GetLogger("WatchdogServer");
 
         }
-        public string Name { get; set; }
-        public string ProcessName { get; set; }
-        public DateTime LastHeartbeat { get; set; }
-        public bool RequestKill { get; set; }
-        public DateTime KillTime { get; set; }
+        public string Name              { get; set; }
+        public string ProcessName       { get; set; }
+        public DateTime LastHeartbeat   { get; set; }
+        public bool RequestKill         { get; set; }
+        public DateTime KillTime        { get; set; }
     }
     public class HeartbeatServer
     {
@@ -33,8 +33,10 @@ namespace WatchdogLib
 
         private const string PipeName = "named_pipe_watchdog";
         private readonly NamedPipeServer<string> _server = new NamedPipeServer<string>(PipeName);
-        private readonly ISet<HeartbeatClient> _clients = new HashSet<HeartbeatClient>();
+        private readonly ISet<HeartbeatClient>  _clients = new HashSet<HeartbeatClient>();
         private readonly DateTime _serverStarted;
+
+        //public ISet<HeartbeatClient> Clients    { get { return _clients; } }
 
         private static HeartbeatServer _instance;
         public static HeartbeatServer Instance
@@ -53,14 +55,14 @@ namespace WatchdogLib
 
         private HeartbeatServer()
         {
-            Logger = LogManager.GetLogger("WatchdogServer");
-            _server.ClientConnected += OnClientConnected;
-            _server.ClientDisconnected += OnClientDisconnected;
-            _server.ClientMessage += OnClientMessage;
+            Logger                      = LogManager.GetLogger("WatchdogServer");
+            _server.ClientConnected     += OnClientConnected;
+            _server.ClientDisconnected  += OnClientDisconnected;
+            _server.ClientMessage       += OnClientMessage;
             //_serverStarted              = DateTime.Now;
             //HardTimeout                 = hardTimeout;
             //SoftTimeout                 = softTimeout;
-            _serverStarted = DateTime.Now;
+            _serverStarted              = DateTime.Now;
             _server.Start();
         }
 
@@ -144,6 +146,14 @@ namespace WatchdogLib
         {
             return _clients.FirstOrDefault((client) => client.ProcessName == processName);
         }
+        
+        /*
+        public bool HeartbeatTimedOutOrDisconnect(string processName, uint timeout)
+        {
+            return HeartbeatTimedOut(processName, timeout) || !Connected(processName);
+        }
+        */
+
         public bool HeartbeatTimedOut(string processName, uint timeout)
         {
             var client = FindByProcessName(processName);
@@ -166,6 +176,14 @@ namespace WatchdogLib
                 }
             }
         }
+
+        /*
+        public bool Connected(string processName)
+        {
+            var client = FindByProcessName(processName);
+            return (client != null);
+        }
+        */
 
         public bool KillRequested(string processName)
         {

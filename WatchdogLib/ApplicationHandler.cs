@@ -10,20 +10,41 @@ namespace WatchdogLib
     {
         private readonly HeartbeatServer _heartbeatServer;
 
-        public List<ProcessHandler> ProcessHandlers { get; set; }
-        public int NonResponsiveInterval { get; set; }
-        public string ApplicationPath { get; set; }
-        public string ApplicationName { get; set; }
-        public bool UseHeartbeat { get; set; }
-        public Logger Logger { get; set; }
-        public bool GrantKillRequest { get; set; }
-        public uint HeartbeatInterval { get; set; }
-        public int MaxProcesses { get; set; }
-        public int MinProcesses { get; set; }
-        public bool Active { get; set; }
-        public bool KeepExistingNoProcesses { get; set; }
-        public uint StartupMonitorDelay { get; set; }
+        public List<ProcessHandler> ProcessHandlers     { get; set; }
+        public int NonResponsiveInterval                { get; set; }
+        public string ApplicationPath                   { get; set; }
+        public string ApplicationName                   { get; set; }
+        public bool UseHeartbeat                        { get; set; }
+        public Logger Logger                            { get; set; }
+        public bool GrantKillRequest                    { get; set; }
+        public uint HeartbeatInterval                   { get; set; }
+        public int MaxProcesses                         { get; set; }
+        public int MinProcesses                         { get; set; }
 
+        public bool Active                              { get; set; }
+        public bool KeepExistingNoProcesses             { get; set; }
+        public uint StartupMonitorDelay                 { get; set; }
+
+        /*
+        public ApplicationHandler(string applicationName, string applicationPath, int nonResponsiveInterval, uint heartbeatInterval = 15, int minProcesses = 1, int maxProcesses = 1, bool keepExistingNoProcesses = false, bool useHeartbeat = false, bool grantKillRequest = true, uint startupMonitorDelay = 20, bool active = true)
+        {
+            Logger = LogManager.GetLogger("WatchdogServer");
+            ProcessHandlers = new List<ProcessHandler>();
+            ApplicationName = applicationName;
+            ApplicationPath = applicationPath;
+            NonResponsiveInterval = nonResponsiveInterval;
+            HeartbeatInterval = heartbeatInterval;
+            MinProcesses = minProcesses;
+            MaxProcesses = maxProcesses;
+            KeepExistingNoProcesses = keepExistingNoProcesses;
+            UseHeartbeat = useHeartbeat;
+            GrantKillRequest = grantKillRequest;
+            StartupMonitorDelay = startupMonitorDelay;
+
+            _heartbeatServer = HeartbeatServer.Instance;
+            Active = active;
+        }
+        */
 
         public ApplicationHandler(ApplicationHandlerConfig applicationHandlerConfig)
         {
@@ -35,18 +56,18 @@ namespace WatchdogLib
 
         public void Set(ApplicationHandlerConfig applicationHandlerConfig)
         {
-            ApplicationName = applicationHandlerConfig.ApplicationName;
-            ApplicationPath = applicationHandlerConfig.ApplicationPath;
-            NonResponsiveInterval = applicationHandlerConfig.NonResponsiveInterval;
-            HeartbeatInterval = applicationHandlerConfig.HeartbeatInterval;
-            MinProcesses = applicationHandlerConfig.MinProcesses;
-            MaxProcesses = applicationHandlerConfig.MaxProcesses;
+            ApplicationName         = applicationHandlerConfig.ApplicationName;
+            ApplicationPath         = applicationHandlerConfig.ApplicationPath;
+            NonResponsiveInterval   = applicationHandlerConfig.NonResponsiveInterval;
+            HeartbeatInterval       = applicationHandlerConfig.HeartbeatInterval;
+            MinProcesses            = applicationHandlerConfig.MinProcesses;
+            MaxProcesses            = applicationHandlerConfig.MaxProcesses;
             KeepExistingNoProcesses = applicationHandlerConfig.KeepExistingNoProcesses;
-            UseHeartbeat = applicationHandlerConfig.UseHeartbeat;
-            GrantKillRequest = applicationHandlerConfig.GrantKillRequest;
-            Active = applicationHandlerConfig.Active;
-            StartupMonitorDelay = applicationHandlerConfig.StartupMonitorDelay;
-            Active = applicationHandlerConfig.Active;
+            UseHeartbeat            = applicationHandlerConfig.UseHeartbeat;
+            GrantKillRequest        = applicationHandlerConfig.GrantKillRequest;
+            Active                  = applicationHandlerConfig.Active;
+            StartupMonitorDelay     = applicationHandlerConfig.StartupMonitorDelay;
+            Active                  = applicationHandlerConfig.Active;
         }
 
         public void Check()
@@ -54,15 +75,63 @@ namespace WatchdogLib
             if (!Active) return;
             // Check if  new unmonitored process is running 
             //HandleDuplicateProcesses();
-            HandleExitedProcesses();
             HandleNonResponsiveProcesses();
+            HandleExitedProcesses();
+            //HandleUnmonitoredProcesses();
             HandleProcessNotRunning();
         }
 
-        //移除相同名稱的process
-        public void HandleDuplicateProcesses()
+
+        private void HandleProcessNotRunning()
         {
-            //Loop through the running processes in with the same name 
+            var processes = Process.GetProcessesByName(ApplicationName);
+
+            if(processes.Length == 0)
+            {
+                // Start new process
+                var processHandler = new ProcessHandler
+                {
+                    WaitForExit = false,
+                    NonResponsiveInterval = NonResponsiveInterval,
+                    StartingInterval = StartupMonitorDelay
+                };
+                Logger.Info("No process of application {0} is running, so one will be started", ApplicationName);
+                Debug.WriteLine($"HandleProcessNotRunning - processHandler.CallExecutable(ApplicationPath:{ApplicationPath}, ");
+                processHandler.CallExecutable(ApplicationPath, "");
+                ProcessHandlers.Add(processHandler);
+            }
+        }
+
+        private void HandleExitedProcesses()
+        {
+            for (int index = 0; index < ProcessHandlers.Count; index++)
+            {
+                var processHandler = ProcessHandlers[index];
+                if (processHandler.HasExited)
+                {
+                    Logger.Warn("Process {0} has exited", processHandler.Name);
+                    processHandler.Close();
+
+                    var notEnoughProcesses      = (ProcessNo(processHandler.Name) < MinProcesses);
+                    var lessProcessesThanBefore = (ProcessNo(processHandler.Name) < MaxProcesses) && KeepExistingNoProcesses;
+
+                    if (notEnoughProcesses || lessProcessesThanBefore)
+                    {
+                        if (notEnoughProcesses) Logger.Info("Process {0} has exited and no others are running, so start new", processHandler.Name);
+                        if (lessProcessesThanBefore) Logger.Info("Process {0} has exited, and number of processed needs to maintained , so start new", processHandler.Name);
+                        Debug.WriteLine($"HandleExitedProcesses - processHandler.CallExecutable() ");
+                        processHandler.CallExecutable();
+
+                    }
+                    else
+                    {
+                        Logger.Info("Process {0} has exited, but no requirement to start new one", processHandler.Name);
+                        Debug.WriteLine($"HandleExitedProcesses - ProcessHandlers.Remove(processHandler); ");
+                        ProcessHandlers.Remove(processHandler);
+                    }
+
+                }
+            }
         }
 
         private void HandleNonResponsiveProcesses()
@@ -98,7 +167,7 @@ namespace WatchdogLib
                         Logger.Error("Process {0} was {1} and has been successfully killed ", processHandler.Name, reason);
 
                         processHandler.Close();
-                        var notEnoughProcesses = (ProcessNo(processHandler.Name) < MinProcesses);
+                        var notEnoughProcesses      = (ProcessNo(processHandler.Name) < MinProcesses);
                         var lessProcessesThanBefore = (ProcessNo(processHandler.Name) < MaxProcesses) && KeepExistingNoProcesses;
 
                         if (notEnoughProcesses || lessProcessesThanBefore)
@@ -119,59 +188,126 @@ namespace WatchdogLib
             }
         }
 
-        private void HandleProcessNotRunning()
+        /*
+        public void HandleDuplicateProcesses()
         {
-            var processes = Process.GetProcessesByName(ApplicationName);
-
-            if(processes.Length == 0){
-                // Start new process
-                var processHandler = new ProcessHandler
-                {
-                    WaitForExit = false,
-                    NonResponsiveInterval = NonResponsiveInterval,
-                    StartingInterval = StartupMonitorDelay
-                };
-                Logger.Info("No process of application {0} is running, so one will be started", ApplicationName);
-                Debug.WriteLine($"HandleProcessNotRunning - processHandler.CallExecutable(ApplicationPath:{ApplicationPath}, ");
-                processHandler.CallExecutable(ApplicationPath, "");
-                ProcessHandlers.Add(processHandler);
-            }
-        }
-
-        private void HandleExitedProcesses()
-        {
-            for (int index = 0; index < ProcessHandlers.Count; index++)
+            //if (ProcessNo(ApplicationName) < MaxProcesses))
             {
-                var processHandler = ProcessHandlers[index];
-                if (processHandler.HasExited)
+
+                var processes = Process.GetProcessesByName(ApplicationName);
+
+
+                if (processes.Length <= MaxProcesses) return;
+                //if (processes.Length <= 1) return ;
+
+
+                Logger.Error("multiple processes of application {0} are running, all but one will be killed ", ApplicationName);
+
+                var remainingProcesses = new List<Process>();
+                var result = true;
+
+                var nummProcesses = processes.Length;
+                //Wield out the bad applications first
+                foreach (var process in processes)
                 {
-                    Logger.Warn("Process {0} has exited", processHandler.Name);
-                    processHandler.Close();
+                    var processHandler = FindProcessHandler(process);
 
-                    var notEnoughProcesses = (ProcessNo(processHandler.Name) < MinProcesses);
-                    var lessProcessesThanBefore = (ProcessNo(processHandler.Name) < MaxProcesses) && KeepExistingNoProcesses;
-
-                    if (notEnoughProcesses || lessProcessesThanBefore)
+                    // Make sure we leave at least one process running
+                    if (nummProcesses <= MaxProcesses) break;
+                    if (!process.Responding)
                     {
-                        if (notEnoughProcesses) Logger.Info("Process {0} has exited and no others are running, so start new", processHandler.Name);
-                        if (lessProcessesThanBefore) Logger.Info("Process {0} has exited, and number of processed needs to maintained , so start new", processHandler.Name);
-                        Debug.WriteLine($"HandleExitedProcesses - processHandler.CallExecutable() ");
-                        processHandler.CallExecutable();
+                        Logger.Warn("unresponsive duplicate process {0} will now be killed ", ApplicationName);
 
+                        var currResult = (processHandler != null) ? processHandler.Kill() : ProcessUtils.KillProcess(process);
+                        if (currResult && processHandler != null)
+                        {
+                            ProcessHandlers.Remove(processHandler);
+                            processHandler.Close();
+                            Logger.Info("Unresponsive duplicate process {0} has been killed ", ApplicationName);
+                        }
+                        else
+                        {
+                            Logger.Error("Unresponsive duplicate process {0} could not be killed ", ApplicationName);
+                        }
+                        result = result && currResult;
+                        nummProcesses--;
                     }
                     else
                     {
-                        Logger.Info("Process {0} has exited, but no requirement to start new one", processHandler.Name);
-                        Debug.WriteLine($"HandleExitedProcesses - ProcessHandlers.Remove(processHandler); ");
-                        ProcessHandlers.Remove(processHandler);
+                        remainingProcesses.Add(process);
                     }
 
+                    //Return the other process instance.  
                 }
+
+                //Loop through the running processes in with the same name  
+                for (var index = MaxProcesses; index < remainingProcesses.Count; index++)
+                {
+                    var process = remainingProcesses[index];
+                    var processHandler = FindProcessHandler(process);
+                    Logger.Warn("unresponsive duplicate process {0} will now be killed ", ApplicationName);
+                    var currResult = ProcessUtils.KillProcess(process);
+                    if (currResult && processHandler != null)
+                    {
+                        ProcessHandlers.Remove(processHandler);
+                        processHandler.Close();
+                        Logger.Info("Duplicate process {0} has been killed ", ApplicationName);
+                    }
+                    else
+                    {
+                        Logger.Error("Unresponsive duplicate process {0} could not be killed ", ApplicationName);
+                    }
+                    result = result && currResult;
+                }
+
             }
         }
+        */
+        /*
+        private ProcessHandler FindProcessHandler(Process process)
+        {
+            return ProcessHandlers.Find((processHander) => processHander.Process.Id == process.Id);
+        }
+        */
         private int ProcessNo(string applicationName)
         {
             return Process.GetProcessesByName(applicationName).Length;
         }
+        /*
+        public bool HandleUnmonitoredProcesses()
+        {
+            try
+            {
+                var processes = Process.GetProcessesByName(ApplicationName);
+                foreach (var process in processes)
+                {
+                    Debug.WriteLine($"HandleUnmonitoredProcesses - ApplicationName:{ApplicationName},  process.Id:{process.Id}, ");
+                    if (ProcessHandlers.All(procHandle => procHandle.Process == null || procHandle.Process.Id != process.Id))
+                    {
+
+                        // This process o
+                        var processHandler = new ProcessHandler
+                        {
+                            WaitForExit = false,
+                            NonResponsiveInterval = NonResponsiveInterval,
+                        };
+                        Debug.WriteLine("HandleUnmonitoredProcesses MonitorProcess");
+                        processHandler.MonitorProcess(process);
+                        ProcessHandlers.Add(processHandler);
+                    }
+
+                    // Perform 
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn("Error while starting to monitor application {0}: {1}", ApplicationName, ex.Message);
+                //Debug.WriteLine(ex.Message);
+            }
+
+            return true;
+        }
+        */
+
     }
 }

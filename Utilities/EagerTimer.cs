@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 
@@ -12,11 +7,19 @@ using System.Timers;
 //EagerTimer會立即執行Handler
 namespace Utilities
 {
+    /// <summary>
+    // EagerTimer is a simple wrapper around System.Timers.Timer that
+    // provides "set up and immediately execute" functionality by adding a
+    // new AutoStart property, and also provides the ability to manually
+    // raise the Elapsed event with RaiseElapsed.
+    /// </summary>
     public class EagerTimer : Timer
     {
         public EagerTimer() : base() {}
         public EagerTimer(double interval) : base(interval) { }
 
+        // Need to hide this so we can use Elapsed.Invoke below
+        // (otherwise the compiler complains)
         private event ElapsedEventHandler ElapsedHandler;
         public new event ElapsedEventHandler Elapsed
         {
@@ -40,6 +43,34 @@ namespace Utilities
             base.Start();
         }
 
+        /*
+        public void Reset()
+        {
+            Stop();
+            Start();
+        }
+        */
+        private void AutoStartCallback(IAsyncResult result)
+        {
+            Console.WriteLine($"EagerTimer: AutoStartCallback ,AutoStart:{AutoStart}");
+            try
+            {
+                var handler = result.AsyncState as ElapsedEventHandler;
+                if (handler != null) handler.EndInvoke(result);
+            }
+            catch { }
+        }
+
+        // Summary:
+        //     Gets or sets a value indicating whether the EagerTimer should raise
+        //     the System.Timers.Timer.Elapsed event immediately when Start() is called,
+        //     or only after the first time it elapses. If AutoStart is false, EagerTimer behaves
+        //     identically to System.Timers.Timer.
+        //
+        // Returns:
+        //     true if the EagerTimer should raise the System.Timers.Timer.Elapsed
+        //     event immediately when Start() is called; false if it should raise the System.Timers.Timer.Elapsed
+        //     event only after the first time the interval elapses. The default is true.
         //https://docs.microsoft.com/zh-tw/dotnet/api/system.componentmodel.categoryattribute?view=net-6.0
         //https://www.cnblogs.com/springyangwc/archive/2011/10/10/2205733.html
         //設定AutoStart相關屬性
@@ -48,14 +79,16 @@ namespace Utilities
         [TimersDescription("TimerAutoStart")]
         public bool AutoStart { get; set; }
 
-        private void AutoStartCallback(IAsyncResult result)
+        /// <summary>
+        /// Manually raises the Elapsed event of the System.Timers.Timer.
+        /// </summary>
+        /*
+        public void RaiseElapsed()
         {
-            try
-            {
-                var handler = result.AsyncState as ElapsedEventHandler;
-                if (handler != null) handler.EndInvoke(result);
-            }
-            catch { }
+            Console.WriteLine($"EagerTimer: RaiseElapsed");
+            if (ElapsedHandler != null)
+                ElapsedHandler(this, null);
         }
+        */
     }
 }

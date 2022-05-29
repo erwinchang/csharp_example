@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Utilities
 {
@@ -31,6 +27,22 @@ namespace Utilities
                 Monitor.Pulse(_key);
             }
         }
+        
+        /// <summary>
+        /// start blocked or signalled. 
+        /// </summary>
+        /// <param name="set">If true, first Wait will directly continue</param>
+        /*
+        public EventWaiter(bool set)
+        {
+            lock (_key)
+            {
+                _block = !set;
+                Monitor.Pulse(_key);
+            }
+        }
+        */
+
         /// <summary>
         /// Wait function. Blocks until signal is set or time-out
         /// </summary>
@@ -62,6 +74,20 @@ namespace Utilities
                 return noTimeOut ? WaitState.Normal : WaitState.TimeOut;
             }
         }
+
+        /// <summary>
+        /// Sets signal, will unblock thread in Wait function
+        /// </summary>
+        /*
+        public void Set()
+        {
+            lock (_key)
+            {
+                _block = false;
+                Monitor.Pulse(_key);
+            }
+        }
+        */
 
         /// <summary>
         /// Resets signal, will block threads entering Wait function

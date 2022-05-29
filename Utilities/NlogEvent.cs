@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
+
 using NLog;
-using NLog.Config;
 using NLog.Targets;
+using System.Timers;
+using NLog.Config;
 
 namespace Utilities
 {
@@ -79,9 +77,9 @@ namespace Utilities
             var logMessage = this.Layout.Render(logEvent);
             _logQueue.Enqueue(logMessage);
 
-            String filepath = @"D:\nlog-nlogEvent.txt";
-            String msg = $"logMessage:{logMessage} {Environment.NewLine}";
-            System.IO.File.AppendAllText(filepath, msg);
+            //String filepath = @"D:\nlog-nlogEvent.txt";
+            //String msg = $"logMessage:{logMessage} {Environment.NewLine}";
+            //System.IO.File.AppendAllText(filepath, msg);
         }
     }
 }

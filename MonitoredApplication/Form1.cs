@@ -35,5 +35,10 @@ namespace MonitoredApplication
         {
             while (true) ;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+        }
     }
 }

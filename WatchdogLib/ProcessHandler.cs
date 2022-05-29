@@ -45,6 +45,27 @@ namespace WatchdogLib
         public bool RunInDir { get; set; }
         public uint NonresponsiveInterval { get; set; }
         public uint StartingInterval { get; set; }
+        public bool HasExited
+        {
+            get { return (Process == null) || Process.HasExited; }
+        }
+        public bool Responding
+        {
+            get
+            {
+                // todo: add heartbeat
+                if (!Process.Responding)
+                {
+                    if (!_nonresponsiveInterval.IsRunning) _nonresponsiveInterval.Restart();
+                }
+                else
+                {
+                    _nonresponsiveInterval.Reset();
+                }
+
+                return (Process == null) || Process.Responding;
+            }
+        }
 
         public ProcessHandler()
         {
@@ -133,6 +154,19 @@ namespace WatchdogLib
         public bool Running { get; set; }
         public Process Process { get; private set; }
         public string Name { get; private set; }
+        public bool NotRespondingAfterInterval
+        {
+            get { return (!Responding && _nonresponsiveInterval.ElapsedMilliseconds > NonresponsiveInterval); }
+        }
+        public bool IsStarting
+        {
+            get { return (_fromStart.ElapsedMilliseconds < StartingInterval); }
+        }
+        public void Close()
+        {
+            EndProcess();
+        }
+
         private void Output(object sender, DataReceivedEventArgs dataReceivedEventArgs)
         {
             Console.WriteLine($"Process.OutputDataReceived-Output:{dataReceivedEventArgs.Data},name:{Name}");
@@ -151,6 +185,11 @@ namespace WatchdogLib
             
             // Fire OutputError event
             var progressEventArgs = new ProcessMessageArgs(dataReceivedEventArgs.Data, Process);
+        }
+        public bool Kill()
+        {
+            return ProcessUtils.KillProcess(Process);
+            // Todo set state indicating that kill has been tried
         }
     }
 }

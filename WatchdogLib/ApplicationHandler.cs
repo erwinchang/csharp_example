@@ -54,7 +54,7 @@ namespace WatchdogLib
             if (!Active) return;
             // Check if  new unmonitored process is running 
             //HandleDuplicateProcesses();
-            //HandleNonResponsiveProcesses();
+            HandleNonResponsiveProcesses();
             HandleProcessNotRunning();
         }
 
@@ -66,7 +66,56 @@ namespace WatchdogLib
 
         private void HandleNonResponsiveProcesses()
         {
+            for (var index = 0; index < ProcessHandlers.Count; index++)
+            {
+                var processHandler = ProcessHandlers[index];
+                if (processHandler.HasExited) continue; // We will deal with this later
+                if (processHandler.IsStarting)
+                {
+                    //process _fromStart.ElapsedMilliseconds < StartingInterval
+                    Debug.WriteLine("Process {0} is still in startup phase, no checking is being performed", processHandler.Name);
+                    continue; // Is still starting up, so ignore
+                }
+                if (_heartbeatServer.HeartbeatTimedOut(processHandler.Name, HeartbeatInterval / 2) && UseHeartbeat)
+                {
+                    //todo: add throttling
+                    Logger.Warn("No heartbeat received from process {0} within the soft limit", processHandler.Name);
+                }
 
+                var notRespondingAfterInterval = processHandler.NotRespondingAfterInterval;
+                var noHeartbeat = _heartbeatServer.HeartbeatTimedOut(processHandler.Name, HeartbeatInterval) && UseHeartbeat;
+                var requestedKill = _heartbeatServer.KillRequested(processHandler.Name);
+
+                var performKill = notRespondingAfterInterval || noHeartbeat || requestedKill;
+                var reason = notRespondingAfterInterval ? "not responding" : noHeartbeat ? "not sending a heartbeat signal within hard limit" : "requesting to be killed";
+
+                if (performKill)
+                {
+                    Logger.Error("process {0} is {1}, and will be killed ", processHandler.Name, reason);
+                    if (processHandler.Kill())
+                    {
+                        Logger.Error("Process {0} was {1} and has been successfully killed ", processHandler.Name, reason);
+
+                        processHandler.Close();
+                        var notEnoughProcesses = (ProcessNo(processHandler.Name) < MinProcesses);
+                        var lessProcessesThanBefore = (ProcessNo(processHandler.Name) < MaxProcesses) && KeepExistingNoProcesses;
+
+                        if (notEnoughProcesses || lessProcessesThanBefore)
+                        {
+                            processHandler.CallExecutable();
+                        }
+                        else
+                        {
+                            ProcessHandlers.Remove(processHandler);
+                        }
+                    }
+                    else
+                    {
+                        // todo smarter handling of this case (try again in next loop, put to sleep, etc)
+                        Logger.Error("Process {0} was {1} but could not be successfully killed ", processHandler.Name, reason);
+                    }
+                }
+            }
         }
 
         private void HandleProcessNotRunning()
@@ -85,6 +134,10 @@ namespace WatchdogLib
                 processHandler.CallExecutable(ApplicationPath, "");
                 ProcessHandlers.Add(processHandler);
             }
+        }
+        private int ProcessNo(string applicationName)
+        {
+            return Process.GetProcessesByName(applicationName).Length;
         }
     }
 }

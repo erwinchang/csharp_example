@@ -120,6 +120,41 @@ namespace WatchdogLib
             //傳回序列中符合條件的第一個元素；如果找不到這類元素，則傳回預設值
             return _clients.FirstOrDefault((client) => client.Name == name);
         }
+        public HeartbeatClient FindByProcessName(string processName)
+        {
+            return _clients.FirstOrDefault((client) => client.ProcessName == processName);
+        }
+        public bool HeartbeatTimedOut(string processName, uint timeout)
+        {
+            var client = FindByProcessName(processName);
+            if (client == null)
+            {
+                // No process with this name connected, so no timeout
+                return false;
+            }
+            else
+            {
+                if ((DateTime.Now - _serverStarted).TotalSeconds < 2 * timeout)
+                {
+                    // Server is not running long enough to have reliably received a heartbeat
+                    return false;
+                }
+                else
+                {
+                    // Check if last heartbeat was before timeout
+                    return ((DateTime.Now - client.LastHeartbeat).TotalSeconds > timeout);
+                }
+            }
+        }
+
+        public bool KillRequested(string processName)
+        {
+            var client = FindByProcessName(processName);
+            if (client == null) return false;
+            var performKill = client.RequestKill && (DateTime.Now > client.KillTime);
+            if (performKill) client.RequestKill = false; // Kill request only returns true once
+            return performKill;
+        }
 
         private void SendCommand<T>(Commands command, T argument)
         {

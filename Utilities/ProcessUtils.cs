@@ -34,5 +34,36 @@ namespace Utilities
             processname = GetProcessName(processname);
             return (Process.GetProcessesByName(processname).Length > 0);
         }
+
+        public static bool KillProcess(Process process)
+        {
+            const int timeoutNice = 500;
+            const int timeoutTotal = 1500;
+            {
+                // 1. Ask nicely
+                try
+                {
+                    process.CloseMainWindow();
+                    process.WaitForExit(timeoutNice);
+                }
+                catch(Exception)
+                {
+
+                }
+                if (process.HasExited) return true;
+
+                // 2. Force process to stop
+                try
+                {
+                    process.Kill();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            // See if processes are still running
+            return process.WaitForExit(timeoutTotal);
+        }
     }
 }

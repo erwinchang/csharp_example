@@ -30,5 +30,10 @@ namespace MonitoredApplication
                 Debug.WriteLine("Heartbeat " + _heartbeatCount++);
             }));
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            while (true) ;
+        }
     }
 }

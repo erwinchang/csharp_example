@@ -87,6 +87,26 @@ namespace WatchdogLib
                 case (int)Commands.RequestKill:
                     {
                         Debug.WriteLine("received Commands.RequestKill");
+                        var client = FindByName(connection.Name);
+                        if (client == null) break;
+                        if (args.Length < 2) return;
+                        client.ProcessName = args[1];
+
+                        if (args.Length == 3)
+                        {
+                            uint delay;
+                            if (!uint.TryParse(args[2], out delay)) return;
+                            client.KillTime = DateTime.Now + TimeSpan.FromSeconds(delay);
+                            Logger.Warn("Received kill after {0} seconds request by Process {1}", delay, client.ProcessName);
+                            Debug.WriteLine($"received delayed kill,delay:{delay}, ProcessName:{ client.ProcessName}");
+                        }
+                        else
+                        {
+                            client.KillTime = DateTime.Now;
+                            Logger.Warn("Received kill request by Process {0}", client.ProcessName);
+                            Debug.WriteLine($"received  kill,ProcessName:{ client.ProcessName}");
+                        }
+                        client.RequestKill = true;
                     }
                     break;
                 default:

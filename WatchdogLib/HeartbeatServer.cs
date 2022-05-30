@@ -31,6 +31,7 @@ namespace WatchdogLib
             Heartbeat,
             RequestKill,
             RequestInactive,
+            SetTerminate
         }
 
         private const string PipeName = "named_pipe_watchdog";
@@ -212,6 +213,12 @@ namespace WatchdogLib
             var performInactive = client.RequestInactive;
             if (performInactive) client.RequestInactive = false; // Inactive request only returns true once
             return performInactive;
+        }
+
+        public void HeartbeatTerminate()
+        {
+            Commands command = Commands.SetTerminate;
+            _server.PushMessage( ((int) command).ToString() );
         }
 
         private void SendCommand<T>(Commands command, T argument)

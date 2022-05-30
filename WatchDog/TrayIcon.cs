@@ -24,6 +24,7 @@ namespace WatchDog
             private ContextMenuStrip _trayIconContextMenu;
             private ToolStripMenuItem _showLogMenuItem;
             private ToolStripMenuItem _closeMenuItem;
+            private ToolStripMenuItem _exitMenuItem;
             private Logger _logger;
             private MainForm _mainForm;
             private Configuration _configuration;
@@ -106,7 +107,17 @@ namespace WatchDog
                         Text = "Suspend watchdog server"
                     };
                     _closeMenuItem.Click += CloseMenuItemClick;
-                    _trayIconContextMenu.Items.AddRange(new ToolStripItem[] { _closeMenuItem });
+                    //_trayIconContextMenu.Items.AddRange(new ToolStripItem[] { _closeMenuItem });
+
+                    // ExitMenuItem
+                    _exitMenuItem = new ToolStripMenuItem
+                    {
+                        Name = "_exitMenuItem",
+                        Size = new Size(152, 22),
+                        Text = "Exit watchdog server"
+                    };
+                    _exitMenuItem.Click += ExitMenuItemClick;
+                    _trayIconContextMenu.Items.AddRange(new ToolStripItem[] { _exitMenuItem });
 
                     _trayIconContextMenu.ResumeLayout(false);
                     _trayIcon.ContextMenuStrip = _trayIconContextMenu;
@@ -141,6 +152,15 @@ namespace WatchDog
             private void CloseMenuItemClick(object sender, EventArgs e)
             {
                 ApplicationExit();
+            }
+            private void ExitMenuItemClick(object sender, EventArgs e)
+            {
+                HeartbeatServer _heartbeatServer = HeartbeatServer.Instance;
+                _heartbeatServer.HeartbeatTerminate();
+
+                ApplicationExit();
+                _logger.Info("Exit the watchdog application");
+                Process.GetCurrentProcess().Kill();
             }
 
             private void ApplicationExit()

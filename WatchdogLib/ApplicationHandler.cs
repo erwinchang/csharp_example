@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using NLog;
 
@@ -96,9 +97,16 @@ namespace WatchdogLib
                     NonResponsiveInterval = NonResponsiveInterval,
                     StartingInterval = StartupMonitorDelay
                 };
+
+                string AppPath = ApplicationPath;
+                if (AppPath.IndexOf(':') == -1)
+                {
+                    String binPath = Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+                    AppPath = binPath + "\\" + ApplicationPath;
+                }
                 Logger.Info("No process of application {0} is running, so one will be started", ApplicationName);
-                Debug.WriteLine($"HandleProcessNotRunning - processHandler.CallExecutable(ApplicationPath:{ApplicationPath}, ");
-                processHandler.CallExecutable(ApplicationPath, "");
+                Debug.WriteLine($"HandleProcessNotRunning - processHandler.CallExecutable AppPath:{AppPath}");
+                processHandler.CallExecutable(AppPath, "");
                 ProcessHandlers.Add(processHandler);
             }
         }

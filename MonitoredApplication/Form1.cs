@@ -55,5 +55,10 @@ namespace MonitoredApplication
         {
             _heartbeat.RequestKill(10);
         }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            _heartbeat.RequestInactive();
+        }
     }
 }

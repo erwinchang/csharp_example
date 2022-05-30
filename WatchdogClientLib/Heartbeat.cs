@@ -51,6 +51,12 @@ namespace WatchdogClient
         {
             SendCommand(Commands.RequestKill, _processName, sec);
         }
+
+        public void RequestInactive()
+        {
+            SendCommand(Commands.RequestInactive, _processName);
+        }
+
         private void OnDisconnected(NamedPipeConnection<string, string> connection)
         {
             Console.WriteLine("Heartbeat, OnDisconnected");
@@ -65,6 +71,7 @@ namespace WatchdogClient
             SetTimeOut,
             Heartbeat,
             RequestKill,
+            RequestInactive
         }
 
         private void SendCommand<T>(Commands command, T argument)

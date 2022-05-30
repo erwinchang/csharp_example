@@ -79,6 +79,7 @@ namespace WatchdogLib
             HandleExitedProcesses();
             //HandleUnmonitoredProcesses();
             HandleProcessNotRunning();
+            Active = HandleInactiveProcesses();
         }
 
 
@@ -309,5 +310,25 @@ namespace WatchdogLib
         }
         */
 
+        private bool HandleInactiveProcesses()
+        {
+            bool myacitve = Active;
+            for (var index = 0; index < ProcessHandlers.Count; index++)
+            {
+                var processHandler = ProcessHandlers[index];
+                if (processHandler.HasExited) continue; // We will deal with this later
+                if (processHandler.IsStarting)
+                {
+                    continue; // Is still starting up, so ignore
+                }
+                var requestedInactive = _heartbeatServer.InactiveRequested(processHandler.Name);
+                if(requestedInactive && myacitve)
+                {
+                    myacitve = false;
+                    Debug.WriteLine("HandleInactiveProcesses, name:{processHandler.Name} set Active to false");                    
+                }
+            }
+            return myacitve;
+        }
     }
 }

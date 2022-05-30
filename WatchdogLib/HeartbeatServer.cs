@@ -20,6 +20,7 @@ namespace WatchdogLib
         public string ProcessName       { get; set; }
         public DateTime LastHeartbeat   { get; set; }
         public bool RequestKill         { get; set; }
+        public bool RequestInactive     { get; set; }
         public DateTime KillTime        { get; set; }
     }
     public class HeartbeatServer
@@ -29,6 +30,7 @@ namespace WatchdogLib
             SetTimeOut,
             Heartbeat,
             RequestKill,
+            RequestInactive,
         }
 
         private const string PipeName = "named_pipe_watchdog";
@@ -109,6 +111,16 @@ namespace WatchdogLib
                             Debug.WriteLine($"received  kill,ProcessName:{ client.ProcessName}");
                         }
                         client.RequestKill = true;
+                    }
+                    break;
+                case (int)Commands.RequestInactive:
+                    {
+                        Debug.WriteLine($"received Commands.RequestInactive,name:{connection.Name}");
+                        var client = FindByName(connection.Name);
+                        if (client == null) break;
+                        if (args.Length < 2) return;
+                        client.ProcessName = args[1];
+                        client.RequestInactive = true;
                     }
                     break;
                 default:
@@ -192,6 +204,14 @@ namespace WatchdogLib
             var performKill = client.RequestKill && (DateTime.Now > client.KillTime);
             if (performKill) client.RequestKill = false; // Kill request only returns true once
             return performKill;
+        }
+        public bool InactiveRequested(string processName)
+        {
+            var client = FindByProcessName(processName);
+            if (client == null) return false;
+            var performInactive = client.RequestInactive;
+            if (performInactive) client.RequestInactive = false; // Inactive request only returns true once
+            return performInactive;
         }
 
         private void SendCommand<T>(Commands command, T argument)

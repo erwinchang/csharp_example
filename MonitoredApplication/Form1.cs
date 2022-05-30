@@ -10,7 +10,7 @@ namespace MonitoredApplication
     {
         private System.Timers.Timer _timer;
         private Heartbeat _heartbeat;
-        private int _heartbeatCount;
+        private int _heartbeatCount;     
         public MonitoredApplicationForm()
         {
             InitializeComponent();
@@ -25,10 +25,24 @@ namespace MonitoredApplication
             // Invoke heartbeat on the main thread otherwise it will send even if the main thread is unresponsive
             Invoke(new MethodInvoker(delegate
             {
-                _heartbeat.SendHeartbeat();
-                //toolStripStatusLabelComments.Text = "Heartbeat " + _heartbeatCount++;
-                Debug.WriteLine("Heartbeat " + _heartbeatCount++);
+                if(_heartbeat.Terminate == false)
+                {
+                    _heartbeat.SendHeartbeat();
+                    //toolStripStatusLabelComments.Text = "Heartbeat " + _heartbeatCount++;
+                    Debug.WriteLine("Heartbeat " + _heartbeatCount++);
+                }
+                else
+                {
+                    AppExit();
+                }
+
             }));
+        }
+
+        private void AppExit()
+        {
+            Debug.WriteLine("Exit App");
+            Process.GetCurrentProcess().Kill();
         }
 
         private void button1_Click(object sender, EventArgs e)

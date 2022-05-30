@@ -11,6 +11,7 @@ namespace WatchdogClient
         private readonly string _processName;
         private Stopwatch _stopwatchHeartBeat;
         public uint Timeout { get; private set; }
+        public bool Terminate { get; private set; }
 
         public Heartbeat()
         {
@@ -20,6 +21,7 @@ namespace WatchdogClient
 
         private void Initialize()
         {
+            Terminate = false;
             Timeout = 5;
             _client.ServerMessage += OnServerMessage;
             _client.Disconnected += OnDisconnected;
@@ -31,7 +33,22 @@ namespace WatchdogClient
         }
         private void OnServerMessage(NamedPipeConnection<string, string> connection, string message)
         {
-            Console.WriteLine($"Clinet OnServerMessage,message:{message}");
+            var args = message.Split(',');
+            Debug.WriteLine($"Clinet OnServerMessage,message:{message},args len:{args.Length}");
+            if (args.Length == 0) return;
+            uint command; if (!uint.TryParse(args[0], out command)) return;
+
+            switch (command)
+            {
+                case (int)Commands.SetTerminate:
+                    {
+                        Terminate = true;
+                    }                   
+                    break;
+                default:
+                    Debug.WriteLine("Unrecognized command");
+                    break;
+            }
         }
 
         public void SendHeartbeat()
@@ -59,7 +76,7 @@ namespace WatchdogClient
 
         private void OnDisconnected(NamedPipeConnection<string, string> connection)
         {
-            Console.WriteLine("Heartbeat, OnDisconnected");
+            Debug.WriteLine("Heartbeat, OnDisconnected");
         }
         private void OnConnected(NamedPipeConnection<string, string> connection)
         {
@@ -71,7 +88,8 @@ namespace WatchdogClient
             SetTimeOut,
             Heartbeat,
             RequestKill,
-            RequestInactive
+            RequestInactive,
+            SetTerminate
         }
 
         private void SendCommand<T>(Commands command, T argument)

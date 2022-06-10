@@ -4,7 +4,7 @@
 ## sqlite example
 
 
-### 1-0 先用sqlitestudio建立test.db  
+### 1-0 [先用sqlitestudio建立test.db][3]
 
 ### 1-1 [C#安裝System.Data.SQLite套件][2]  
 
@@ -67,3 +67,4 @@ Test2 Text2 3
 
 [1]:https://www.codeguru.com/dotnet/using-sqlite-in-a-c-application/
 [2]:https://www.ruyut.com/2021/06/nuget-install.html
+[3]:http://www.xue51.com/soft/4831.html

@@ -4,7 +4,7 @@
 測試框架 (Test Framework)：MSTest,NUnit 3,xUnit.net 2.0 是比較常見的三套，尤其又以 MSTest,NUnit 3 較多人使用  
 
 在網路範例NUnit只有visual studio 2015  
-若是visual studio還是建義用MSTest  
+若是visual studio 2019還是建義用MSTest  
 
 
 

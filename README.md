@@ -1,4 +1,4 @@
-# csharp_example
+# sqliet web api
 
 ## 1-1 採用sqlite方式
 
@@ -61,5 +61,12 @@ Card資料表
 ## 1-2 驗證
 
 注意: 改用chrome驗證，就可以, 原本用ie測試，程式一直跳出(可能js版本不支援)
+
 <a href="https://imgur.com/M3LtUww"><img src="https://i.imgur.com/M3LtUww.png" title="source: imgur.com" width="400px" /></a>
+
 <a href="https://imgur.com/7FvbYwp"><img src="https://i.imgur.com/7FvbYwp.png" title="source: imgur.com" width="400px" /></a>
+
+
+參考來源: [使用 Dapper 來連線到資料庫 CRUD 吧][1]
+
+[1]:https://igouist.github.io/post/2021/05/newbie-3-dapper/

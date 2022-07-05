@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
+    /// <summary>
+    /// 卡片
+    /// </summary>
     public class Card
     {
         /// <summary>
@@ -21,5 +24,20 @@ namespace WebApplication1.Models
         /// 卡片描述
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// 攻擊力
+        /// </summary>
+        public int Attack { get; set; }
+
+        /// <summary>
+        /// 血量
+        /// </summary>
+        public int Health { get; set; }
+
+        /// <summary>
+        /// 花費
+        /// </summary>
+        public int Cost { get; set; }
     }
 }

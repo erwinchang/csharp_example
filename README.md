@@ -10,6 +10,24 @@
 通用 Windows 平台 (UWP) app 範例: 示範 UWP 的 WinRT API 使用模式
 - [Universal Windows Platform (UWP) app samples][3]
 
+### 1-1 增加MainPage_Loaded
+
+MainPage.xaml.cs
+```
+        public MainPage()
+        {
+            this.InitializeComponent();
+            Loaded += MainPage_Loaded;
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            TimeNow.Text = $"Current Time: {DateTime.Now:T}";
+        }
+```
+
+<a href="https://imgur.com/GldmU7j"><img src="https://i.imgur.com/GldmU7j.png" title="source: imgur.com" width="400px" /></a>
+
 [1]:https://www.youtube.com/watch?v=ZB_vm0fGvCA
 [2]:https://docs.microsoft.com/zh-tw/windows/apps/get-started/samples
 [3]:https://github.com/microsoft/Windows-universal-samples

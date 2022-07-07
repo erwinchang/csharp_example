@@ -3,6 +3,23 @@
 
 ## WPF
 
+### 1-2 設定DynamicResource WindowBackgroundBrush
+
+```
+<Window
+Background="{DynamicResource WindowBackgroundBrush}"
+>
+
+<Window.Resources>
+        <LinearGradientBrush x:Key="WindowBackgroundBrush">
+            <GradientStop Offset="0" Color="Silver"/>
+            <GradientStop Offset="1" Color="Gray"/>
+        </LinearGradientBrush>
+</Window.Resources>
+```
+
+<a href="https://imgur.com/IVPqdYX"><img src="https://i.imgur.com/IVPqdYX.png" title="source: imgur.com" width="400px" /></a>
+
 ### 1-1 如何建立變數strHelloWorld
 
 各個資源將透過```x:Key```屬性給予一個鍵值

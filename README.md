@@ -1,19 +1,14 @@
 # csharp_example
 
 
-## WPF
+## WPF / MaterialDesignThemes
 
-1.WindowForms App: 目前開發測試工具
+[WPF MaterialDesign 开源免费UI组件的介绍和简单使用][1]  
+[讓 WPF 也可以有 Material Design 樣式][2]  
+[MaterialDesignThemes demo v2.6.0下載][3]  
 
-2.WPF(.NET Framework) : 此範例
-- [WPF-Samples][2]
+<a href="https://imgur.com/P3Yl2jD"><img src="https://i.imgur.com/P3Yl2jD.png" title="source: imgur.com" /></a>
 
-3.UWP : 通用Windwos App
-- [Universal Windows Platform (UWP) app samples][1]
-
-<a href="https://imgur.com/u6DWfOh"><img src="https://i.imgur.com/u6DWfOh.png" title="source: imgur.com" width="400px" /></a>
-
-<a href="https://imgur.com/E0Hl0nl"><img src="https://i.imgur.com/E0Hl0nl.png" title="source: imgur.com" width="400px" /></a>
-
-[1]:https://github.com/microsoft/Windows-universal-samples
-[2]:https://github.com/microsoft/WPF-Samples
+[1]:https://blog.csdn.net/YouyoMei/article/details/99816982
+[2]:https://blog.poychang.net/developing-wpf-or-uwp-with-material-desing/
+[3]:https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/releases/download/2.6.0/DemoApp.zip

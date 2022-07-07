@@ -4,9 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Deamon Learning Material Design In Xaml" Height="450" Width="800">
+    <Grid RenderTransformOrigin="0.371,0.506">
+        <ToggleButton   Content="H"
+                Style="{StaticResource MaterialDesignActionToggleButton}"
+                ToolTip="MaterialDesignActionToggleButton"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Left" />
+        <Button
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                Width="100"
+                ToolTip="Resource name: MaterialDesignRaisedAccentButton" HorizontalAlignment="Center">
+                ACCENT
+        </Button>
+        <ToggleButton
+  Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+  ToolTip="MaterialDesignSwitchLightToggleButton"
+  IsChecked="True" HorizontalAlignment="Right" />
     </Grid>
 </Window>

@@ -24,5 +24,17 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void DisplayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(HelloButton.IsChecked == true)
+            {
+                MessageBox.Show("Hello.");
+            }
+            else if(GoodbyeButton.IsChecked == true)
+            {
+                MessageBox.Show("Goodbye.");
+            }
+        }
     }
 }

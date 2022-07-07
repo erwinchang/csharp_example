@@ -1,19 +1,14 @@
 # csharp_example
 
+## WPF Example
 
-## WPF
+[使用 C 建立簡單的應用程式#][1]
 
-1.WindowForms App: 目前開發測試工具
 
-2.WPF(.NET Framework) : 此範例
-- [WPF-Samples][2]
+WPF 設計工具會在分割檢視中顯示 MainWindow.xaml 的設計檢視和 XAML 檢視
+XAML (eXtensible Application Markup Language)
 
-3.UWP : 通用Windwos App
-- [Universal Windows Platform (UWP) app samples][1]
+<a href="https://imgur.com/WLmh3Rl"><img src="https://i.imgur.com/WLmh3Rl.png" title="source: imgur.com" width="400px" /></a>
 
-<a href="https://imgur.com/u6DWfOh"><img src="https://i.imgur.com/u6DWfOh.png" title="source: imgur.com" width="400px" /></a>
 
-<a href="https://imgur.com/E0Hl0nl"><img src="https://i.imgur.com/E0Hl0nl.png" title="source: imgur.com" width="400px" /></a>
-
-[1]:https://github.com/microsoft/Windows-universal-samples
-[2]:https://github.com/microsoft/WPF-Samples
+[1]:https://docs.microsoft.com/zh-tw/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2022

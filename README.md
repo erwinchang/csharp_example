@@ -43,8 +43,9 @@ collection[0]: Test-2
 HandleChange: Reset
 ```
 
-<a href="https://imgur.com/s8P8Aw0"><img src="https://i.imgur.com/s8P8Aw0.png" title="source: imgur.com" width="400px" /></a>
+<a href="https://imgur.com/s8P8Aw0"><img src="https://i.imgur.com/s8P8Aw0.png" title="source: imgur.com"/></a>
 
 
 [What is the use of ObservableCollection in .net?][1]
+
 [1]:https://stackoverflow.com/questions/4279185/what-is-the-use-of-observablecollection-in-net

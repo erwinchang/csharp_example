@@ -9,14 +9,19 @@
         Title="MainWindow" Height="450" Width="800"
         Background="{DynamicResource WindowBackgroundBrush}">
     <Window.Resources>
-        <sys:String x:Key="strHelloWorld">Hello, world!</sys:String>
+        <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+        <x:Array x:Key="ComboBoxItems" Type="sys:String">
+            <sys:String>Item #1</sys:String>
+            <sys:String>Item #2</sys:String>
+            <sys:String>Item #3</sys:String>
+        </x:Array>        
         <LinearGradientBrush x:Key="WindowBackgroundBrush">
             <GradientStop Offset="0" Color="Silver"/>
             <GradientStop Offset="1" Color="Gray"/>
         </LinearGradientBrush>
     </Window.Resources>
     <StackPanel Margin="10">
-        <TextBlock Text="{StaticResource strHelloWorld}" FontSize="56" />
-        <TextBlock>Just another "<TextBlock Text="{StaticResource strHelloWorld}" />" example, but with resources!</TextBlock>
+        <Label Content="{StaticResource ComboBoxTitle}" />
+        <ComboBox ItemsSource="{StaticResource ComboBoxItems}" />
     </StackPanel>
 </Window>

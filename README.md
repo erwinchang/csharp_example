@@ -3,51 +3,26 @@
 
 ## WPF
 
-### 1-2 設定DynamicResource WindowBackgroundBrush
+###  1-1 ComboBox Example
+
+``` 
+<sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+
+<x:Array x:Key="ComboBoxItems" Type="sys:String">
+    <sys:String>Item #1</sys:String>
+    <sys:String>Item #2</sys:String>
+    <sys:String>Item #3</sys:String>
+</x:Array>
 
 ```
-<Window
-Background="{DynamicResource WindowBackgroundBrush}"
->
-
-<Window.Resources>
-        <LinearGradientBrush x:Key="WindowBackgroundBrush">
-            <GradientStop Offset="0" Color="Silver"/>
-            <GradientStop Offset="1" Color="Gray"/>
-        </LinearGradientBrush>
-</Window.Resources>
+```
+    <StackPanel Margin="10">
+        <Label Content="{StaticResource ComboBoxTitle}" />
+        <ComboBox ItemsSource="{StaticResource ComboBoxItems}" />
+    </StackPanel>
 ```
 
-<a href="https://imgur.com/IVPqdYX"><img src="https://i.imgur.com/IVPqdYX.png" title="source: imgur.com" width="400px" /></a>
-
-### 1-1 如何建立變數strHelloWorld
-
-各個資源將透過```x:Key```屬性給予一個鍵值
-靜態資源(StaticResource)僅會在XAML載入的時間點被設定一次
-DynamicResource會在它實際需要時設定一次，並且當資源改變時再次設定
-
-
-MainWindow.xaml
-
-1. 定義名稱sys
-```
-<Window
-...
-xmlns:sys="clr-namespace:System;assembly=mscorlib"
->
-```
-
-2.建立變數strHelloWorld
-```
-<Window.Resources>
-	<sys:String x:Key="strHelloWorld">Hello, world!</sys:String>
-</Window.Resources>
-```
-
-3.使用變數
-```
-<TextBlock>Just another "<TextBlock Text="{StaticResource strHelloWorld}" />" example, but with resources!</TextBlock>
-```
+<a href="https://imgur.com/jRoogM3"><img src="https://i.imgur.com/jRoogM3.png" title="source: imgur.com" width="400px" /></a>
 
 
 [資源(Resources)][1]

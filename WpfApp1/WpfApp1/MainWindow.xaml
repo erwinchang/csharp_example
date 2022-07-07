@@ -6,22 +6,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        Background="{DynamicResource WindowBackgroundBrush}">
+        Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
-        <x:Array x:Key="ComboBoxItems" Type="sys:String">
-            <sys:String>Item #1</sys:String>
-            <sys:String>Item #2</sys:String>
-            <sys:String>Item #3</sys:String>
-        </x:Array>        
-        <LinearGradientBrush x:Key="WindowBackgroundBrush">
-            <GradientStop Offset="0" Color="Silver"/>
-            <GradientStop Offset="1" Color="Gray"/>
-        </LinearGradientBrush>
+        <sys:String x:Key="strWindow">Hello, Window world!</sys:String>
     </Window.Resources>
-    <StackPanel Margin="10">
-        <Label Content="{StaticResource ComboBoxTitle}" />
-        <ComboBox ItemsSource="{StaticResource ComboBoxItems}" />
-    </StackPanel>
+    <DockPanel Margin="10" Name="pnlMain">
+        <DockPanel.Resources>
+            <sys:String x:Key="strPanel">Hello, Panel world!</sys:String>
+        </DockPanel.Resources>
+
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10">
+            <Button Name="btnClickMe" Click="btnClickMe_Click">Click me!</Button>
+        </WrapPanel>
+
+        <ListBox Name="lbResult" />
+    </DockPanel>
 </Window>

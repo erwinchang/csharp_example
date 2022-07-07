@@ -3,26 +3,51 @@
 
 ## WPF
 
-###  1-1 ComboBox Example
+總結: 資源定義有區域，也可以通過程式去取得定義的資源
 
-``` 
-<sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+###  1-1 資源resources / 區域及應用程式範圍資源
 
-<x:Array x:Key="ComboBoxItems" Type="sys:String">
-    <sys:String>Item #1</sys:String>
-    <sys:String>Item #2</sys:String>
-    <sys:String>Item #3</sys:String>
-</x:Array>
+#### 1.如果你需要一個資源僅僅用在特定的控制項上
+
+將Resources寫在 控制項裡面
 
 ```
-```
-    <StackPanel Margin="10">
-        <Label Content="{StaticResource ComboBoxTitle}" />
-        <ComboBox ItemsSource="{StaticResource ComboBoxItems}" />
-    </StackPanel>
+<StackPanel Margin="10">
+    <StackPanel.Resources>
+        <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+    </StackPanel.Resources>
+    <Label Content="{StaticResource ComboBoxTitle}" />
+</StackPanel>
 ```
 
-<a href="https://imgur.com/jRoogM3"><img src="https://i.imgur.com/jRoogM3.png" title="source: imgur.com" width="400px" /></a>
+#### 2.若將資源寫在App.xaml裡面，表示全部都能使用
+
+- 在App.xaml檔案中可以容納像是視窗及任何其他種類的WPF控制項資源
+
+```
+<Application x:Class="WpfTutorialSamples.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="WPF application/ExtendedResourceSample.xaml">
+    <Application.Resources>
+        <sys:String x:Key="ComboBoxTitle">Items:</sys:String>
+    </Application.Resources>
+</Application>
+```
+
+#### 3.從後置程式碼存取資源
+
+```
+private void btnClickMe_Click(object sender, RoutedEventArgs e)
+{
+	lbResult.Items.Add(pnlMain.FindResource("strPanel").ToString());
+	lbResult.Items.Add(this.FindResource("strWindow").ToString());
+	lbResult.Items.Add(Application.Current.FindResource("strApp").ToString());
+}
+```
+
+<a href="https://imgur.com/JlpHaZB"><img src="https://i.imgur.com/JlpHaZB.png" title="source: imgur.com" /></a>
 
 
 [資源(Resources)][1]

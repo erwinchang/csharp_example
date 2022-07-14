@@ -42,7 +42,7 @@ dataGridView1.DataSource = source;
 source.ResetBindings(false);
 ```	
 
-### 更新資料
+### 3.更新資料
 
 通過ResetBindings更新資料  
 

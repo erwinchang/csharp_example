@@ -53,7 +53,7 @@ source.ResetBindings(false);
 
 
 參考來源 :  
-[On a WinForms DataGridView, how do you refresh the DataSource?]  
+[On a WinForms DataGridView, how do you refresh the DataSource?][1]
 
 
 

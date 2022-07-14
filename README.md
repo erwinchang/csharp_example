@@ -2,7 +2,7 @@
 
 ## 採用BindingList來更新ListBox
 
-1.定義BindingList<Part> listOfParts  
+1.定義```BindingList<Part> listOfParts```
 2.定義ListBox顯示內容  
 - 設定物件Part的PartName為顯示  
 - listBox1.DisplayMember = "PartName";  

@@ -16,7 +16,9 @@ namespace csharp_example
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            new MyExample().Test();
             Application.Run(new Form1());
+            
         }
     }
 }

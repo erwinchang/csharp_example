@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsoleClient
 {
-    class Program
+    public class MySender
     {
-        static void Main(string[] args)
+        private static int remoteReceivePort = 8012;
+        public void Test()
         {
-            new MyExample().Test();
+            IPAddress ip = IPAddress.Parse("127.0.0.1");
         }
     }
 }

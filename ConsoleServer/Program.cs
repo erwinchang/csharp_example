@@ -10,6 +10,7 @@ namespace ConsoleServer
     {
         static void Main(string[] args)
         {
+            new MyReceiveForm().Test();
         }
     }
 }

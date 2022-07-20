@@ -1,8 +1,11 @@
 # csharp_example
+
 ## TCP Example
 
-1.Server: 開啟特定port lisent  
-2.Client: 連接此特定port  
-3.Server: 當有client連上時，提供一個port服務此Client  
+Server端使用Thread來接 client資料  
+1   Server: new Thread(ListenClientConnect)    
+1.2 Server/ListenClientConnect: 等待Accept()，當有Client連入，產生新的Thread(ReceiveMessage)  
 
-<a href="https://imgur.com/tZuPDAc"><img src="https://i.imgur.com/tZuPDAc.png" title="source: imgur.com" width="400px" /></a>
+<a href="https://imgur.com/wzJldYD"><img src="https://i.imgur.com/wzJldYD.png" title="source: imgur.com" width="400px" /></a>
+
+<a href="https://imgur.com/L0Jhuir"><img src="https://i.imgur.com/L0Jhuir.png" title="source: imgur.com" width="400px"/></a>

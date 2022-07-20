@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleClient
@@ -29,11 +30,23 @@ namespace ConsoleClient
             int receiveLength = clientSocket.Receive(result);
             Console.WriteLine("client receive message {0}: {1}", clientSocket.RemoteEndPoint.ToString(),Encoding.ASCII.GetString(result,0,receiveLength));
 
-            string sendMessage = "client send Message Hello";
-            clientSocket.Send(Encoding.ASCII.GetBytes(sendMessage));
-            Console.WriteLine("send to server :{0}",sendMessage);
-            clientSocket.Shutdown(SocketShutdown.Both);
-            clientSocket.Close();
+            for(int  i=0; i<5; i++)
+            {
+                try
+                {
+                    Thread.Sleep(1000);
+                    string sendMessage = "client send Message Hello" + DateTime.Now;
+                    clientSocket.Send(Encoding.ASCII.GetBytes(sendMessage));
+                    Console.WriteLine("send to server :{0}", sendMessage);
+                }
+                catch
+                {
+                    clientSocket.Shutdown(SocketShutdown.Both);
+                    clientSocket.Close();
+                    break;
+                }
+            }
+            Console.WriteLine("Send Finish..");
             Console.ReadLine();
         }
     }

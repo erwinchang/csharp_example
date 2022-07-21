@@ -2,9 +2,9 @@
 
 ## TCP Server/Client Example
 
-1.採用TcpClient方式
-Server: 採用Thread / ListenClientConnect來接Client連線
-當Client連進來，每個Client在建立RX Thread/ReceiveMessage，一直loop讀資料
+1.採用TcpClient方式  
+Server: 採用Thread / ListenClientConnect來接Client連線  
+當Client連進來，每個Client在建立RX Thread/ReceiveMessage，一直loop讀資料  
 
 server
 ```

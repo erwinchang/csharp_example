@@ -29,8 +29,7 @@
             MessageBox.Show(h.Name.ToString());
 ```
 
-<a href="https://imgur.com/155PS6k"><img src="https://i.imgur.com/155PS6k.png" title="source: imgur.com" /></a>
-
+<a href="https://imgur.com/I5RjNXx"><img src="https://i.imgur.com/I5RjNXx.png" title="source: imgur.com" /></a>
 
 參考:  
 - [程式碼隱藏的資源][1]

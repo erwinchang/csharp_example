@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="188" Width="300">
     <StackPanel Background="LightSlateGray">
-        <TextBlock Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}" Margin="5"/>
+        <TextBlock  Margin="5">
+            <TextBlock.Text>
+                <Binding ElementName="slider1" Path="Value" Mode="OneWay"/>
+            </TextBlock.Text>
+        </TextBlock>
         <Slider x:Name="slider1" Margin="5"/>
     </StackPanel>
 </Window>

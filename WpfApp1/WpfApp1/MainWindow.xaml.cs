@@ -30,5 +30,14 @@ namespace WpfApp1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void buttonVictor_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            DependencyObject leve1 = VisualTreeHelper.GetParent(btn);
+            DependencyObject leve2 = VisualTreeHelper.GetParent(leve1);
+            DependencyObject leve3 = VisualTreeHelper.GetParent(leve2);
+            MessageBox.Show(leve3.GetType().ToString());
+        }
     }
 }

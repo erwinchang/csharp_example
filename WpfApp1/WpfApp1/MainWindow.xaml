@@ -6,13 +6,15 @@
         xmlns:sys="clr-namespace:System;assembly=System"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="{x:Static local:MainWindow.WindowTitel}" Height="120" Width="300">
+        Title="{x:Static local:MainWindow.WindowTitel}" Height="200" Width="300">
     <Grid>
-        <GroupBox Margin="10" BorderBrush="Gray">
-            <GroupBox.Header>
-                <Image Source="p0009.png" Width="30" Height="30"/>
-            </GroupBox.Header>
-            <TextBlock TextWrapping="WrapWithOverflow" Text="TextBlock Wrapping" Margin="10"/>
-        </GroupBox>
+        <ListBox Margin="5">
+            <CheckBox x:Name="checkBoxTim" Content="Tim"/>
+            <CheckBox x:Name="checkBoxTom" Content="Tom"/>
+            <CheckBox x:Name="checkBoxBruce" Content="Burce"/>
+            <Button x:Name="buttonMess" Content="Mess" />
+            <Button x:Name="buttonOwen" Content="Owen" />
+            <Button x:Name="buttonVictor" Content="Victor" Click="buttonVictor_Click" />
+        </ListBox>
     </Grid>
 </Window>

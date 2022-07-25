@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfApp1
 {
     class MyClass
     {
     }
-    public class Human
+    public class MyButton: Button
     {
-        public string Name { get; set; }
-        public string Child { get; set; }
+        public Type UserWindowType { get; set; }
+        protected override void OnClick()
+        {
+            base.OnClick();
+            Window win = Activator.CreateInstance(this.UserWindowType) as Window;
+            if(win != null)
+            {
+                win.ShowDialog();
+            }
+        }
     }
 }

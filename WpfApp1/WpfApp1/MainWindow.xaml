@@ -8,13 +8,6 @@
         mc:Ignorable="d"
         Title="{x:Static local:MainWindow.WindowTitel}" Height="200" Width="300">
     <Grid>
-        <ListBox Margin="5">
-            <CheckBox x:Name="checkBoxTim" Content="Tim"/>
-            <CheckBox x:Name="checkBoxTom" Content="Tom"/>
-            <CheckBox x:Name="checkBoxBruce" Content="Burce"/>
-            <Button x:Name="buttonMess" Content="Mess" />
-            <Button x:Name="buttonOwen" Content="Owen" />
-            <Button x:Name="buttonVictor" Content="Victor" Click="buttonVictor_Click" />
-        </ListBox>
+        <ListBox x:Name="listBoxEmplyee"/>
     </Grid>
 </Window>

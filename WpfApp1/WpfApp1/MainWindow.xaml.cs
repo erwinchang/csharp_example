@@ -22,22 +22,22 @@ namespace WpfApp1
     {
         public static string WindowTitel = "Title Test11";
         public static string ShowText { get { return "Show Test22"; } }
+        
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void buttonVictor_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            DependencyObject leve1 = VisualTreeHelper.GetParent(btn);
-            DependencyObject leve2 = VisualTreeHelper.GetParent(leve1);
-            DependencyObject leve3 = VisualTreeHelper.GetParent(leve2);
-            MessageBox.Show(leve3.GetType().ToString());
+            List<Employee> empList = new List<Employee>()
+            {
+                new Employee(){Id=1,Name="Tim",Age=30},
+                new Employee(){Id=2,Name="Tom",Age=26},
+                new Employee(){Id=3,Name="Guo",Age=26},
+                new Employee(){Id=4,Name="Yan",Age=25},
+                new Employee(){Id=5,Name="Owen",Age=30}
+            };
+            this.listBoxEmplyee.DisplayMemberPath = "Name";
+            this.listBoxEmplyee.SelectedValuePath = "Id";
+            this.listBoxEmplyee.ItemsSource = empList;
         }
     }
 }

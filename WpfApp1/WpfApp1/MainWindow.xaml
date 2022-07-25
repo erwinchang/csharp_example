@@ -7,10 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="188" Width="300">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Rectangle x:Name="rectangle" Width="200" Height="120" Fill="Blue"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="26,29,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Rectangle x:Name="rectangle" Width="200" Height="120">
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <LinearGradientBrush.StartPoint>
+                        <Point X="0" Y="0" />
+                    </LinearGradientBrush.StartPoint>
+                    <LinearGradientBrush.EndPoint>
+                        <Point X="1" Y="1" />
+                    </LinearGradientBrush.EndPoint>
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Offset="0.2" Color="LightBlue"/>
+                            <GradientStop Offset="0.7" Color="Blue"/>
+                            <GradientStop Offset="1.0" Color="DarkBlue"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
     </Grid>
-    <Window.Resources>
-        <local:Human x:Key="human" Child="ABC" Name="TestHuman"/>
-    </Window.Resources>
 </Window>

@@ -71,3 +71,14 @@ private void Button_Click(object sender, RoutedEventArgs e)
 | x:ClassModifier | Attribute |
 | x:Code | XAML指令元素 |
 | x:Name | Attribute |
+| x:Key  | Attribute，用於定義變數 |
+| x:FieldModifier | Attribute，用於定義public等 |
+
+1.下例用法是一樣的
+
+```
+<Button x:Name="btn" />
+```
+```
+<Button Name="btn" />
+```

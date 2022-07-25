@@ -25,18 +25,6 @@ namespace WpfApp1
         
         public MainWindow()
         {
-            InitializeComponent();
-            //add 4 columns
-            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
-            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
-            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
-            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
-
-            //add 3 rows
-            this.gridMain.RowDefinitions.Add(new RowDefinition());
-            this.gridMain.RowDefinitions.Add(new RowDefinition());
-            this.gridMain.RowDefinitions.Add(new RowDefinition());
-            this.gridMain.ShowGridLines = true;
         }
     }
 }

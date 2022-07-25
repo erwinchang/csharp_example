@@ -3,24 +3,23 @@
 
 ## WPF
 
-### 5.4.5 DockerPanel
+### 5.4.6 WrapPanel
 
-DockPanel內的元素會被附加DockerPanel.Dock這個屬性
-DockerPanel.Dock有4個設定Left,Top,Righ及Bottom
-DockPanel內的元件會向指定方向累積
+WrapPanel內部採用流試布局
 
 ```
-<Grid>
-    <DockPanel>
-        <TextBox DockPanel.Dock="Top" Height="25" BorderBrush="Black"/>
-        <TextBox DockPanel.Dock="Left" Width="150" BorderBrush="Black" />
-        <TextBox BorderBrush="Black"/>
-    </DockPanel>
-</Grid>
+<WrapPanel>
+    <Button Width="50" Height="50" Content="OK"/>
+    <Button Width="50" Height="50" Content="OK"/>
+    <Button Width="50" Height="50" Content="OK"/>
+    <Button Width="50" Height="50" Content="OK"/>
+    <Button Width="50" Height="50" Content="OK"/>
+    <Button Width="50" Height="50" Content="OK"/>
+    <Button Width="50" Height="50" Content="OK"/>
+</WrapPanel>
 ```
 
-<a href="https://imgur.com/L0X5nzA"><img src="https://i.imgur.com/L0X5nzA.png" title="source: imgur.com" /></a>
-
+<a href="https://imgur.com/QpJzEhx"><img src="https://i.imgur.com/QpJzEhx.png" title="source: imgur.com" /></a>
 
 
 

@@ -3,10 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"        
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"   
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
-    <StackPanel>
-        <local:MyButton Content="Show" UserWindowType="{x:Type TypeName=local:Window1}" Margin="5" />
-    </StackPanel>
+        Title="MainWindow" Height="120" Width="160">
+    <Grid Background="LightBlue">
+        <ListBox Margin="5">
+            <ListBox.ItemsSource>
+                <x:Array Type="sys:String">
+                    <sys:String>Tim</sys:String>
+                    <sys:String>Tom</sys:String>
+                    <sys:String>Victor</sys:String>
+                </x:Array>
+            </ListBox.ItemsSource>
+        </ListBox>
+    </Grid>
 </Window>

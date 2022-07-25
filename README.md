@@ -16,7 +16,7 @@
 - ComboBoxItem
 
 
-###2.HeaderContentControl
+### 2.HeaderContentControl
 
 顯示帶標題的數據　　
 內容屬性的名稱為Conten和Header　　

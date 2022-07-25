@@ -3,24 +3,23 @@
 
 ## WPF
 
-### 5.4.4 Canvas
+### 5.4.5 DockerPanel
 
-WPF元件無Left及Top等定位點設定
-可以通過Canvas.Left及Canvas.Top來定位
+DockPanel內的元素會被附加DockerPanel.Dock這個屬性
+DockerPanel.Dock有4個設定Left,Top,Righ及Bottom
+DockPanel內的元件會向指定方向累積
 
 ```
-    <Canvas>
-        <TextBlock Text="Name :" Canvas.Left="12" Canvas.Top="12"/>
-        <TextBox Height="23" Width="200" BorderBrush="Black" Canvas.Left="66" Canvas.Top="9"/>
-        <TextBlock Text="Password:" Canvas.Left="12" Canvas.Top="40.72" Height="16" Width="36"/>
-        <TextBox Height="23" Width="200" BorderBrush="Black" Canvas.Left="66" Canvas.Top="38"/>
-        <Button Content="Submit" Width="80" Height="22" Canvas.Left="100" Canvas.Top="67" />
-        <Button Content="Clear" Width="80" Height="22" Canvas.Left="186" Canvas.Top="67"/>
-    </Canvas>
+<Grid>
+    <DockPanel>
+        <TextBox DockPanel.Dock="Top" Height="25" BorderBrush="Black"/>
+        <TextBox DockPanel.Dock="Left" Width="150" BorderBrush="Black" />
+        <TextBox BorderBrush="Black"/>
+    </DockPanel>
+</Grid>
 ```
 
-<a href="https://imgur.com/OmPh8iL"><img src="https://i.imgur.com/OmPh8iL.png" title="source: imgur.com" /></a>
-
+<a href="https://imgur.com/L0X5nzA"><img src="https://i.imgur.com/L0X5nzA.png" title="source: imgur.com" /></a>
 
 
 

@@ -18,8 +18,8 @@
 
 ### 2.HeaderContentControl
 
-顯示帶標題的數據　　
-內容屬性的名稱為Conten和Header　　
+顯示帶標題的數據  
+內容屬性的名稱為Conten和Header  
 
 GroupBox範例如下　　
 ```

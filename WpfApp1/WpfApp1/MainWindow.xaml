@@ -6,25 +6,8 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="188" Width="300">
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Rectangle x:Name="rectangle" Width="200" Height="120">
-            <Rectangle.Fill>
-                <LinearGradientBrush>
-                    <LinearGradientBrush.StartPoint>
-                        <Point X="0" Y="0" />
-                    </LinearGradientBrush.StartPoint>
-                    <LinearGradientBrush.EndPoint>
-                        <Point X="1" Y="1" />
-                    </LinearGradientBrush.EndPoint>
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStopCollection>
-                            <GradientStop Offset="0.2" Color="LightBlue"/>
-                            <GradientStop Offset="0.7" Color="Blue"/>
-                            <GradientStop Offset="1.0" Color="DarkBlue"/>
-                        </GradientStopCollection>
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-    </Grid>
+    <StackPanel Background="LightSlateGray">
+        <TextBlock Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}" Margin="5"/>
+        <Slider x:Name="slider1" Margin="5"/>
+    </StackPanel>
 </Window>

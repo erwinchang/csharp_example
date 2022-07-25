@@ -3,51 +3,72 @@
 
 ## WPF
 
-5.3.3 ItemControl類
+### 5.4.2 Grid
 
-DisplayMemberPath設定LisBox顯示的數據
 
-ItemsControl使用對應的ItemContainer自動對應數據如下  
-
-1.建立ListBox
+XAML方式如下
 ```
 <Grid>
-    <ListBox x:Name="listBoxEmplyee"/>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+    </Grid.RowDefinitions>
 </Grid>
 ```
 
-2.建立數據及連結如下
+程式動態加法如下
 ```
-List<Employee> empList = new List<Employee>()
+public MainWindow()
 {
-    new Employee(){Id=1,Name="Tim",Age=30},
-    new Employee(){Id=2,Name="Tom",Age=26},
-    new Employee(){Id=3,Name="Guo",Age=26},
-    new Employee(){Id=4,Name="Yan",Age=25},
-    new Employee(){Id=5,Name="Owen",Age=30}
-};
-this.listBoxEmplyee.DisplayMemberPath = "Name";
-this.listBoxEmplyee.SelectedValuePath = "Id";
-this.listBoxEmplyee.ItemsSource = empList;
-```
+    InitializeComponent();
+    //add 4 columns
+    this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
+    this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
+    this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
+    this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
 
-<a href="https://imgur.com/gCyDH12"><img src="https://i.imgur.com/gCyDH12.png" title="source: imgur.com" /></a>
+    //add 3 rows
+    this.gridMain.RowDefinitions.Add(new RowDefinition());
+    this.gridMain.RowDefinitions.Add(new RowDefinition());
+    this.gridMain.RowDefinitions.Add(new RowDefinition());
+    this.gridMain.ShowGridLines = true;
+```            
+
+<a href="https://imgur.com/LWITZtx"><img src="https://i.imgur.com/LWITZtx.png" title="source: imgur.com" /></a>
 
 ----------
 
-ItemsControl如下  
+若總150px
+其中兩行採用絕對值25px
+150-25-25 = 100
+剩下100分5等分,依比例分(2:1:2)為40px:20px:40px
+```
+<Grid.RowDefinitions>
+    <RowDefinition heigh="25"/>
+    <RowDefinition heigh="25"/>
+    <RowDefinition heigh="2*"/>
+    <RowDefinition heigh="1*"/>
+    <RowDefinition heigh="2*"/>
+</Grid.RowDefinitions>
+```
 
-| 名稱 | 對應的Container|
-|:-----|:--------------|
-|ComboxBox | ComboxBoxItem |
-|ContextMenu | MenuItem |
-|ListBox | ListBoxItem |
-|ListView | ListViewItem |
-|Menu | MenuItem |
-|StatuBar | StatusBarItem |
-|TabControl | TabItem |
-|TreeView | TreeViewItem |
+也可以寫成如下
 
-
+```
+<Grid.RowDefinitions>
+    <RowDefinition heigh="25"/>
+    <RowDefinition heigh="25"/>
+    <RowDefinition heigh="2*"/>
+    <RowDefinition heigh="*"/>
+    <RowDefinition heigh="2*"/>
+</Grid.RowDefinitions>
+```
 
 

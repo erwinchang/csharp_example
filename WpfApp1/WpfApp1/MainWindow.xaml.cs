@@ -26,18 +26,17 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            //add 4 columns
+            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
+            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
+            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
+            this.gridMain.ColumnDefinitions.Add(new ColumnDefinition());
 
-            List<Employee> empList = new List<Employee>()
-            {
-                new Employee(){Id=1,Name="Tim",Age=30},
-                new Employee(){Id=2,Name="Tom",Age=26},
-                new Employee(){Id=3,Name="Guo",Age=26},
-                new Employee(){Id=4,Name="Yan",Age=25},
-                new Employee(){Id=5,Name="Owen",Age=30}
-            };
-            this.listBoxEmplyee.DisplayMemberPath = "Name";
-            this.listBoxEmplyee.SelectedValuePath = "Id";
-            this.listBoxEmplyee.ItemsSource = empList;
+            //add 3 rows
+            this.gridMain.RowDefinitions.Add(new RowDefinition());
+            this.gridMain.RowDefinitions.Add(new RowDefinition());
+            this.gridMain.RowDefinitions.Add(new RowDefinition());
+            this.gridMain.ShowGridLines = true;
         }
     }
 }

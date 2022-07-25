@@ -20,10 +20,8 @@
 
 顯示帶標題的數據　　
 內容屬性的名稱為Conten和Header　　
-- GroupBox　　
 
-
-範例如下　　
+GroupBox範例如下　　
 ```
 <Grid>
     <GroupBox Margin="10" BorderBrush="Gray">

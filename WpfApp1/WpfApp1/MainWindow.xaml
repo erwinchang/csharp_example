@@ -7,11 +7,12 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="{x:Static local:MainWindow.WindowTitel}" Height="120" Width="300">
-    <StackPanel>
-        <StackPanel.Children>
-            <TextBox Margin="5"/>
-            <TextBox Margin="5"/>
-            <Button Content="OK" Margin="5"/>
-        </StackPanel.Children>
-    </StackPanel>
+    <Grid>
+        <GroupBox Margin="10" BorderBrush="Gray">
+            <GroupBox.Header>
+                <Image Source="p0009.png" Width="30" Height="30"/>
+            </GroupBox.Header>
+            <TextBlock TextWrapping="WrapWithOverflow" Text="TextBlock Wrapping" Margin="10"/>
+        </GroupBox>
+    </Grid>
 </Window>

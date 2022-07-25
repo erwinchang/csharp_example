@@ -3,27 +3,35 @@
 
 ## WPF
 
-5.2 
+5.3
 
-StackPanel的內容屬性是Children
+- 1.ContentControl
+都為控件(Control)
+內容屬性的名稱為Content
+只能由單一元系充當內容
+ - Button
+ - CheckBox
+ - ComboBoxItem
+等
 
+
+- 2.HeaderContentControl
+顯示帶標題的數據
+內容屬性的名稱為Conten和Header
+ - GroupBox
+
+範例如下
 ```
-<StackPanel>
-    <StackPanel.Children>
-        <TextBox Margin="5"/>
-        <TextBox Margin="5"/>
-        <Button Content="OK" Margin="5"/>
-    </StackPanel.Children>
-</StackPanel>
-```    
+<Grid>
+    <GroupBox Margin="10" BorderBrush="Gray">
+        <GroupBox.Header>
+            <Image Source="p0009.png" Width="30" Height="30"/>
+        </GroupBox.Header>
+        <TextBlock TextWrapping="WrapWithOverflow" Text="TextBlock Wrapping" Margin="10"/>
+    </GroupBox>
+</Grid>
+``` 
 
-內容屬性標簽可以省略
-```
-<StackPanel>
-    <TextBox Margin="5"/>
-    <TextBox Margin="5"/>
-    <Button Content="OK" Margin="5"/>
-</StackPanel>
-```
 
-<a href="https://imgur.com/KOA6Q6X"><img src="https://i.imgur.com/KOA6Q6X.png" title="source: imgur.com" width="400px" /></a>
+
+<a href="https://imgur.com/e7jKFYB"><img src="https://i.imgur.com/e7jKFYB.png" title="source: imgur.com" /></a>

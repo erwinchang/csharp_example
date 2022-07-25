@@ -6,7 +6,7 @@
 ### 5.4.2 Grid
 
 
-XAML方式如下
+XAML方式如下  
 ```
 <Grid>
     <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@ XAML方式如下
 </Grid>
 ```
 
-程式動態加法如下
+程式動態加法如下  
 ```
 public MainWindow()
 {
@@ -45,10 +45,10 @@ public MainWindow()
 
 ----------
 
-若總150px
-其中兩行採用絕對值25px
-150-25-25 = 100
-剩下100分5等分,依比例分(2:1:2)為40px:20px:40px
+若總150px  
+其中兩行採用絕對值25px  
+150-25-25 = 100  
+剩下100分5等分,依比例分(2:1:2)為40px:20px:40px  
 ```
 <Grid.RowDefinitions>
     <RowDefinition heigh="25"/>

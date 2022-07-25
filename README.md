@@ -3,23 +3,19 @@
 
 ## WPF
 
-4.3.4 x:Array
+4.3.5 x:Static
+
+如何取得class裡面變數
+採用x:Static方式
 
 ```
-<Grid Background="LightBlue">
-    <ListBox Margin="5">
-        <ListBox.ItemsSource>
-            <x:Array Type="sys:String">
-                <sys:String>Tim</sys:String>
-                <sys:String>Tom</sys:String>
-                <sys:String>Victor</sys:String>
-            </x:Array>
-        </ListBox.ItemsSource>
-    </ListBox>
-</Grid>
+    public partial class MainWindow : Window
+    {
+        public static string WindowTitel = "Title Test11";
+        public static string ShowText { get { return "Show Test22"; } }
 ```
 
-<a href="https://imgur.com/H9toZtv"><img src="https://i.imgur.com/H9toZtv.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/iuMRIjd"><img src="https://i.imgur.com/iuMRIjd.png" title="source: imgur.com" /></a>
 
 ---------
 

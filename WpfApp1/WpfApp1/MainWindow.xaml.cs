@@ -20,6 +20,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string WindowTitel = "Title Test11";
+        public static string ShowText { get { return "Show Test22"; } }
         public MainWindow()
         {
             InitializeComponent();

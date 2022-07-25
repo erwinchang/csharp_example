@@ -3,56 +3,41 @@
 
 ## WPF
 
-###　採用stackPanel.Children[0]方式
+1.先設定
 
 ```
-<StackPanel>
-    <TextBox Margin="5"/>
-    <Button Content="OK" Margin="5" Click="Button_Click"/>
-</StackPanel>
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
 ```
 
-採用stackPanel.Children[0]來取得TextBox物件
-```
-private void Button_Click(object sender, RoutedEventArgs e)
-{
-    StackPanel stackPanel = this.Content as StackPanel;
-    TextBox textBox = stackPanel.Children[0] as TextBox;
-    if (string.IsNullOrEmpty(textBox.Name))
-    {
-        textBox.Text = "No name!";
-    }
-    else
-    {
-        textBox.Text = textBox.Name;
-    }
-}
-```
-<a href="https://imgur.com/mSGz5xp"><img src="https://i.imgur.com/mSGz5xp.png" title="source: imgur.com" /></a>
+2.再設定變數  
 
-###　採用x:Name方式
+使用剛剛設定sys來建立String  
+使用x:Key方式定義變數   
 
 ```
-<StackPanel>
-    <TextBox x:Name Margin="5"/>
-    <Button Content="OK" Margin="5" Click="Button_Click"/>
-</StackPanel>
+<Window.Resources>
+    <sys:String x:Key="myString">Hello WPF Resource!</sys:String>
+</Window.Resources>
 ```
 
+3.使用變數
+
+在xaml使用方式採用ResourceKey  
+
 ```
-private void Button_Click(object sender, RoutedEventArgs e)
-{
-    if (string.IsNullOrEmpty(textBox.Name))
-    {
-        textBox.Text = "No name!";
-    }
-    else
-    {
-        textBox.Text = textBox.Name;
-    }
-}
+<TextBox Text="{StaticResource ResourceKey=myString}" Margin="5"/>
+
 ```
-<a href="https://imgur.com/tM9q6Dd"><img src="https://i.imgur.com/tM9q6Dd.png" title="source: imgur.com" /></a>
+
+在c#裡面方式採用FindResource  
+
+```
+
+string 採用str = this.FindResource("myString") as string;
+this.textBox1.Text = str;
+```
+
+<a href="https://imgur.com/BLW5fHm"><img src="https://i.imgur.com/BLW5fHm.png" title="source: imgur.com" /></a>
 
 ---------
 

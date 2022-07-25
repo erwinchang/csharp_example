@@ -3,45 +3,28 @@
 
 ## WPF
 
-採用Binding方式，將資料連結到Text  
-
 ```
-<StackPanel Background="LightSlateGray">
-    <TextBlock Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}" Margin="5"/>
-    <Slider x:Name="slider1" Margin="5"/>
+<StackPanel>
+    <TextBox Margin="5"/>
+    <Button Content="OK" Margin="5" Click="Button_Click"/>
 </StackPanel>
 ```
 
-採用屬性元素方式如下  
-
+採用stackPanel.Children[0]來取得TextBox物件
 ```
-<StackPanel Background="LightSlateGray">
-    <TextBlock  Margin="5">
-        <TextBlock.Text>
-            <Binding ElementName="slider1" Path="Value" Mode="OneWay"/>
-        </TextBlock.Text>
-    </TextBlock>
-    <Slider x:Name="slider1" Margin="5"/>
-</StackPanel>
-```    
-
-<a href="https://imgur.com/9ToLi0r"><img src="https://i.imgur.com/9ToLi0r.png" title="source: imgur.com" /></a>
-
-
-其它方式
-
-1.下例兩個方式結果是一樣的
-```
-<TextBlock Text="{Binding Path=Value}" Margin="5"/>
-```
-```
-<TextBlock Text="{Binding Value}" Margin="5"/>
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+    StackPanel stackPanel = this.Content as StackPanel;
+    TextBox textBox = stackPanel.Children[0] as TextBox;
+    if (string.IsNullOrEmpty(textBox.Name))
+    {
+        textBox.Text = "No name!";
+    }
+    else
+    {
+        textBox.Text = textBox.Name;
+    }
+}
 ```
 
-2.下例兩個方式結果是一樣的
-```
-{StaticResource myString, ..}
-```
-```
-{StaticResource ResourceKey=myString, ..}
-```
+<a href="https://imgur.com/mSGz5xp"><img src="https://i.imgur.com/mSGz5xp.png" title="source: imgur.com" /></a>

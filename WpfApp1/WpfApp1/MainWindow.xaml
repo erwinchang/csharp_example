@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="188" Width="300">
     <StackPanel>
-        <TextBox Margin="5"/>
+        <TextBox x:Name="textBox" Margin="5"/>
         <Button Content="OK" Margin="5" Click="Button_Click"/>
     </StackPanel>
 </Window>

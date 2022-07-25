@@ -27,8 +27,8 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel stackPanel = this.Content as StackPanel;
-            TextBox textBox = stackPanel.Children[0] as TextBox;
+            //StackPanel stackPanel = this.Content as StackPanel;
+            //TextBox textBox = stackPanel.Children[0] as TextBox;
             if (string.IsNullOrEmpty(textBox.Name))
             {
                 textBox.Text = "No name!";

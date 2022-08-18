@@ -14,13 +14,6 @@ namespace csharp_example
         public MainForm()
         {
             InitializeComponent();
-            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
-            //this.KeyDown += MainForm_KeyDown;
         }
-        
-        //private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    Console.WriteLine(e.KeyValue);
-        //}
     }
 }

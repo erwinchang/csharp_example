@@ -29,21 +29,9 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.textProgressBar1 = new ProgressBarSample.TextProgressBar();
             this.button1 = new System.Windows.Forms.Button();
+            this.textProgressBar1 = new ProgressBarSample.TextProgressBar();
             this.SuspendLayout();
-            // 
-            // textProgressBar1
-            // 
-            this.textProgressBar1.CustomText = "";
-            this.textProgressBar1.Location = new System.Drawing.Point(127, 83);
-            this.textProgressBar1.Name = "textProgressBar1";
-            this.textProgressBar1.ProgressColor = System.Drawing.Color.LightGreen;
-            this.textProgressBar1.Size = new System.Drawing.Size(100, 23);
-            this.textProgressBar1.TabIndex = 0;
-            this.textProgressBar1.TextColor = System.Drawing.Color.Black;
-            this.textProgressBar1.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.textProgressBar1.VisualMode = ProgressBarSample.ProgressBarDisplayMode.CurrProgress;
             // 
             // button1
             // 
@@ -53,6 +41,19 @@ namespace csharp_example
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textProgressBar1
+            // 
+            this.textProgressBar1.CustomText = "TestItem";
+            this.textProgressBar1.Location = new System.Drawing.Point(126, 110);
+            this.textProgressBar1.Name = "textProgressBar1";
+            this.textProgressBar1.ProgressColor = System.Drawing.Color.LightGreen;
+            this.textProgressBar1.Size = new System.Drawing.Size(196, 23);
+            this.textProgressBar1.TabIndex = 0;
+            this.textProgressBar1.TextColor = System.Drawing.Color.Black;
+            this.textProgressBar1.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textProgressBar1.VisualMode = ProgressBarSample.ProgressBarDisplayMode.TextAndCurrProgress;
             // 
             // Form1
             // 
@@ -68,9 +69,8 @@ namespace csharp_example
         }
 
         #endregion
-
-        private ProgressBarSample.TextProgressBar textProgressBar1;
         private System.Windows.Forms.Button button1;
+        public ProgressBarSample.TextProgressBar textProgressBar1;
     }
 }
 

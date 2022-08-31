@@ -16,5 +16,11 @@ namespace csharp_example
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textProgressBar1.Value = 50;
+            textProgressBar1.CustomText = "test2";
+        }
     }
 }

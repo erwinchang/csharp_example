@@ -20,7 +20,7 @@ namespace ProgressBarSample
         [Description("Font of the text on ProgressBar"), Category("Additional Options")]
         public Font TextFont { get; set; } = new Font(FontFamily.GenericSerif, 11, FontStyle.Bold | FontStyle.Italic);
 
-        private SolidBrush _textColourBrush = (SolidBrush)Brushes.Black;
+        private SolidBrush _textColourBrush = new SolidBrush(Color.Black);
         [Category("Additional Options")]
         public Color TextColor
         {
@@ -165,7 +165,8 @@ namespace ProgressBarSample
 
                 Point location = new Point(((Width / 2) - (int)len.Width / 2), ((Height / 2) - (int)len.Height / 2));
 
-                g.DrawString(text, TextFont, (Brush)_textColourBrush, location);
+                //https://docs.microsoft.com/zh-tw/dotnet/api/system.drawing.graphics.drawstring?view=dotnet-plat-ext-6.0
+                g.DrawString(text, TextFont, _textColourBrush, location);
             }
         }
 

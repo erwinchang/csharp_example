@@ -29,13 +29,48 @@ namespace csharp_example
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.textProgressBar1 = new ProgressBarSample.TextProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // textProgressBar1
+            // 
+            this.textProgressBar1.CustomText = "";
+            this.textProgressBar1.Location = new System.Drawing.Point(127, 83);
+            this.textProgressBar1.Name = "textProgressBar1";
+            this.textProgressBar1.ProgressColor = System.Drawing.Color.LightGreen;
+            this.textProgressBar1.Size = new System.Drawing.Size(100, 23);
+            this.textProgressBar1.TabIndex = 0;
+            this.textProgressBar1.TextColor = System.Drawing.Color.Black;
+            this.textProgressBar1.TextFont = new System.Drawing.Font("Times New Roman", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textProgressBar1.VisualMode = ProgressBarSample.ProgressBarDisplayMode.CurrProgress;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(126, 139);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 28);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textProgressBar1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private ProgressBarSample.TextProgressBar textProgressBar1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

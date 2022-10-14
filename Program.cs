@@ -17,7 +17,8 @@ namespace csharp_example
         static void Main()
         {
             //new Example().Main();
-            new Example2().Main();
+            //new Example2().Main();
+            new Example3().Main();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

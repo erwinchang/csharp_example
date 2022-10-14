@@ -6,21 +6,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Data.Common;
 
 namespace csharp_example
 {
     class MyProgram2
     {
     }
+    public class Example3
+    {
+        protected string _DBPath = string.Format("DatabaseLTE.db");
+        protected SQLiteConnection conn;
+        protected bool m_bIsConnDB;
+        public void Main()
+        {
+            ConnectToDB();
+            GetLTEBandInfo();
+        }
+        public void ConnectToDB()
+        {
+            try
+            {
+                if (conn == null)
+                    conn = new SQLiteConnection(string.Format("Data source={0}", (object)_DBPath));
+                if (m_bIsConnDB)
+                    return;
+                ((DbConnection)conn).Open();
+                m_bIsConnDB = true;
+            }
+            catch (Exception ex)
+            {
+                m_bIsConnDB = false;
+                Debug.WriteLine("[ConnectToDB]" + ex.Message);
+            }
+        }
+        private void GetLTEBandInfo()
+        {
+            SQLiteCommand command = conn.CreateCommand();
+            ((DbCommand)command).CommandText = string.Format("Select * from LTE_Band");
+            SQLiteDataReader sqLiteDataReader = command.ExecuteReader();
+            while (((DbDataReader)sqLiteDataReader).Read())
+            {
+                var DuplexMode = ((DbDataReader)sqLiteDataReader)["duplexmode"].ToString();
+                var Band = ((DbDataReader)sqLiteDataReader)["Band"].ToString();
+                var FulHigh = Convert.ToDouble(((DbDataReader)sqLiteDataReader)["UL_Freq_High"].ToString());
+                var FulLow = Convert.ToDouble(((DbDataReader)sqLiteDataReader)["UL_Freq_Low"].ToString());
+            }
+        }
+    }
     public class Example2
     {
         //https://www.ruyut.com/2021/12/sqlite-crud.html
         public void Main()
         {
-            //CreateDatabaseFile();
-            //Insert("Jack");
-            //Insert("Joe");
-            //Read();
+            CreateDatabaseFile();
+            Insert("Jack");
+            Insert("Joe");
+            Read();
             Update(2, "Steven");
         }
         private string _connectionString = "Data Source=db.db;";

@@ -32,5 +32,10 @@ namespace WpfApp1
         {
             vm.PostsTitle = "Change TXT";
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            vm.PostsTitle = "SkyMVVM";
+        }
     }
 }

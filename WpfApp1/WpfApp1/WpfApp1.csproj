@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Posts.cs" />
     <Compile Include="ViewModels\PostsViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

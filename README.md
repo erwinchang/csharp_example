@@ -3,6 +3,10 @@
 
 ## WPF
 
+1.ViewMode中採用INotifyPropertyChanged來通知view變更資料
+2.Mode中定議資料格式
+3.可以採用ICommand，將View中的button click功能梆定在ViewMode物件中，方便管理資料及事件
+
 ### 說明 MVVM
 
 [MVVM – Introduction][1]  
@@ -36,6 +40,62 @@ public MainWindow(){
 private void ButtonChang_Click(){
  vm.PostsTitle = "Change TXT";    
 }
+```
+
+
+### Binding　ICommand
+在ViewModel加了一個ICommand型別的參數UpdateTitleNmae
+
+[Binding ICommand (命令繫結)][7]
+最簡單方式
+1.在ViewModel新增如下
+
+
+```
+    ICommand showCommand = new ShowCommand();
+    public ICommand Show {
+        get { return showCommand; }
+    }
+```
+
+showcommand.cs
+```
+public class ShowCommand : ICommand
+{
+    public event EventHandler CanExecuteChanged;
+    public bool CanExecute(object parameter){
+        return ture;
+    }
+    public void Execute(object parameter){
+        MessageBox.Show(parameter.ToString());
+    }
+}
+```
+
+在view實做如下
+```
+<Button Command="{Binding Show}"
+```
+
+### 這邊範例如下
+
+1.增加RelayCommand.cs
+2.於PostsViewModel.cs新增內容如下
+```
+public ICommand UpdateTitleName { get { return new RelayCommand(UpdateTitleExecute, CanUpdateTitleExecute); } }
+
+void UpdateTitleExecute()
+{
+    PostsTitle = "SkyMVVM";
+}
+bool CanUpdateTitleExecute()
+{
+    return true;
+}
+```
+3.於View新增如下
+```
+<Button Content="Button" Command="{Binding UpdateTitleName}" 
 ```
 
 ### 其它說明
@@ -82,4 +142,5 @@ DataContext 意味著「資料環境」，它有那麼一點點全域變數的�
 [4]:https://skychang.github.io/2011/12/31/WPF-%E2%80%93-MVVM-%E4%B8%89/
 [5]:https://www.huanlintalk.com/2012/12/wpf-datacontext.html
 [6]:https://www.cnblogs.com/feipeng8848/p/11637108.html
+[7]:https://me1237guy.pixnet.net/blog/post/67837890-binding-icommand-(%E5%91%BD%E4%BB%A4%E7%B9%AB%E7%B5%90)
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1
 {
@@ -20,9 +21,16 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static PostsViewModel vm = new PostsViewModel();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = vm;
+        }
+
+        private void ButtonChang_Click(object sender, RoutedEventArgs e)
+        {
+            vm.PostsTitle = "Change TXT";
         }
     }
 }

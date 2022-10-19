@@ -74,10 +74,12 @@ DataContext 意味著「資料環境」，它有那麼一點點全域變數的�
 [WPF – MVVM (一)][2]  
 [WPF – MVVM (二)][3]  
 [WPF – MVVM (三)][4]  
+[WPF入门（1）——DataContext][6]
 
 [1]:https://yuchungchuang.wordpress.com/2019/06/16/wpf-mvvm-introduction/
 [2]:https://skychang.github.io/2011/12/29/WPF-%E2%80%93-MVVM-%E4%B8%80/
 [3]:https://skychang.github.io/2011/12/29/WPF-%E2%80%93-MVVM-%E4%BA%8C/
 [4]:https://skychang.github.io/2011/12/31/WPF-%E2%80%93-MVVM-%E4%B8%89/
-[5]:
+[5]:https://www.huanlintalk.com/2012/12/wpf-datacontext.html
+[6]:https://www.cnblogs.com/feipeng8848/p/11637108.html
 

@@ -1,5 +1,29 @@
 # mvc example 1
 
+## 2-8 LibMan
+
+採用libman.json管理安裝package
+```
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "bootstrap@4.4.1",
+      "destination": "wwwroot/lib/bootstrap/"
+    }
+  ]
+}
+```
+
+### 2-8-1 安裝bootstrap
+
+<a href="https://imgur.com/H7GqhdF"><img src="https://i.imgur.com/H7GqhdF.png" title="source: imgur.com" /></a>
+
+<a href="https://imgur.com/5ylVuXY"><img src="https://i.imgur.com/5ylVuXY.png" title="source: imgur.com" /></a>
+
+----------------------------
+
 ## 1 如何加到Products
 
 1. Controllers點右鍵，選加入，控制器

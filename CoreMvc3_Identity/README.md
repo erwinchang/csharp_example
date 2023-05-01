@@ -42,3 +42,11 @@ Build started...
 Build succeeded.
 Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'xx\xx'.
 ```
+
+### 3-1 Authorization
+
+設定特定頁面，允語個別人讀取
+
+```
+Microsoft.AspNetCore.Authorization
+```

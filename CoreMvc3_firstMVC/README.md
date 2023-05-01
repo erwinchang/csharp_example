@@ -1,6 +1,6 @@
 # mvc example 1
 
-如何加到Products
+## 1 如何加到Products
 
 1. Controllers點右鍵，選加入，控制器
 
@@ -14,8 +14,9 @@
 <h1>Index</h1>
 ```
 
+## 2 如何更改index方式
 
-2. 俢改Startup.cs
+1. 俢改Startup.cs 
 
 ```
             app.UseEndpoints(endpoints =>
@@ -25,3 +26,13 @@
                     pattern: "{controller=Products}/{action=Index}/{id?}");
             });
 ```
+
+2. 設定
+
+<a href="https://imgur.com/sx6Y8kv"><img src="https://i.imgur.com/sx6Y8kv.png" title="source: imgur.com" /></a>
+
+<a href="https://imgur.com/JyETFtX"><img src="https://i.imgur.com/JyETFtX.png" title="source: imgur.com" /></a>
+
+### 3  新增Controller
+
+<a href="https://imgur.com/MYrQhW0"><img src="https://i.imgur.com/MYrQhW0.png" title="source: imgur.com" /></a>

@@ -1,5 +1,33 @@
 # mvc example 1
 
+
+## depoly
+
+[ASP.NET Core 3.1 專案至IIS][1]
+
+### 1 安裝 dotnet-hosting-3.1.32-win.exe
+
+https://dotnet.microsoft.com/zh-cn/download/dotnet/3.1
+
+Windows Hosting Bundle  => dotnet-hosting-3.1.32-win.exe
+
+
+### 2 新增 web
+
+<a href="https://imgur.com/6Yunqqj"><img src="https://i.imgur.com/6Yunqqj.png" title="source: imgur.com" /></a>
+
+<a href="https://imgur.com/pH3lUU6"><img src="https://i.imgur.com/pH3lUU6.png" title="source: imgur.com" /></a>
+
+### 3 將vs2019產生的(asp.net mvc)發布
+
+
+<a href="https://imgur.com/4Udweul"><img src="https://i.imgur.com/4Udweul.png" title="source: imgur.com" /></a>
+
+<a href="https://imgur.com/BypPpIh"><img src="https://i.imgur.com/BypPpIh.png" title="source: imgur.com" /></a>
+
+
+-------------------
+
 ## 2-8 LibMan
 
 採用libman.json管理安裝package
@@ -60,3 +88,6 @@
 ### 3  新增Controller
 
 <a href="https://imgur.com/MYrQhW0"><img src="https://i.imgur.com/MYrQhW0.png" title="source: imgur.com" /></a>
+
+
+[1]:https://nina-weng.medium.com/%E9%BC%A0%E5%B9%B4%E5%85%A8%E9%A6%AC%E9%90%B5%E4%BA%BA%E6%8C%91%E6%88%B0-week02-%E9%83%A8%E7%BD%B2asp-net-core-3-1-%E5%B0%88%E6%A1%88%E8%87%B3iis%E4%B8%8A-c9966f6eaf59

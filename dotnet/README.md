@@ -83,6 +83,13 @@ RunTime 00:00:07.90
 PS D:\gitWork\net_web\github\csharp_example\dotnet\MvcFriends> 
 ```
 
+1-9 
+
+```
+dotnet ef  migrations add AddSeedData   #產生migrations檔案
+dotnet ef  database update              #此時將會在Friends資料表查看到新增3筆資料
+```
+
 ### 版本確認
 
 1.目前 .net.core 6

@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-namespace MvcFriends.Controllers
+namespace MvcFriends.Models
 {
     public class Friends
     {

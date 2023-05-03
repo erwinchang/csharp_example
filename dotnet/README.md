@@ -27,12 +27,36 @@ dotnet run
 
 1-4 install package
 ```
-dotnet tool install --global dotnet-ef --version 6.0.16
-dotnet tool install --global dotnet-aspnet-codegenerator --version 6.0.13
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 6.0.16
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.0.13
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.16
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.16
+dotnet tool install --global dotnet-ef --version 3.1.32
+dotnet tool install --global dotnet-aspnet-codegenerator --version 3.1.5
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 3.1.32
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.1.5
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.32
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.1.32
+```
+
+1-5 新增Data/DatabaseContext.cs
+1-6 修改Startup.cs
+
+1-7 build
+
+使用ef core建立Migration及產生資料庫  
+```
+dotnet build
+dotnet ef migrations add InitialDB
+```
+
+1-7-1 migrations add InitialDB
+
+[如何使用 Code First 的 Migration][1]  
+將會產生MvcFriends/Migrations相關資料  
+
+
+```
+PS D:\gitWork\net_web\github\csharp_example\dotnet\MvcFriends> dotnet ef  migrations add InitialDB
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
 ```
 
 ### 版本確認
@@ -52,3 +76,5 @@ https://www.nuget.org/packages/dotnet-aspnet-codegenerator/6.0.13
 dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef --version 3.1.32
 ```
+
+[1]:https://dotblogs.com.tw/yc421206/2019/11/28/ef_core_migration

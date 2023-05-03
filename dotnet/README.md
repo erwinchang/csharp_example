@@ -101,4 +101,51 @@ dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef --version 3.1.32
 ```
 
+### 其它
+
+dotnet aspnet-codegenerator controller 
+
+```
+dotnet aspnet-codegenerator controller --controllerName FriendsControllers -outDir Controllers -async -namespace MvcFriends.Controllers -m Friends -dc DatabaseContext -udl
+```
+
+```
+PS D:\gitWork\net_web\github\csharp_example\dotnet\MvcFriends> dotnet aspnet-codegenerator controller -h                                                                      
+
+
+Usage: aspnet-codegenerator [arguments] [options]
+
+Arguments:
+  generator  Name of the generator. Check available generators below.
+
+Options:
+  -p|--project             Path to .csproj file in the project.
+  -n|--nuget-package-dir
+  -c|--configuration       Configuration for the project (Possible values: Debug/ Release)
+  -tfm|--target-framework  Target Framework to use. (Short folder name of the tfm. eg. net46)
+  -b|--build-base-path
+  --no-build
+
+Selected Code Generator: controller
+
+Generator Options:
+  --controllerName|-name              : Name of the controller
+  --useAsyncActions|-async            : Switch to indicate whether to generate async controller actions
+  --noViews|-nv                       : Switch to indicate whether to generate CRUD views
+  --restWithNoViews|-api              : Specify this switch to generate a Controller with REST style API, noViews is assumed and any view related options are ignored
+  --readWriteActions|-actions         : Specify this switch to generate Controller with read/write actions when a Model class is not used
+  --model|-m                          : Model class to use
+  --dataContext|-dc                   : DbContext class to use
+  --referenceScriptLibraries|-scripts : Switch to specify whether to reference script libraries in the generated views
+  --layout|-l                         : Custom Layout page to use
+  --useDefaultLayout|-udl             : Switch to specify that default layout should be used for the views
+  --force|-f                          : Use this option to overwrite existing files
+  --relativeFolderPath|-outDir        : Specify the relative output folder path from project where the file needs to be generated, if not specified, file will be generated in the project folder
+  --controllerNamespace|-namespace    : Specify the name of the namespace to use for the generated controller
+  --useSqlite|-sqlite                 : Flag to specify if DbContext should use SQLite instead of SQL Server.
+
+
+RunTime 00:00:01.22
+```
+
 [1]:https://dotblogs.com.tw/yc421206/2019/11/28/ef_core_migration

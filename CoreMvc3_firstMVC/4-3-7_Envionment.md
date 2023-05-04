@@ -57,3 +57,14 @@ Views/Products/Index.cshtml
 <p>EnvName: @ViewData["EnvName"]</p>
 <p>目前環境是: @DisplayEnvironment(env.EnvironmentName)</p>
 ```
+
+### 1-3 在View中直接採用environment
+
+```
+<environment include="Development">
+    <h2>Development Test </h2>
+</environment>
+<environment include="Staging">
+    <h2>Staging Test </h2>
+</environment>
+```

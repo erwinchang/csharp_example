@@ -17,3 +17,10 @@
 <h1>Index123</h1>
 <p>EnvName: @ViewData["EnvName"]</p>
 <p>目前環境是: @DisplayEnvironment(env.EnvironmentName)</p>
+<p>contentRoot: @ViewData["contentRoot"]</p>
+<environment include="Development">
+    <h2>Development Test </h2>
+</environment>
+<environment include="Staging">
+    <h2>Staging Test </h2>
+</environment>

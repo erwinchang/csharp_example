@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,6 +43,12 @@ namespace CoreMvc3_firstMVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new
+            //     PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "/StaticFilesLibrary"))
+            // });
+            // D:/StaticFilesLibrary ??
 
             app.UseRouting();
 

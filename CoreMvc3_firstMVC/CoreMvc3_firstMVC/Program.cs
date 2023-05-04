@@ -23,6 +23,7 @@ namespace CoreMvc3_firstMVC
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseWebRoot(Directory.GetCurrentDirectory() + "/publicshare/");
                 });
     }
 }

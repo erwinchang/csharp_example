@@ -13,10 +13,12 @@ namespace CoreMvc3_firstMVC.Controllers
         public ProductsController(IWebHostEnvironment env)
         {
             _env = env;
+            string contentRoot = env.ContentRootPath;
         }
         public IActionResult Index()
         {
             ViewData["EnvName"] = _env.EnvironmentName;
+            ViewData["contentRoot"] = _env.ContentRootPath;
             return View();
         }
     }

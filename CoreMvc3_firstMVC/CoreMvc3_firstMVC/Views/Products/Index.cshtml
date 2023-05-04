@@ -3,9 +3,17 @@
 *@
 
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
-
 @{
     ViewData["Title"] = "Index";
+    string DisplayEnvironment(string envName) =>
+        envName switch
+        {
+            "Development" => "開發環境111",
+            "Staging" => "預備環境222",
+            "Production" => "生產環境333",
+            _ => "其它環境"
+        };
 }
 <h1>Index123</h1>
 <p>EnvName: @ViewData["EnvName"]</p>
+<p>目前環境是: @DisplayEnvironment(env.EnvironmentName)</p>

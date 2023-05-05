@@ -15,7 +15,16 @@
             <Button x:Name="btnTest" Content="Test" Click="btnTest_Click"/>
         </Grid>
         <Grid Row="1">
-            <local:MyUserControl />
+            <StackPanel Margin="10">
+                <local:MyUserControl Width="200" Height="120"
+                                     BackgroundColor="#00AED8"
+                                     Header="I'm Header 1"
+                                     ContentText="Hello World, this is my first control!"/>
+                <local:MyUserControl Width="200" Height="120"
+                                     BackgroundColor="#FFA0A0"
+                                     Header="I'm Header 2"
+                                     ContentText="Hello World, this is my second control!"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WpfApp1"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Name="gridMain">
+    <Grid >
         <Grid.Background>
             <SolidColorBrush Color="{Binding BackgroundColor}"/>
         </Grid.Background>

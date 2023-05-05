@@ -16,21 +16,14 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// MainWindow.xaml 的互動邏輯
+    /// MyUserControl.xaml 的互動邏輯
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MyUserControl : UserControl
     {
-        public MainWindow()
+        public MyUserControl()
         {
             InitializeComponent();
-            BindingData.vm.Header = "Header000";
-            BindingData.vm.ContentText = "Content000";
-        }
-
-        private void btnTest_Click(object sender, RoutedEventArgs e)
-        {
-            BindingData.vm.Header = "Header111";
-            BindingData.vm.ContentText = "Content111";
+            gridMain.DataContext = BindingData.vm;
         }
     }
 }

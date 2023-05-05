@@ -25,32 +25,34 @@ namespace WpfApp1
         public MyUserControl()
         {
             InitializeComponent();
-            DataContext = this;
+            //DataContext = this;
         }
 
-        private String contextText;
+        public static readonly DependencyProperty ContentTextProperty = DependencyProperty.Register("ContentText",typeof(String), typeof(MyUserControl),
+                                                                       (PropertyMetadata)new FrameworkPropertyMetadata(new PropertyChangedCallback(MyUserControl.OnContentTextChanged)));
         public String ContentText
         {
             get
             {
-                return contextText;
+                return (String)GetValue(ContentTextProperty);
             }
             set
             {
-                SetProperty(ref contextText, value, "ContentText");
+                SetValue(ContentTextProperty, value);
             }
         }
 
-        private String header;
+        public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register("Header",typeof(String), typeof(MyUserControl), 
+                                                                    (PropertyMetadata)new FrameworkPropertyMetadata(new PropertyChangedCallback(MyUserControl.OnHeaderChanged)));
         public String Header
         {
             get
             {
-                return header;
+                return (String)GetValue(HeaderProperty);
             }
             set
             {
-                SetProperty(ref header, value, "Header");
+                SetValue(HeaderProperty, value);
             }
         }
         private String backgroundColor;
@@ -64,6 +66,18 @@ namespace WpfApp1
             {
                 SetProperty(ref backgroundColor, value, "BackgroundColor");
             }
+        }
+
+        private static void OnHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MyUserControl mu = (MyUserControl)d;
+            mu.txtHeader.Text = mu.Header;
+        }
+
+        private static void OnContentTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MyUserControl mu = (MyUserControl)d;
+            mu.txtContentText.Text = mu.ContentText;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

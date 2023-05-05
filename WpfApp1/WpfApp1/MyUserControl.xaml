@@ -6,22 +6,22 @@
              xmlns:local="clr-namespace:WpfApp1"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
+    <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="{Binding BackgroundColor}"/>
+            <SolidColorBrush Color="{Binding BackgroundColor, ElementName=root}"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
+        <TextBlock x:Name="txtHeader" Grid.Row="0"
                    Padding="10,10,10,0"
-                   Text="{Binding Header}"
+                   Text="NNN"
                    FontSize="30"
                    Foreground="#333333"/>
-        <TextBlock Grid.Row="1"
+        <TextBlock x:Name="txtContentText" Grid.Row="1"
                    Padding="10"
-                   Text="{Binding ContentText}"
+                   Text="YYY"
                    FontSize="18"
                    Foreground="#666666"
                    TextWrapping="Wrap"/>

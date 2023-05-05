@@ -23,14 +23,38 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            BindingData.vm.Header = "Header000";
-            BindingData.vm.ContentText = "Content000";
+
+            //BindingData.vm.Header = "Header111";
+            gridMain.DataContext = this;
         }
 
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            BindingData.vm.Header = "Header111";
-            BindingData.vm.ContentText = "Content111";
+
+        }
+
+        public String Header1
+        {
+            get
+            {
+                return "Header 1";
+            }
+        }
+
+        public String Header2
+        {
+            get
+            {
+                return "Header 2";
+            }
+        }
+
+        public String ContentText
+        {
+            get
+            {
+                return "Hello World, this is my first control!";
+            }
         }
     }
 }

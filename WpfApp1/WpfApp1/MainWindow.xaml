@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <local:DiagnolPanel>
+            <Button BorderBrush="Black" Background="Red" Content="0" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="1" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="2" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="3" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="4" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="5" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="6" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="7" Width="40"></Button>
+            <Button BorderBrush="Black" Background="Red" Content="8" Width="40"></Button>
+        </local:DiagnolPanel>
     </Grid>
 </Window>

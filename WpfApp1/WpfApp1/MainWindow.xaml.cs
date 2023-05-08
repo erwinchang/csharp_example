@@ -21,6 +21,8 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private ListViewDragDropMg<ListTestPlan> dragMgr;
+        private Point startPoint = new Point();
+        private int startIndex = -1;
 
         public MainWindow()
         {
@@ -84,6 +86,98 @@ namespace WpfApp1
             if (index < Global.listPlan.Count - 1)
             {
                 Global.listPlan.Move(index, index + 1);
+            }
+        }
+
+        // Helper to search up the VisualTree
+        private static T FindAnchestor<T>(DependencyObject current)
+            where T : DependencyObject
+        {
+            do
+            {
+                if (current is T)
+                {
+                    return (T)current;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            while (current != null);
+            return null;
+        }
+        private void listViewTestPlan_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Get current mouse position
+            startPoint = e.GetPosition(null);
+            string txtMsg = string.Format("[PreviewMouseLeftButtonDown] {0}", startPoint.ToString());
+            WriteLine(txtMsg);
+        }
+        private void WriteLine(string Msg)
+        {
+            Console.WriteLine("[{0}] {1}", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"), Msg);
+        }
+
+        private void listViewTestPlan_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
+            WriteLine(string.Format("[MouseMove] mousePos:{0}, minH:{1}, minV:{2}, diff:{3}", mousePos.ToString(), SystemParameters.MinimumHorizontalDragDistance, SystemParameters.MinimumVerticalDragDistance, diff.ToString()));
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                       Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Get the dragged ListViewItem
+                
+                ListView listView = sender as ListView;
+                ListViewItem listViewItem = FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
+                if (listViewItem == null) return;           // Abort
+                                                            // Find the data behind the ListViewItem
+                ListTestPlan item = (ListTestPlan)listView.ItemContainerGenerator.ItemFromContainer(listViewItem);
+                if (item == null) return;                   // Abort
+                                                            // Initialize the drag & drop operation
+                startIndex = listViewTestPlan.SelectedIndex;
+                DataObject dragData = new DataObject("ListTestPlan", item);
+                DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Copy | DragDropEffects.Move);                
+            }
+        }
+
+        private void listViewTestPlan_DragEnter(object sender, DragEventArgs e)
+        {
+            WriteLine("[DragEnter]");
+            if (!e.Data.GetDataPresent("ListTestPlan") || sender != e.Source)
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+        private void listViewTestPlan_Drop(object sender, DragEventArgs e)
+        {
+            WriteLine("[Drop]");
+            int index = -1;
+
+            if (e.Data.GetDataPresent("ListTestPlan") && sender == e.Source)
+            {
+                // Get the drop ListViewItem destination
+                ListView listView = sender as ListView;
+                ListViewItem listViewItem = FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
+                if (listViewItem == null)
+                {
+                    // Abort
+                    e.Effects = DragDropEffects.None;
+                    return;
+                }
+                // Find the data behind the ListViewItem
+                ListTestPlan item = (ListTestPlan)listView.ItemContainerGenerator.ItemFromContainer(listViewItem);
+                // Move item into observable collection 
+                // (this will be automatically reflected to lstView.ItemsSource)
+                e.Effects = DragDropEffects.Move;
+                index = Global.listPlan.IndexOf(item);
+                if (startIndex >= 0 && index >= 0)
+                {
+                    Global.listPlan.Move(startIndex, index);
+                }
+                startIndex = -1;        // Done!
             }
         }
     }

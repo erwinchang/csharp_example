@@ -29,7 +29,7 @@
             <Button x:Name="btnMoveDown" Content="Move Down" Height="40" Width="80" Grid.Row="1" Grid.Column="2" Click="btnMoveDown_Click" />
         </Grid>
         <Grid Grid.Row="2">
-            <ListView Name="listViewTestPlan">
+            <ListView Name="listViewTestPlan" PreviewMouseLeftButtonDown="listViewTestPlan_PreviewMouseLeftButtonDown" MouseMove="listViewTestPlan_MouseMove" DragEnter="listViewTestPlan_DragEnter" Drop="listViewTestPlan_Drop">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Enabled" Width="50">

@@ -23,6 +23,11 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class1", Standard = "Standard1" });
+            Global.listPlan.Add(new ListTestPlan { Switch = false, Class = "Class2", Standard = "Standard2" });
+            Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class3", Standard = "Standard3" });
+
+            listViewTestPlan.ItemsSource = Global.listPlan;
         }
 
         //https://blog.csdn.net/qq_43024228/article/details/110454081

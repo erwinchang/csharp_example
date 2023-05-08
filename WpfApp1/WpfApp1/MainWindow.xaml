@@ -11,10 +11,39 @@
             <RowDefinition Height="100" />
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Name="my_Panel">
+        <StackPanel Name="my_Panel" >
             <Button Content="Test" Width="200" Height="40" Name="btnTest" Click="btnTest_Click"/>
             <Button Content="Clear" Width="200" Height="40" Name="btnClear" Click="btnClear_Click"/>
         </StackPanel>
-        <Button x:Name="myButton" Width="200" Height="40" Grid.Row="1" />
+        <StackPanel Grid.Row="1">
+            <Button x:Name="myButton" Width="200" Height="40" Grid.Row="1" />
+        <ListView Name="listViewTestPlan">
+            <ListView.View>
+                <GridView>
+                        <GridViewColumn Header="Enabled" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Switch}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Class" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalAlignment="Center" Content="{Binding Class}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Standard" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalAlignment="Center" Content="{Binding Standard}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+            </ListView.View>
+        </ListView>
+        </StackPanel>
     </Grid>
 </Window>

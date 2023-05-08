@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Global.cs" />
     <Compile Include="ListViewDragDropMg.cs" />
+    <Compile Include="MouseUti.cs" />
     <Compile Include="TestAdorner.cs" />
     <Compile Include="ListTestPlan.cs" />
     <Page Include="MainWindow.xaml">

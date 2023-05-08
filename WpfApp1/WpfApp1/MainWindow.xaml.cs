@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -30,6 +31,12 @@ namespace WpfApp1
             Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class1", Standard = "Standard1" });
             Global.listPlan.Add(new ListTestPlan { Switch = false, Class = "Class2", Standard = "Standard2" });
             Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class3", Standard = "Standard3" });
+            Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class4", Standard = "Standard4" });
+            Global.listPlan.Add(new ListTestPlan { Switch = false, Class = "Class5", Standard = "Standard5" });
+            Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class6", Standard = "Standard6" });
+            Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class7", Standard = "Standard7" });
+            Global.listPlan.Add(new ListTestPlan { Switch = false, Class = "Class8", Standard = "Standard8" });
+            Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class9", Standard = "Standard9" });
 
             listViewTestPlan.ItemsSource = Global.listPlan;
 
@@ -110,6 +117,59 @@ namespace WpfApp1
             startPoint = e.GetPosition(null);
             string txtMsg = string.Format("[PreviewMouseLeftButtonDown] {0}", startPoint.ToString());
             WriteLine(txtMsg);
+
+            bool canInitiateDrag = false; ;
+            if (IsMouseOverScrollbar() == false)
+            {
+                int indexUnderDragCursor = IndexUnderDragCursor();
+                canInitiateDrag = indexUnderDragCursor > -1;
+            }
+
+        }
+        private bool IsMouseOverScrollbar()
+        {
+            Point p1 = MouseUti.GetMousePosition((Visual)listViewTestPlan);
+            HitTestResult hitTestResult = VisualTreeHelper.HitTest((Visual)listViewTestPlan, p1);
+            ScrollBar ScrollBar1 = FindAnchestor<ScrollBar>((DependencyObject)hitTestResult.VisualHit);
+            if (ScrollBar1 == null) return false;           // Abort
+            return true;
+        }
+        private int IndexUnderDragCursor()
+        {
+            int indexUnderDragCursor = -1;
+            for (int index = 0; index < this.listViewTestPlan.Items.Count; ++index)
+            {
+                if (this.MyIsMouseOver((Visual)this.GetListViewItem(index)))
+                {
+                    indexUnderDragCursor = index;
+                    WriteLine(string.Format("[IndexUnderDragCursor] indexUnderDragCursor:{0}", indexUnderDragCursor));
+                    break;
+                }
+            }
+            return indexUnderDragCursor;
+        }
+        private ListViewItem GetListViewItem(int index)
+        {
+            if(listViewTestPlan.ItemContainerGenerator.Status != GeneratorStatus.ContainersGenerated)
+            {
+                return (ListViewItem)null;
+            }
+            else
+            {
+                ListViewItem l1= listViewTestPlan.ItemContainerGenerator.ContainerFromIndex(index) as ListViewItem;
+                return l1;
+            }
+        }
+        private bool MyIsMouseOver(Visual target)
+        {
+            if(target != null)
+            {
+                if (VisualTreeHelper.GetDescendantBounds(target).Contains(MouseUti.GetMousePosition(target)))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         private void WriteLine(string Msg)
         {
@@ -121,7 +181,7 @@ namespace WpfApp1
             // Get the current mouse position
             Point mousePos = e.GetPosition(null);
             Vector diff = startPoint - mousePos;
-            WriteLine(string.Format("[MouseMove] mousePos:{0}, minH:{1}, minV:{2}, diff:{3}", mousePos.ToString(), SystemParameters.MinimumHorizontalDragDistance, SystemParameters.MinimumVerticalDragDistance, diff.ToString()));
+             WriteLine(string.Format("[MouseMove] mousePos:{0}, minH:{1}, minV:{2}, diff:{3}", mousePos.ToString(), SystemParameters.MinimumHorizontalDragDistance, SystemParameters.MinimumVerticalDragDistance, diff.ToString()));
 
             if (e.LeftButton == MouseButtonState.Pressed &&
                 (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
@@ -138,7 +198,11 @@ namespace WpfApp1
                                                             // Initialize the drag & drop operation
                 startIndex = listViewTestPlan.SelectedIndex;
                 DataObject dragData = new DataObject("ListTestPlan", item);
-                DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Copy | DragDropEffects.Move);                
+               //DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Copy | DragDropEffects.Move);
+
+                if (DragDrop.DoDragDrop((DependencyObject)listViewItem, (object)dragData, DragDropEffects.Copy | DragDropEffects.Move) == DragDropEffects.None)
+                    return;
+                WriteLine("[MouseMove] DoDragDrop Finish");
             }
         }
 

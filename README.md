@@ -57,5 +57,50 @@ Arrange()每个元素通过调用每个直接子元素的方法来排列其子�
 
 在这两个步骤之后，渲染发生并且元素出现在屏幕上
 
+----------------------
+
+## [WPF在VisualTree上增加Visual][2]
+
+1. VisualChildrenCount 及 GetVisualChild 一定要設，指定量
+2. MeasureOverride 及 ArrangeOverride 也要設定，定義元件大小及位置，此時才會顯示出來
+
+```
+private Rectangle child;
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            this.child.Measure(constraint);
+            return this.child.DesiredSize;
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            this.child.Arrange(new Rect(finalSize));
+            return finalSize;
+        }
+        
+        protected override Visual GetVisualChild(int index) => (Visual)this.child;
+
+        protected override int VisualChildrenCount => 1;
+```
+
+------------
+
+## [WPF - Adorner]
+
+软件开发人员可能还需要考虑重写GetDesiredTransform()来指定Adorner的显示位置
+```
+    public override GeneralTransform GetDesiredTransform(GeneralTransform transform) => (GeneralTransform) new GeneralTransformGroup()
+    {
+      Children = {
+        base.GetDesiredTransform(transform),
+        (GeneralTransform) new TranslateTransform(this.offsetLeft, this.offsetTop)
+      }
+    };
+```
+
+
 
 [1]:https://zhuanlan.zhihu.com/p/502902641
+[2]:https://www.jb51.net/article/253138.htm
+[3]:https://www.cnblogs.com/loveis715/archive/2012/03/31/2427734.html

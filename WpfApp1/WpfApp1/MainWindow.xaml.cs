@@ -57,5 +57,34 @@ namespace WpfApp1
                 }
             }
         }
+
+        //https://www.codeproject.com/Articles/1236549/Csharp-WPF-listview-Drag-Drop-a-Custom-Item
+        private void btnMoveUp_Click(object sender, RoutedEventArgs e)
+        {
+            ListTestPlan item = null;
+            int index = -1;
+
+            if (listViewTestPlan.SelectedItems.Count != 1) return;
+            item = (ListTestPlan)listViewTestPlan.SelectedItems[0];
+            index = Global.listPlan.IndexOf(item);
+            if (index > 0)
+            {
+                Global.listPlan.Move(index, index - 1);
+            }
+        }
+
+        private void btnMoveDown_Click(object sender, RoutedEventArgs e)
+        {
+            ListTestPlan item = null;
+            int index = -1;
+
+            if (listViewTestPlan.SelectedItems.Count != 1) return;
+            item = (ListTestPlan)listViewTestPlan.SelectedItems[0];
+            index = Global.listPlan.IndexOf(item);
+            if (index < Global.listPlan.Count - 1)
+            {
+                Global.listPlan.Move(index, index + 1);
+            }
+        }
     }
 }

@@ -19,7 +19,14 @@
             <Button Content="Clear" Width="200" Height="40" Name="btnClear" Click="btnClear_Click"/>
         </StackPanel>
         <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
             <Button x:Name="myButton" Width="200" Height="40" Grid.Row="1" />
+            <Button x:Name="btnMoveUp" Content="Move Up" Height="40" Width="80" Grid.Row="1" Grid.Column="1" Click="btnMoveUp_Click" />
+            <Button x:Name="btnMoveDown" Content="Move Down" Height="40" Width="80" Grid.Row="1" Grid.Column="2" Click="btnMoveDown_Click" />
         </Grid>
         <Grid Grid.Row="2">
             <ListView Name="listViewTestPlan">

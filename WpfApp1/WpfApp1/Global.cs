@@ -10,5 +10,6 @@ namespace WpfApp1
     public class Global
     {
         public static ObservableCollection<ListTestPlan> listPlan = new ObservableCollection<ListTestPlan>();
+        public static ObservableCollection<ListTestPlan> listPlan2 = new ObservableCollection<ListTestPlan>();
     }
 }

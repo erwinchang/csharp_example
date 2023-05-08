@@ -20,6 +20,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ListViewDragDropMg<ListTestPlan> dragMgr;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,6 +30,11 @@ namespace WpfApp1
             Global.listPlan.Add(new ListTestPlan { Switch = true, Class = "Class3", Standard = "Standard3" });
 
             listViewTestPlan.ItemsSource = Global.listPlan;
+
+            Global.listPlan2.Add(new ListTestPlan { Switch = true, Class = "Class4", Standard = "Standard4" });
+            listViewTestPlan2.ItemsSource = Global.listPlan2;
+
+            dragMgr = new ListViewDragDropMg<ListTestPlan>(listViewTestPlan);
         }
 
         //https://blog.csdn.net/qq_43024228/article/details/110454081

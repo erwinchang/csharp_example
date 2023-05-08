@@ -5,21 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="MainWindow" Width="600">
     <Grid Margin="10" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="150" />
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Name="my_Panel" >
             <Button Content="Test" Width="200" Height="40" Name="btnTest" Click="btnTest_Click"/>
             <Button Content="Clear" Width="200" Height="40" Name="btnClear" Click="btnClear_Click"/>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <Grid Grid.Row="1">
             <Button x:Name="myButton" Width="200" Height="40" Grid.Row="1" />
-        <ListView Name="listViewTestPlan">
-            <ListView.View>
-                <GridView>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ListView Name="listViewTestPlan">
+                <ListView.View>
+                    <GridView>
                         <GridViewColumn Header="Enabled" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -42,8 +47,37 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
-            </ListView.View>
-        </ListView>
-        </StackPanel>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="3">
+            <ListView Name="listViewTestPlan2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Enabled" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Switch}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Class" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalAlignment="Center" Content="{Binding Class}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Standard" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalAlignment="Center" Content="{Binding Standard}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>        
     </Grid>
 </Window>

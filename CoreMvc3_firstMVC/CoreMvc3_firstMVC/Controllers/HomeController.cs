@@ -20,6 +20,10 @@ namespace CoreMvc3_firstMVC.Controllers
 
         public IActionResult Index()
         {
+            EventId eventId = new EventId(1234, "我的記錄資訊");
+            _logger.LogTrace(eventId, "Logging - LogTrace()記錄資訊- Home/Index被呼叫");
+            _logger.LogDebug(1234, "Logging - LogDebug()記錄資訊- Home/Index被呼叫");
+            _logger.LogWarning(1234, "Logging - LogWarning()記錄資訊- Home/Index被呼叫");
             return View();
         }
 

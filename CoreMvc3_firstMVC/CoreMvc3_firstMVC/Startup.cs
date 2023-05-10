@@ -43,12 +43,12 @@ namespace CoreMvc3_firstMVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            // app.UseStaticFiles(new StaticFileOptions
-            // {
-            //     FileProvider = new
-            //     PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "/StaticFilesLibrary"))
-            // });
-            // D:/StaticFilesLibrary ??
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                 FileProvider = new
+                 PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "StaticFilesLibrary")),
+                 RequestPath = "/StaticFiles"
+            });
 
             app.UseRouting();
 

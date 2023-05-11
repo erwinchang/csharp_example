@@ -24,7 +24,9 @@ namespace CoreMvc3_firstMVC.Controllers
             _logger.LogTrace(eventId, "Logging - LogTrace()記錄資訊- Home/Index被呼叫");
             _logger.LogDebug(1234, "Logging - LogDebug()記錄資訊- Home/Index被呼叫");
             _logger.LogWarning(1234, "Logging - LogWarning()記錄資訊- Home/Index被呼叫");
-            return View();
+            return View("IndexTest");
+            //return View("~/Views/Home/IndexTest.cshtml");
+            //return View("Views/Home/IndexTest.cshtml");
         }
 
         public IActionResult Privacy()

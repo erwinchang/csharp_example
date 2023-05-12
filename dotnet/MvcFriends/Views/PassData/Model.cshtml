@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Model";
+}
+
+<h1>Model</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email);
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach(var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modleitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modleitem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modleitem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modleitem => item.Email)
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>

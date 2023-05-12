@@ -59,6 +59,16 @@ namespace MvcFriends.Controllers
             return View();
         }
 
+        public IActionResult Model()
+        {
+            //1.呼叫View()方法時，直接將model當成參數傳入
+            return View(empsList);
+
+            //2.將model物件指定給ViewData.Model屬性
+            //ViewData.Model = empsList;
+            //return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

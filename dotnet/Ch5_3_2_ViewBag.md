@@ -35,3 +35,71 @@ PassViewBag.cshtml
     <li>Married: @ViewBag.Married</li>
 </ul>
 ```
+
+### CH5_3_2 Model傳遞資料
+
+```
+https://localhost:44365/PassData/Model
+```
+
+PassDataController.cs
+```
+        public IActionResult Model()
+        {
+            //1.呼叫View()方法時，直接將model當成參數傳入
+            return View(empsList);
+
+            //2.將model物件指定給ViewData.Model屬性
+            //ViewData.Model = empsList;
+            //return View();
+        }
+```
+
+Model.cshtml
+```
+@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Model";
+}
+
+<h1>Model</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email);
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach(var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modleitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modleitem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modleitem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modleitem => item.Email)
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>
+```
+

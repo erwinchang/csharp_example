@@ -94,6 +94,17 @@ namespace MvcFriends.Controllers
             //return View(petsList);
         }
 
+        public IActionResult PassTempData()
+        {
+            TempData["ErrorMessage"] = "無足夠權限存取系統資料, 請連絡系統管理人員";
+            TempData["UserName"] = "David";
+            TempData["Time"] = DateTime.Now.ToLongTimeString();
+
+            TempData["Message"] = "禁止存取";
+
+            return RedirectToAction("ErrorMessage", "ErrorHandler");
+        }
+
         public IActionResult Privacy()
         {
             return View();

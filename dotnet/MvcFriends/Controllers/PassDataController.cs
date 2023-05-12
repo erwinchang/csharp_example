@@ -71,7 +71,27 @@ namespace MvcFriends.Controllers
 
         public IActionResult PetShop()
         {
+            //1.使用ViewData傳遞資料到View
+            ViewData["Company"] = "汪星人寵物店";
+
+            //2.使用ViewBag傳遞資料到View
+            ViewBag.Address = "台北市信義區松山路100號";
+
+            //宣告一個List泛型集合,代表model資料模型
+            List<string> petsList = new List<string>();
+            petsList.Add("狗");
+            petsList.Add("猫");
+            petsList.Add("魚");
+            petsList.Add("鼠");
+            petsList.Add("變色龍");
+
+            //3.將petSList資料模型指派給ViewData.Model屬性, 傳遞到View
+            ViewData.Model = petsList;
+
             return View();
+
+            //實際上傳送model物件給View,會更常使用View(petsList)語法取代
+            //return View(petsList);
         }
 
         public IActionResult Privacy()

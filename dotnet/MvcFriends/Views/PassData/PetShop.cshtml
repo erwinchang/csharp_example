@@ -1,7 +1,21 @@
-﻿
+﻿@model List<string>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>PetShop</h1>
 
+公司名稱: @ViewData["Company"]
+<br />
+公司地址: @ViewBag.Address
+<br />
+
+販賣的寵物有:
+<br />
+
+<ul>
+    @foreach(var pet in Model)
+            {
+                <li>@pet</li>
+            }
+</ul>

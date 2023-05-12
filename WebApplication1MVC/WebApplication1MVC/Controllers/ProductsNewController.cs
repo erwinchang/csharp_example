@@ -12,7 +12,7 @@ namespace WebApplication1MVC.Controllers
         {
             return View();
         }
-        public ActionResult ProductInfo()
+        public ActionResult ProductDetails()
         {
             return View();
         }

@@ -1,5 +1,10 @@
 # csharp_example
 
+### CH5-8 如何變更Action名稱
+
+1. 修變ProductNewControll.cs內ProductInfo Action為ProductDetails
+2. 將View/ProductInfo.cshtml更名為View/ProductDetails.cshtml
+
 ### CH5-8 如何變更Controller 名稱
 
 1. 將ProductContrller.cs改為ProductNewControll.cs

@@ -69,6 +69,11 @@ namespace MvcFriends.Controllers
             //return View();
         }
 
+        public IActionResult PetShop()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

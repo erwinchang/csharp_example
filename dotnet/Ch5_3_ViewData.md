@@ -50,5 +50,17 @@ PassViewData.cshtml
             }
 </ul>
 ```
-
 <a href="https://imgur.com/lxEl8jl"><img src="https://i.imgur.com/lxEl8jl.png" title="source: imgur.com" /></a>
+
+### CH5-3-1
+
+ViewData另一個定義方式 ViewDataAttribute  
+
+```
+        [ViewData]
+        public string Gender { get; set; }
+
+        [ViewData(Key ="Edu")]
+        public string Education { get; set; }
+```
+

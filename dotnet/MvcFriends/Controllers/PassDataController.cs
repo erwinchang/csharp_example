@@ -13,6 +13,12 @@ namespace MvcFriends.Controllers
     {
         private readonly ILogger<PassDataController> _logger;
 
+        [ViewData]
+        public string Gender { get; set; }
+
+        [ViewData(Key ="Edu")]
+        public string Education { get; set; }
+
         public List<Employee> empsList { get; } = new List<Employee>
         {
             new Employee { Id = 10001, Name = "David", Phone = "0933-154228", Email ="david@gmail.com" },
@@ -38,6 +44,9 @@ namespace MvcFriends.Controllers
             ViewData["Age"] = 21;
             ViewData["Single"] = true;
             ViewData["Employees"] = empsList;
+
+            Gender = "男性";
+            Education = "研究所";
             return View();
         }
 

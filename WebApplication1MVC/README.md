@@ -1,0 +1,10 @@
+# csharp_example
+
+## CH5-6
+
+1. 加入Friend.cs
+2. 由Scaffolding建立FriendsController.cs (它會將View部分及Data/FriendContext部分一起建立)
+
+<a href="https://imgur.com/gZ4Y9Ht"><img src="https://i.imgur.com/gZ4Y9Ht.png" title="source: imgur.com" /></a>
+
+<a href="https://imgur.com/VwPxSr6"><img src="https://i.imgur.com/VwPxSr6.png" title="source: imgur.com" /></a>

@@ -49,6 +49,15 @@ namespace MvcFriends.Controllers
             Education = "研究所";
             return View();
         }
+        public IActionResult PassViewBag()
+        {
+            ViewBag.Nickname = "Mary";
+            ViewBag.Height = 168;
+            ViewBag.Weight = 52;
+            ViewBag.Married = false;
+            ViewBag.EmpsList = empsList;
+            return View();
+        }
 
         public IActionResult Privacy()
         {

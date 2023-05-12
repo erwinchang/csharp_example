@@ -23,6 +23,11 @@ namespace MvcFriends.Controllers
             return View();
         }
 
+        public IActionResult PassViewData()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

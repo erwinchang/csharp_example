@@ -8,3 +8,10 @@
 1. 新增PassDataController.cs  
 2. 在PassDataController.cs/ Index點右鍵，新增檢視 (將會產生Views/PassData/Index.cshtml)  
 
+### CH5-3-1 
+
+1. 新增PassViewData分頁
+
+```
+https://localhost:44365/PassData/PassViewData
+```

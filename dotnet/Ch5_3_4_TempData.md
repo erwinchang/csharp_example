@@ -37,7 +37,7 @@ ErrorHandlerController.cs
             }
 
             //TempData.Keep();  //保留全部Key
-            TempData.Keep("ErrorMessage");    //保留指定Key,若重新更新ErrorMessage.cshtml，只有ErrorMessage被保留
+            TempData.Keep("ErrorMessage");    //保留指定Key,若重新更新ErrorMessage.cshtml，只有ErrorMessage被保留(即儲存在Session中)
 
             return View();
         }
@@ -62,4 +62,24 @@ ErrorMessage.cshtml
     <li>訊  息 : @TempData["ErrorMessage"]</li>
     <li>訊  息 : @TempData.Peek("Message")</li>
 </ul>
+```
+
+### TempData Provider採用Cookie方式，如何更改採用Seesion
+
+Startup.cs
+```
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
+
+            //services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            //services.AddSession();
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseAuthorization();
+            
+            //TempData Provider Cookie -> Session
+            //app.UseSession();            
 ```

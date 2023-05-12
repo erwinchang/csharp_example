@@ -26,6 +26,11 @@ namespace MvcFriends
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //TempData Provider Cookie -> Session
+            //services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            //services.AddSession();
+
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")
                 ));
@@ -50,6 +55,9 @@ namespace MvcFriends
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //TempData Provider Cookie -> Session
+            //app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

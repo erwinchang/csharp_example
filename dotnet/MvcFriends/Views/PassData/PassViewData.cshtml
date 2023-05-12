@@ -4,4 +4,16 @@
 }
 
 <h1>PassViewData</h1>
+<ul>
+    <li> Name : @ViewData["Name"]</li>
+    <li>Age : @((int)ViewData["Age"]+1)</li>
+    <li>Single: @ViewData["Single"]</li>
+</ul>
+<hr />
+<ul>
+    @foreach (var item in ViewData)
+            {
+                <li>@item.Key, @item.Value</li>
+            }
+</ul>
 

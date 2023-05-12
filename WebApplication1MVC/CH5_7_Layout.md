@@ -1,5 +1,23 @@
 # csharp_example
 
+## CH5-7 如何指定個別View
+
+1. 新增Views/Shared/_LayoutFriends.cshtml
+2. 設定Views/Friends/Index.cshtml
+```
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutFriend.cshtml"; #設定個另View
+}
+```
+
+設定前
+<a href="https://imgur.com/zIgYm5Z"><img src="https://i.imgur.com/zIgYm5Z.png" title="source: imgur.com" /></a>
+
+設定後
+
+<a href="https://imgur.com/iqymAMI"><img src="https://i.imgur.com/iqymAMI.png" title="source: imgur.com" /></a>
+
 ## CH5-7 Layout
 
 Views/Shared/_Layout.cshtml

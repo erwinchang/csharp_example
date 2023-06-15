@@ -15,6 +15,8 @@
 </div>
 ```
 
+<a href="https://imgur.com/Z21BC2d"><img src="https://i.imgur.com/Z21BC2d.png" title="source: imgur.com" /></a>
+
 
 ### ch6-3
 

@@ -1,5 +1,11 @@
 # mvc example 1
 
+### ch6-3
+
+測試bootstrap html
+```
+https://localhost:44342/HtmlPages/Bootstrap4Template.html
+```
 
 ### ch6-1
 

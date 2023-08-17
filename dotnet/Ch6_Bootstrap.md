@@ -6,6 +6,8 @@
 col-x , x最多到12
 use the .col and .col-* classes. Specify a numbered class when you need a particularly sized column
 
+<img src="https://i.imgur.com/wAwTEex.png" title="" />
+
 
 
 ### [Table][2]

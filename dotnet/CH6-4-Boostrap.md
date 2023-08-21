@@ -29,11 +29,15 @@ Database=Bootstrap_EmployeeDB
 建立種子資料
 
 3. 開啟套件管理器主控台 執行
+記得先在SQLServer建立Bootstrap_EmployeeDB
 ```
 Add-Migration InitialDB
 Update-Database
 ```
-
 <img src="https://i.imgur.com/pVmfBh6.png" title="" />
+
+#### 4 測試如下
+
+<img src="https://imgur.com/0dd574c2-6c7e-4262-8a63-bf3a9ff5f287" title="" />
 
 

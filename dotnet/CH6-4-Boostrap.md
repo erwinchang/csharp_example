@@ -12,11 +12,11 @@ Microsoft.EntityFrameworkCore.Tools 3.1.0
 1. 新增Models/Employee.cs
 2. Controller資料夾按滑鼠右鍵->加入->新增Scaffold項目
 
-<img src="https://i.imgur.com/QIJ3EMu.png" title="" />
+<img src="https://i.imgur.com/QIJ3EMu.png" title="" width="400" />
 
-<img src="https://i.imgur.com/3XsmjQw.png" title="" />
+<img src="https://i.imgur.com/3XsmjQw.png" title="" width="400" />
 
-<img src="https://i.imgur.com/9vwURkc.png" title="" />
+<img src="https://i.imgur.com/9vwURkc.png" title="" width="400" />
 
 ### 3 建立DB
 
@@ -34,11 +34,11 @@ Database=Bootstrap_EmployeeDB
 Add-Migration InitialDB
 Update-Database
 ```
-<img src="https://i.imgur.com/pVmfBh6.png" title="" />
+<img src="https://i.imgur.com/pVmfBh6.png" title="" width="500" />
 
 ### 4 測試如下
 
-<img src="https://i.imgur.com/5vxomxG.png" title="" />
+<img src="https://i.imgur.com/5vxomxG.png" title="" width="500" />
 
 ### 4 boostrap測試
 
@@ -49,18 +49,27 @@ Update-Database
 <table class="table table-bordered table-striped">
 ```
 
-<img src="https://i.imgur.com/eytLl7L.png" title="" />
+<img src="https://i.imgur.com/eytLl7L.png" title="" width="500" />
+
+### 5 如何升級bootstrap
+
+1.先移除wwwroot/lib/boostrap
+2.開啟用戶端程式庫如下
+<img src="https://i.imgur.com/xuAWYmu.png" title="" width="500" />
+3.選擇jsdlivr
+<img src="https://i.imgur.com/fBxXFSI.png" title="" width="500" />
 
 
-### 5 注意
+
+### 注意
 
 VS2019裡面SQL Seerver資料庫如下
-<img src="https://i.imgur.com/yobeZUI.png" title="" />
+<img src="https://i.imgur.com/yobeZUI.png" title="" width="500" />
 
 查看資料如下
-<img src="https://i.imgur.com/B5vlu46.png" title="" />
+<img src="https://i.imgur.com/B5vlu46.png" title="" width="500" />
 
 開啟vs2019的Sql資料如下
-<img src="https://i.imgur.com/4m7zauG.png" title="" />
+<img src="https://i.imgur.com/4m7zauG.png" title="" width="500" />
 
 

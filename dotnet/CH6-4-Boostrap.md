@@ -43,9 +43,11 @@ Update-Database
 
 ### 5 注意
 
-VS2019裡面SQL Seerver資料庫是windows sql server裡面的系統資料庫
+VS2019裡面SQL Seerver資料庫如下
+<img src="https://i.imgur.com/yobeZUI.png" title="" />
 
-<img src="https://i.imgur.com/jfvQ1go.png" title="" />
+查看資料如下
+<img src="https://i.imgur.com/B5vlu46.png" title="" />
 
 開啟vs2019的Sql資料如下
 <img src="https://i.imgur.com/4m7zauG.png" title="" />

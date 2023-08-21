@@ -38,6 +38,6 @@ Update-Database
 
 #### 4 測試如下
 
-<img src="https://imgur.com/0dd574c2-6c7e-4262-8a63-bf3a9ff5f287" title="" />
+<img src="https://i.imgur.com/5vxomxG.png" title="" />
 
 

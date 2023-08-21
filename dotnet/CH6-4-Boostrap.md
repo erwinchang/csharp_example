@@ -31,6 +31,7 @@ Database=Bootstrap_EmployeeDB
 3. 開啟套件管理器主控台 執行
 ```
 Add-Migration InitialDB
+Update-Database
 ```
 
 <img src="https://i.imgur.com/pVmfBh6.png" title="" />

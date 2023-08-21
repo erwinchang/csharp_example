@@ -40,6 +40,17 @@ Update-Database
 
 <img src="https://i.imgur.com/5vxomxG.png" title="" />
 
+### 4 boostrap測試
+
+```
+<div class="jumbotron bg-success p-3">
+    <h2>員工基本資料</h2>
+</div>
+<table class="table table-bordered table-striped">
+```
+
+<img src="https://i.imgur.com/eytLl7L.png" title="" />
+
 
 ### 5 注意
 

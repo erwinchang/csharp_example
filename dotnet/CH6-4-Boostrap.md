@@ -18,3 +18,21 @@ Microsoft.EntityFrameworkCore.Tools 3.1.0
 
 <img src="https://i.imgur.com/9vwURkc.png" title="" />
 
+### 3 建立DB
+
+1. 修正appsettings.json
+```
+Database=Bootstrap_EmployeeDB
+```
+
+2. 新增Data/EmployeeContext.cs
+建立種子資料
+
+3. 開啟套件管理器主控台 執行
+```
+Add-Migration InitialDB
+```
+
+<img src="https://i.imgur.com/pVmfBh6.png" title="" />
+
+

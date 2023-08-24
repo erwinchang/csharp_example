@@ -60,6 +60,15 @@ Update-Database
 <img src="https://i.imgur.com/fBxXFSI.png" title="" width="500" />
 
 
+### 6 加入Font-Awesome
+
+[How to Add Font Awesome to an ASP.NET Core Web Application][1]
+
+### 7 patch bootstrap
+
+新增IndexBootstrap.cshtml
+<img src="https://i.imgur.com/ZAhDBbw.png" title="" width="500" />
+
 
 ### 注意
 
@@ -71,5 +80,8 @@ VS2019裡面SQL Seerver資料庫如下
 
 開啟vs2019的Sql資料如下
 <img src="https://i.imgur.com/4m7zauG.png" title="" width="500" />
+
+
+[1]:https://sigitov.de/how-to-add-font-awesome-to-an-asp-net-core-web-application-core-version-2-0-and-higher/
 
 

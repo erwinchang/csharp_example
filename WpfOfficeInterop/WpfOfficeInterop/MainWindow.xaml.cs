@@ -20,9 +20,20 @@ namespace WpfOfficeInterop
     /// </summary>
     public partial class MainWindow : Window
     {
+        private cpMessageBox m_MessageBox = new cpMessageBox();
         public MainWindow()
         {
             InitializeComponent();
+            string txtMsg = string.Empty;
+            try
+            {
+                if (!WordTemplate1.Test(ref txtMsg))
+                    throw new Exception(txtMsg);
+            }
+            catch(Exception ex)
+            {
+                int num1 = (int)m_MessageBox.Show(txtMsg, "Error", "OK", "Error", options: "None");
+            }
         }
     }
 }

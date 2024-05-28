@@ -27,10 +27,16 @@ namespace WpfOfficeInterop
             string txtMsg = string.Empty;
             try
             {
-                if (!WordTemplate1.Test(ref txtMsg))
+                //if (!WordTemplate1.Test(ref txtMsg))
+                //    throw new Exception(txtMsg);
+
+                //if (!WordTemplate2.Test(ref txtMsg))
+                //    throw new Exception(txtMsg);
+
+                if (!WordTemplate3.Test(ref txtMsg))
                     throw new Exception(txtMsg);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 int num1 = (int)m_MessageBox.Show(txtMsg, "Error", "OK", "Error", options: "None");
             }

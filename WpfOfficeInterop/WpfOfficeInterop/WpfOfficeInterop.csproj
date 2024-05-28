@@ -60,6 +60,8 @@
     </ApplicationDefinition>
     <Compile Include="cpMessageBox.cs" />
     <Compile Include="WordTemplate1.cs" />
+    <Compile Include="WordTemplate2.cs" />
+    <Compile Include="WordTemplate3.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -23,6 +23,7 @@ namespace WpfNPIOExample
         public MainWindow()
         {
             InitializeComponent();
+            WordTemplate.Test();
         }
     }
 }

@@ -176,12 +176,13 @@ namespace WpfOfficeInterop
                 wrdMailMerge.Destination = WdMailMergeDestination.wdSendToNewDocument;
                 wrdMailMerge.Execute(ref oFalse);
 
+                //reference from ex1 
                 //wrdDoc.SaveAs2(templateOut);
-                wrdDoc.SaveAs2(templateOut, WdSaveFormat.wdFormatDocumentDefault);
-                wrdDoc.MailMerge.DataSource.Close();
+                //wrdDoc.SaveAs2(templateOut, WdSaveFormat.wdFormatDocumentDefault);
+                //wrdDoc.MailMerge.DataSource.Close();
 
                 // Close the original form document.
-                //wrdDoc.Saved = true;                
+                wrdDoc.Saved = true;
                 wrdDoc.Close(ref oFalse, ref oMissing, ref oMissing);
 
                 // Release References.

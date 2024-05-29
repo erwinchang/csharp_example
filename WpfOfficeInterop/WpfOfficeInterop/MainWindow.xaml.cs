@@ -36,7 +36,10 @@ namespace WpfOfficeInterop
                 //if (!WordTemplate3.Test(ref txtMsg))
                 //    throw new Exception(txtMsg);
 
-                if (!WordTemplate4.Test(ref txtMsg))
+                //if (!WordTemplate4.Test(ref txtMsg))
+                //    throw new Exception(txtMsg);
+
+                if (!WordTemplate5.Test(ref txtMsg))
                     throw new Exception(txtMsg);
             }
             catch (Exception ex)

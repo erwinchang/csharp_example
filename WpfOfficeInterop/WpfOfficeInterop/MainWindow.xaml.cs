@@ -30,11 +30,11 @@ namespace WpfOfficeInterop
                 //if (!WordTemplate1.Test(ref txtMsg))
                 //    throw new Exception(txtMsg);
 
-                //if (!WordTemplate2.Test(ref txtMsg))
-                //    throw new Exception(txtMsg);
-
-                if (!WordTemplate3.Test(ref txtMsg))
+                if (!WordTemplate2.Test(ref txtMsg))
                     throw new Exception(txtMsg);
+
+                //if (!WordTemplate3.Test(ref txtMsg))
+                //    throw new Exception(txtMsg);
             }
             catch (Exception ex)
             {

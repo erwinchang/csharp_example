@@ -89,9 +89,78 @@ Sub test1_3()
 End Sub
 ```
 
+```
+Sub test5_1()
+'
+' test5_1 巨集
+'
+'
+    With ActiveDocument.MailMerge
+        .Destination = wdSendToNewDocument
+        .SuppressBlankLines = True
+        With .DataSource
+            .FirstRecord = wdDefaultFirstRecord
+            .LastRecord = wdDefaultLastRecord
+        End With
+        .Execute Pause:=False
+    End With
+    Application.Move Left:=249, Top:=245
+    Windows("template3.docx").Activate
+End Sub
+```
+
 
 ### Ex03 [automate-word-mail-merge-using-visual-c][3]
+
+### Ex05 [Open-XML-SDK][4]
+
+- [Word processing][5]
+
+- [how-to-change-text-in-a-table-in-a-word-processing][6]
+
+先用debug找出要填入Table實際位置
+
+```
+                int iCol = 0;
+                int iRow = 0;
+                bool bRowStart = false;
+                foreach (TableRow row in table.Elements<TableRow>())
+                {
+                    if (bRowStart && iRow < rowCntMax)
+                    {
+                        int i = 0;
+                        iCol = 0;
+                        foreach (TableCell cell in row.Elements<TableCell>())
+                        {
+                            if (i >= 1 && (i < (1 + colCntMax)))
+                            {
+                                string strText = data[iRow,iCol];
+                                if (!string.IsNullOrEmpty(strText))
+                                {
+                                    Paragraph p = cell.Elements<Paragraph>().First();
+                                    Run r = new Run();
+                                    Text t = new Text();
+                                    t.Text = strText;
+                                    r.AddChild(t);
+                                    p.AddChild(r);
+                                }
+                                iCol++;
+                            }
+                            i++;
+                        }
+                        iRow++;
+                    }
+                    if (row.InnerText.Contains("(MHz)"))
+                    {
+                        bRowStart = true;
+                    }
+                }
+```
+
 
 [1]:https://jengting.blogspot.com/2015/08/c-microsoftofficeinteropexcel.html
 [2]:https://www.cc.ntu.edu.tw/chinese/epaper/home/News_Content_n_103858_s_220288.html
 [3]:https://learn.microsoft.com/zh-tw/previous-versions/office/troubleshoot/office-developer/automate-word-mail-merge-using-visual-c
+[4]:https://github.com/dotnet/Open-XML-SDK
+[5]:https://learn.microsoft.com/en-us/office/open-xml/word/overview
+[6]:https://learn.microsoft.com/en-us/office/open-xml/word/how-to-change-text-in-a-table-in-a-word-processing-document?tabs=cs-0%2Ccs-1%2Ccs-2%2Ccs-3%2Ccs

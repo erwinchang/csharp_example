@@ -70,6 +70,7 @@
     <Compile Include="WordTemplate3.cs" />
     <Compile Include="WordTemplate4.cs" />
     <Compile Include="WordTemplate5.cs" />
+    <Compile Include="WordTemplate6.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

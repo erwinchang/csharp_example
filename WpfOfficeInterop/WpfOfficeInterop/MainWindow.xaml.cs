@@ -27,19 +27,7 @@ namespace WpfOfficeInterop
             string txtMsg = string.Empty;
             try
             {
-                //if (!WordTemplate1.Test(ref txtMsg))
-                //    throw new Exception(txtMsg);
-
-                //if (!WordTemplate2.Test(ref txtMsg))
-                //    throw new Exception(txtMsg);
-
-                //if (!WordTemplate3.Test(ref txtMsg))
-                //    throw new Exception(txtMsg);
-
-                //if (!WordTemplate4.Test(ref txtMsg))
-                //    throw new Exception(txtMsg);
-
-                if (!WordTemplate5.Test(ref txtMsg))
+                if (!WordTemplate6.Test(ref txtMsg))
                     throw new Exception(txtMsg);
             }
             catch (Exception ex)

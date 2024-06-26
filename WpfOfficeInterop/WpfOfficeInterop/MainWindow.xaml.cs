@@ -27,7 +27,7 @@ namespace WpfOfficeInterop
             string txtMsg = string.Empty;
             try
             {
-                if (!WordTemplate6.Test(ref txtMsg))
+                if (!WordTemplate7.Test(ref txtMsg))
                     throw new Exception(txtMsg);
             }
             catch (Exception ex)

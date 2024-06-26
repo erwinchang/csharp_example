@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="cpMessageBox.cs" />
+    <Compile Include="Pdf2PngTemplate1.cs" />
     <Compile Include="WordTemplate1.cs" />
     <Compile Include="WordTemplate2.cs" />
     <Compile Include="WordTemplate3.cs" />

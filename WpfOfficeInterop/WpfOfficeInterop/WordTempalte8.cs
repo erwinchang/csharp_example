@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,8 @@ namespace WpfOfficeInterop
                     throw new Exception(strRet);
 
                 string pngFile = @"D:\template1.png";
-                InsertAPicture(docxFile, pngFile);
+                ImageData imgData = new ImageData(pngFile);
+                InsertAPicture(docxFile, pngFile, imgData);
 
                 Console.WriteLine("Document... Converted!");
             }
@@ -48,7 +50,7 @@ namespace WpfOfficeInterop
                 string[,] data = new string[4, 2]
                 {
                     {"Summary Test Result", "R0C1"},
-                    {"Test Regulation/Standard", "Result(Pass/Fail)"},
+                    {"Test Regulation/Standard", "Result (Pass/Fail)"},
                     {"EN300 328 1GHz~18GHz Tx Emission Report", "Pass"},
                     {"EN301 893 1GHz~26.5GHz Tx Emission Report", "Pass"}
                 };
@@ -108,12 +110,12 @@ namespace WpfOfficeInterop
                             if (j == 0)
                             {
                                 tc.Append(new TableCellProperties(
-                                        new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "80" }));
+                                        new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "70" }));
                             }
                             else
                             {
                                 tc.Append(new TableCellProperties(
-                                    new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "20" }));
+                                    new TableCellWidth { Type = TableWidthUnitValues.Pct, Width = "30" }));
                             }
                             string txt = data[i,j];
                             tc.Append(new Paragraph(new Run(new Text(txt))));
@@ -163,7 +165,7 @@ namespace WpfOfficeInterop
         }
 
         //https://learn.microsoft.com/en-us/office/open-xml/word/how-to-insert-a-picture-into-a-word-processing-document?tabs=cs-0%2Ccs-1%2Ccs-2%2Ccs-3%2Ccs
-        public static void InsertAPicture(string document, string fileName)
+        public static void InsertAPicture(string document, string fileName, ImageData imgData)
         {
             using (WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Open(document, true))
             {
@@ -181,17 +183,18 @@ namespace WpfOfficeInterop
                     imagePart.FeedData(stream);
                 }
 
-                AddImageToBody(wordprocessingDocument, mainPart.GetIdOfPart(imagePart));
+                AddImageToBody(wordprocessingDocument, mainPart.GetIdOfPart(imagePart), imgData);
             }
         }
 
-        static void AddImageToBody(WordprocessingDocument wordDoc, string relationshipId)
+        static void AddImageToBody(WordprocessingDocument wordDoc, string relationshipId, ImageData img)
         {
             // Define the reference of the image.
             var element =
                  new Drawing(
                      new DW.Inline(
-                         new DW.Extent() { Cx = 990000L, Cy = 792000L },
+                         //new DW.Extent() { Cx = 990000L, Cy = 792000L },
+                         new DW.Extent() { Cx = img.A4WidthInEMU, Cy = img.A4HeightInEMU },
                          new DW.EffectExtent()
                          {
                              LeftEdge = 0L,
@@ -202,7 +205,8 @@ namespace WpfOfficeInterop
                          new DW.DocProperties()
                          {
                              Id = (UInt32Value)1U,
-                             Name = "Picture 1"
+                             //Name = "Picture 1"
+                             Name = img.FileName
                          },
                          new DW.NonVisualGraphicFrameDrawingProperties(
                              new A.GraphicFrameLocks() { NoChangeAspect = true }),
@@ -213,7 +217,8 @@ namespace WpfOfficeInterop
                                          new PIC.NonVisualDrawingProperties()
                                          {
                                              Id = (UInt32Value)0U,
-                                             Name = "New Bitmap Image.jpg"
+                                             //Name = "New Bitmap Image.jpg"
+                                             Name = img.FileName
                                          },
                                          new PIC.NonVisualPictureDrawingProperties()),
                                      new PIC.BlipFill(
@@ -235,7 +240,8 @@ namespace WpfOfficeInterop
                                      new PIC.ShapeProperties(
                                          new A.Transform2D(
                                              new A.Offset() { X = 0L, Y = 0L },
-                                             new A.Extents() { Cx = 990000L, Cy = 792000L }),
+                                             //new A.Extents() { Cx = 990000L, Cy = 792000L }),
+                                             new A.Extents() { Cx = img.A4WidthInEMU, Cy = img.A4HeightInEMU }),
                                          new A.PresetGeometry(
                                              new A.AdjustValueList()
                                          )
@@ -258,6 +264,63 @@ namespace WpfOfficeInterop
 
             // Append the reference to body, the element should be in a Run.
             wordDoc.MainDocumentPart.Document.Body.AppendChild(new Paragraph(new Run(element)));
+        }
+    }
+
+    //https://blog.darkthread.net/blog/insert-image-to-docx/
+    public class ImageData
+    {
+        public string FileName = string.Empty;
+        public byte[] BinaryData;
+        public Stream DataStream => new MemoryStream(BinaryData);
+        public PartTypeInfo ImageType
+        {
+            get
+            {
+                var ext = Path.GetExtension(FileName).TrimStart('.').ToLower();
+                switch (ext)
+                {
+                    case "jpg":
+                        return ImagePartType.Jpeg;
+                    case "png":
+                        return ImagePartType.Png;
+                    case "":
+                        return ImagePartType.Gif;
+                    case "bmp":
+                        return ImagePartType.Bmp;
+                }
+                throw new ApplicationException($"Unsupported image type: {ext}");
+            }
+        }
+        public int SourceWidth;
+        public int SourceHeight;
+        public decimal Width;
+        public decimal Height;
+        public decimal A4Width;
+        public decimal A4Height;
+        public long WidthInEMU => Convert.ToInt64(Width * CM_TO_EMU);
+        public long HeightInEMU => Convert.ToInt64(Height * CM_TO_EMU);
+        public long A4WidthInEMU => Convert.ToInt64(A4Width * CM_TO_EMU);
+        public long A4HeightInEMU => Convert.ToInt64(A4Height * CM_TO_EMU);
+        private const decimal INCH_TO_CM = 2.54M;
+        private const decimal CM_TO_EMU = 360000M;
+        public string ImageName;
+        public ImageData(string fileName, byte[] data, int dpi = 300)
+        {
+            FileName = fileName;
+            BinaryData = data;
+            Bitmap img = new Bitmap(new MemoryStream(data));
+            SourceWidth = img.Width;
+            SourceHeight = img.Height;
+            Width = ((decimal)SourceWidth) / dpi * INCH_TO_CM;
+            Height = ((decimal)SourceHeight) / dpi * INCH_TO_CM;
+            A4Width = (decimal)((double)Width * 0.75);
+            A4Height = (decimal)((double)Height * 0.75);
+            ImageName = $"IMG_{Guid.NewGuid().ToString().Substring(0, 8)}";
+        }
+        public ImageData(string fileName, int dpi = 300) :
+            this(fileName, File.ReadAllBytes(fileName), dpi)
+        {
         }
     }
 }

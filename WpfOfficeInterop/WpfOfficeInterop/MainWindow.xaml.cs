@@ -27,7 +27,10 @@ namespace WpfOfficeInterop
             string txtMsg = string.Empty;
             try
             {
-                if (!Pdf2PngTemplate1.Test(ref txtMsg))
+                //if (!Pdf2PngTemplate1.Test(ref txtMsg))
+                //    throw new Exception(txtMsg);
+
+                if (!WordTempalte8.Test(ref txtMsg))
                     throw new Exception(txtMsg);
             }
             catch (Exception ex)
